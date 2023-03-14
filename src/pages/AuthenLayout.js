@@ -40,7 +40,7 @@ const AuthenLayout = ({ children }) => {
         <div className="mt-[30px]">
           <img src="logoo.png" alt="" className="rounded-lg" />
         </div>
-        <h3 className="text-[30px] font-bold mt-[10px]">
+        <h3 className="text-[30px] font-bold mt-[10px] ">
           Đăng nhập vào DH DEV
         </h3>
         {children}

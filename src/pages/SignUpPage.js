@@ -7,7 +7,7 @@ import Field from "../components/form/Field";
 import InputPassword from "../components/form/InputPassword";
 import { NavLink } from "react-router-dom";
 import Button from "../components/form/Button";
-const LoginPage = () => {
+const SignUpPage = () => {
   const { control } = useForm({
     defaultValues: {
       email: "",
@@ -15,7 +15,7 @@ const LoginPage = () => {
   });
   return (
     <AuthenLayout>
-      <form className="flex flex-col w-[400px] mt-2">
+      <form className="flex flex-col w-[400px] mt-0">
         <Field>
           <Label name="email">Email address</Label>
           <Input name="email" type="text" control={control}></Input>
@@ -24,11 +24,15 @@ const LoginPage = () => {
           <Label name="password">Password</Label>
           <InputPassword name="password" control={control}></InputPassword>
         </Field>
+        <Field>
+          <Label name="password">Password</Label>
+          <InputPassword name="password" control={control}></InputPassword>
+        </Field>
         <div>
           <span className="text-xs">
-            Bạn chưa có tài khoản?
-            <NavLink to={"/sign-up"} className="font-bold text-red-600">
-              Đăng kí
+            Bạn đã có tài khoản?
+            <NavLink to={"/login"} className="font-bold text-red-600">
+              Đăng nhập
             </NavLink>
           </span>
         </div>
@@ -40,4 +44,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default SignUpPage;

@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 
 const InputStyled = styled.input`
   border: 1px solid transparent;
-  padding: 16px 16px;
-  font-size: 18px;
+  padding: 10px 20px;
+  font-size: 16px;
   font-weight: 400;
   background-color: ${(props) => props.theme.bginput};
   outline: none;
