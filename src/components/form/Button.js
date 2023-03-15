@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Loading from "../loading/Loading";
 
@@ -8,6 +9,7 @@ const Button = ({
   onClick = () => {},
   isloading,
   children,
+  to,
   ...props
 }) => {
   const StyleButton = styled.div`
@@ -27,6 +29,19 @@ const Button = ({
       font-weight: 600;
     }
   `;
+
+  if (to !== "" && typeof to === "string") {
+    return (
+      <NavLink to={to}>
+        <StyleButton>
+          <button type={type} {...props}>
+            {children}
+          </button>
+        </StyleButton>
+      </NavLink>
+    );
+  }
+
   return (
     <StyleButton>
       <button type={type} onClick={onClick} {...props}>

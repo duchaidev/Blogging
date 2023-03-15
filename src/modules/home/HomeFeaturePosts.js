@@ -1,7 +1,7 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import FeaturePostsList from "./postList/FeaturePostsList";
+import Title from "./Title";
 
 const HomeFeaturePosts = () => {
   const StyleHomeFP = styled.div`
@@ -9,13 +9,7 @@ const HomeFeaturePosts = () => {
   `;
   return (
     <StyleHomeFP>
-      <div className="flex justify-between">
-        <h2 className="text-2xl font-bold text-white">Bài viết nổi bật</h2>
-        <NavLink to={""}>
-          {" "}
-          <span className="text-[#66FCF1]">Xem tất cả</span>
-        </NavLink>
-      </div>
+      <Title to="posts/detail-post">Bài viết nổi bật</Title>
       <FeaturePostsList></FeaturePostsList>
     </StyleHomeFP>
   );

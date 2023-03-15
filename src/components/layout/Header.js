@@ -67,7 +67,9 @@ const Header = () => {
       <div className="header">
         <div className="header-left">
           <div>
-            <img src="logoo.png" alt="logo" />
+            <NavLink to={"/"}>
+              <img src="logoo.png" alt="logo" />
+            </NavLink>
           </div>
           <h3>DH Blogging</h3>
         </div>

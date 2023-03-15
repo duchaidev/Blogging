@@ -88,7 +88,7 @@ const data = [
     date: "02/11/2022",
   },
 ];
-const FeaturePostsList = () => {
+const FeatureDocList = () => {
   const StyleList = styled.div`
     margin-top: 20px;
     display: grid;
@@ -100,7 +100,7 @@ const FeaturePostsList = () => {
     <StyleList>
       {data.map((item) => (
         <PostsItem
-          key={item.title}
+          key={item.image}
           image={item.image}
           urlPost={item.urlPost}
           title={item.title}
@@ -114,4 +114,4 @@ const FeaturePostsList = () => {
   );
 };
 
-export default FeaturePostsList;
+export default FeatureDocList;
