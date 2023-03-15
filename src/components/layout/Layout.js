@@ -7,6 +7,8 @@ import NavBar from "./NavBar";
 const Layout = () => {
   const StyleLayout = styled.div`
     background-color: ${(props) => props.theme.backround};
+    position: relative;
+    z-index: 1000;
     .main {
       display: grid;
       grid-template-columns: 200px minmax(0, 1fr);
@@ -20,9 +22,7 @@ const Layout = () => {
       <Header></Header>
       <div className="main">
         <NavBar></NavBar>
-        <div className="children">
-          <Outlet></Outlet>
-        </div>
+        <Outlet className="z-0"></Outlet>
       </div>
     </StyleLayout>
   );

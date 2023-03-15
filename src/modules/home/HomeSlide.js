@@ -9,7 +9,6 @@ import Youtobe from "../../components/icon/Youtobe";
 
 const HomeSlide = () => {
   const StyleHomeSlide = styled.div`
-    margin-top: 50px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,24 +55,28 @@ const HomeSlide = () => {
           <NavLink
             to={"https://github.com/Leduchai2k3/Blogging"}
             target="_blank"
+            className="rounded-full view"
           >
             <Facebook></Facebook>
           </NavLink>
           <NavLink
             to={"https://github.com/Leduchai2k3/Blogging"}
             target="_blank"
+            className="rounded-full view"
           >
             <Youtobe></Youtobe>
           </NavLink>
           <NavLink
             to={"https://github.com/Leduchai2k3/Blogging"}
             target="_blank"
+            className="rounded-full view"
           >
             <Github></Github>
           </NavLink>
           <NavLink
             to={"https://github.com/Leduchai2k3/Blogging"}
             target="_blank"
+            className="rounded-full view"
           >
             <Instagram></Instagram>
           </NavLink>

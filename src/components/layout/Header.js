@@ -8,6 +8,7 @@ const Header = () => {
     height: 100%;
     background-color: ${(props) => props.theme.backround};
     .header {
+      position: fixed;
       width: 100%;
       height: 70px;
       border-bottom: 1px solid ${(props) => props.theme.placehv};
@@ -15,6 +16,8 @@ const Header = () => {
       justify-content: space-between;
       align-items: center;
       padding: 0px 30px;
+      background-color: ${(props) => props.theme.backround};
+      z-index: 100;
       .header-left {
         display: flex;
         display: flex;
@@ -22,8 +25,8 @@ const Header = () => {
         align-items: center;
         color: ${(props) => props.theme.bginput};
         img {
-          width: 40px;
-          height: 40px;
+          width: 50px;
+          height: 50px;
           border-radius: 10px;
           margin-right: 10px;
         }

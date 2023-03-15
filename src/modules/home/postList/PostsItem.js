@@ -33,12 +33,12 @@ const PostsItem = ({
       <NavLink className="text-white" to={urlPost}>
         <h2 title={title}>{title.slice(0, 35) + "..."}</h2>
       </NavLink>
-      <div className="flex gap-2 items-center">
+      <div className="flex items-center gap-2">
         <NavLink to={urlAuthor}>
           <img
             src={avatarAuthor}
             alt="logo"
-            className="w-6 h-6 object-cover rounded-full"
+            className="object-cover w-6 h-6 rounded-full"
           />
         </NavLink>
         <NavLink>
