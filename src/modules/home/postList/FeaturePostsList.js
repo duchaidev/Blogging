@@ -102,7 +102,7 @@ const FeaturePostsList = () => {
         <PostsItem
           key={item.title}
           image={item.image}
-          urlPost={item.urlPost}
+          urlPost="blog/:slug"
           title={item.title}
           avatarAuthor={item.avatarAuthor}
           fullname={item.fullname}

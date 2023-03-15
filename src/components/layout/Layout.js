@@ -7,14 +7,16 @@ import NavBar from "./NavBar";
 const Layout = () => {
   const StyleLayout = styled.div`
     background-color: ${(props) => props.theme.backround};
-    position: relative;
     z-index: 1000;
+    padding-right: 100px;
+
     .main {
       display: grid;
       grid-template-columns: 200px minmax(0, 1fr);
     }
     .children {
-      margin-top: 15px;
+      margin-top: 90px;
+      padding-bottom: 30px;
     }
   `;
   return (
@@ -22,7 +24,9 @@ const Layout = () => {
       <Header></Header>
       <div className="main">
         <NavBar></NavBar>
-        <Outlet className="z-0"></Outlet>
+        <div className="children">
+          <Outlet></Outlet>
+        </div>
       </div>
     </StyleLayout>
   );

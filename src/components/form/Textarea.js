@@ -1,9 +1,9 @@
 import React from "react";
 import { useController } from "react-hook-form";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import PropTypes from "prop-types";
 
-const InputStyled = styled.input`
+const InputStyled = styled.textarea`
   border: 1px solid transparent;
   padding: 10px 20px;
   font-size: 16px;
@@ -14,22 +14,14 @@ const InputStyled = styled.input`
   transition: 0.3s all;
   width: 100%;
   margin-top: 5px;
-  :focus {
-    border: 1px solid ${(props) => props.theme.bgButton};
-    background-color: #fff;
-  }
 
-  ${(props) =>
-    props.kind === "second" &&
-    css`
-      color: black;
-      background-color: ${(props) => props.theme.second};
-      :focus {
-        background-color: ${(props) => props.theme.secondHover};
-        border: 1px solid ${(props) => props.theme.bgButton};
-        color: white;
-      }
-    `}
+  color: black;
+  background-color: ${(props) => props.theme.second};
+  :focus {
+    background-color: ${(props) => props.theme.secondHover};
+    border: 1px solid ${(props) => props.theme.bgButton};
+    color: white;
+  }
 `;
 const DivStyled = styled.div`
   position: relative;
@@ -45,7 +37,13 @@ const DivStyled = styled.div`
   }
 `;
 
-const Input = ({ type = "text", name = "", children, control, ...props }) => {
+const Textarea = ({
+  type = "text",
+  name = "",
+  children,
+  control,
+  ...props
+}) => {
   const { field } = useController({
     control,
     name,
@@ -54,10 +52,11 @@ const Input = ({ type = "text", name = "", children, control, ...props }) => {
   return (
     <DivStyled>
       <InputStyled
-        type={type}
         name={name}
         id={name}
-        placeholder={`Please enter your ${name}`}
+        rows="4"
+        cols="50"
+        placeholder="Message Content"
         {...props}
         {...field}
       />
@@ -65,10 +64,10 @@ const Input = ({ type = "text", name = "", children, control, ...props }) => {
     </DivStyled>
   );
 };
-Input.prototype = {
+Textarea.prototype = {
   name: PropTypes.string,
   type: PropTypes.string,
   control: PropTypes.any.isRequired,
   children: PropTypes.any,
 };
-export default Input;
+export default Textarea;

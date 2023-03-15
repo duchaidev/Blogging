@@ -128,7 +128,7 @@ const NavBar = () => {
     },
     {
       title: "Liên hệ",
-      url: "/lien-he",
+      url: "/support",
       icon: (
         <svg
           width="31"

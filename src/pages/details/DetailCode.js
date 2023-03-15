@@ -2,9 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const DetailCode = () => {
-  const StyleDetailCode = styled.div`
-    margin-right: 100px;
-  `;
+  const StyleDetailCode = styled.div``;
   return (
     <StyleDetailCode>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sint, ullam a!

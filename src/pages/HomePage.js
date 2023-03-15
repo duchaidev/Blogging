@@ -7,10 +7,7 @@ import HomeSlide from "../modules/home/HomeSlide";
 
 const HomePage = () => {
   const StyleHomePage = styled.div`
-    margin-right: 100px;
-    margin-top: 120px;
-    position: relative;
-    z-index: 0;
+    margin-top: 30px;
   `;
   return (
     <StyleHomePage>

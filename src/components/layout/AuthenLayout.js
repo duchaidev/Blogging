@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+
 const AuthenLayout = ({ children }) => {
   const StyleDiv = styled.div`
     position: absolute;
@@ -38,8 +40,11 @@ const AuthenLayout = ({ children }) => {
       </div>
       <div className="container">
         <div className="mt-[30px]">
-          <img src="logoo.png" alt="" className="rounded-lg" />
+          <NavLink to={"/"}>
+            <img src="logoo.png" alt="" className="rounded-lg" />
+          </NavLink>
         </div>
+
         <h3 className="text-[30px] font-bold mt-[10px] ">
           Đăng nhập vào DH DEV
         </h3>

@@ -2,11 +2,11 @@ import React from "react";
 import Input from "../components/form/Input";
 import { useForm } from "react-hook-form";
 import Label from "../components/form/Label";
-import AuthenLayout from "./AuthenLayout";
 import Field from "../components/form/Field";
 import InputPassword from "../components/form/InputPassword";
 import { NavLink } from "react-router-dom";
 import Button from "../components/form/Button";
+import AuthenLayout from "../components/layout/AuthenLayout";
 const SignUpPage = () => {
   const { control } = useForm({
     defaultValues: {

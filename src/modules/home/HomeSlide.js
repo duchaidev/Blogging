@@ -43,7 +43,7 @@ const HomeSlide = () => {
           </NavLink>
 
           <NavLink
-            to={"/https://github.com/Leduchai2k3/Blogging"}
+            to={"https://github.com/Leduchai2k3/Blogging"}
             target="_blank"
           >
             <button className="w-[200px] h-[50px] bg-[#66FCF1] text-[#434246] font-semibold text-lg rounded-lg view transition-[0.5s]">

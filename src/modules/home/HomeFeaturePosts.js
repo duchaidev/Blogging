@@ -9,7 +9,7 @@ const HomeFeaturePosts = () => {
   `;
   return (
     <StyleHomeFP>
-      <Title to="posts/detail-post">Bài viết nổi bật</Title>
+      <Title to="/blog">Bài viết nổi bật</Title>
       <FeaturePostsList></FeaturePostsList>
     </StyleHomeFP>
   );
