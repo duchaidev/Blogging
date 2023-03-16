@@ -9,7 +9,7 @@ const HomeFeatureDoc = () => {
   `;
   return (
     <StyleHomeFD>
-      <Title to="/doc">Tài liệu nổi bật</Title>
+      <Title to="/lo-trinh">Lộ trình(Doc)</Title>
       <FeatureDocList></FeatureDocList>
     </StyleHomeFD>
   );

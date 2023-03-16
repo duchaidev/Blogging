@@ -9,6 +9,8 @@ import LoginPage from "./pages/LoginPage";
 import PageNotFound from "./pages/PageNotFound";
 import SignUpPage from "./pages/SignUpPage";
 import Support from "./pages/Support";
+import Map from "./pages/Map";
+import BlogPage from "./pages/BlogPage";
 function App() {
   return (
     <div>
@@ -21,6 +23,9 @@ function App() {
           <Route element={<Layout></Layout>}>
             <Route path="/" element={<HomePage></HomePage>}></Route>
             <Route path="/support" element={<Support></Support>}></Route>
+            <Route path="/lo-trinh" element={<Map></Map>}></Route>
+            <Route path="/blog" element={<BlogPage></BlogPage>}></Route>
+
             <Route
               path="/code/:slug"
               element={<DetailCode></DetailCode>}

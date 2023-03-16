@@ -15,6 +15,7 @@ const NavBar = () => {
       align-items: center;
       border-radius: 100%;
       margin-top: 90px;
+      transform: translateX(10px);
     }
     .mode {
       width: 50px;
@@ -25,11 +26,12 @@ const NavBar = () => {
       align-items: center;
       border-radius: 100%;
       margin-top: 40px;
+      transform: translateX(10px);
     }
     .nav-menu {
       display: flex;
       flex-direction: column;
-      width: 50px;
+      width: 70px;
       background-color: #273f48;
       padding: 3px;
       border-radius: 10px;
@@ -39,14 +41,14 @@ const NavBar = () => {
         flex-direction: column;
         align-items: center;
         font-weight: 400;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
         cursor: pointer;
-        padding: 4px;
+        padding: 10px 4px;
 
         &.active,
         &:hover {
-          background: #060a0c;
-          padding: 4px;
+          background: #0b2022;
+          padding: 10px 4px;
           border-radius: 10px;
         }
       }
@@ -73,8 +75,8 @@ const NavBar = () => {
       ),
     },
     {
-      title: "Tài liệu",
-      url: "/tai-lieu",
+      title: "Lộ trình",
+      url: "/lo-trinh",
       icon: (
         <svg
           width="32"

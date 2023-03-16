@@ -75,7 +75,7 @@ const CodeList = () => {
     <StyleCodeList>
       {data.map((item) => (
         <PostsItem
-          key={item.image}
+          key={item.title}
           image={item.image}
           urlPost={item.urlPost}
           title={item.title}

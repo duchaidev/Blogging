@@ -9,7 +9,7 @@ const HomeFeatureCode = () => {
   `;
   return (
     <StyleFCode>
-      <Title to="code/detail-code">Source Code nổi bật</Title>
+      <Title to="code">Source Code nổi bật</Title>
       <CodeList></CodeList>
     </StyleFCode>
   );

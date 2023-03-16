@@ -7,7 +7,7 @@ const Support = () => {
   const StyleSupport = styled.div``;
   return (
     <StyleSupport>
-      <TitleHeader></TitleHeader>
+      <TitleHeader>Liên hệ</TitleHeader>
       <SupportForm></SupportForm>
     </StyleSupport>
   );
