@@ -1,20 +1,33 @@
-1. Cài đặt Project Boilerplate Monkey Blogging
-2. Thiết lập Firebase
-3. Thiết lập Routes
-4. Viết auth-context để lưu trữ thông tin User
-5. Code trang SignUp - UI
-6. Login UI
-7. Header UI
-8. Homepage UI
-9. Details UI
-10. Dashboard UI
-11. Checkbox, radio, toggle
-12. Add new post: overview, upload image, delete image, toggle hot, find category
-13. Display(Pagination, Filter), Add, Update & Delete Category
-14. Display(Pagination, Filter), Add, Update & Delete User
-15. Re-analyze database for Post
-16. Display, Filter, Add, Update & Delete Post
-17. Update post with React quill
-18. Handle upload image in React quill
-19. Update auth information
-20. Optimize source code(PropTypes, logic, error boundary, routes, UI UX...)
+# Post
+
+- id
+- title
+- slug
+- image
+- createdAt
+- hot(true or false)
+- content
+- userId
+- user: id, username, fullname, avatar, description
+- categoryId
+- category: id, name, slug
+
+# Category
+
+- id
+- name
+- slug
+- createdAt
+
+# User
+
+- id
+- displayName
+- username
+- email
+- password
+- avatar: url, image_name
+- status: 1(active) 2(pending) 3(ban)
+- role: 1(Admin) 2(Mod) 3(User)
+- permissions: "ADD_POST"
+- createdAt
