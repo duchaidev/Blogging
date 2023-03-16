@@ -16,7 +16,7 @@ const Layout = () => {
     }
     .children {
       margin-top: 90px;
-      padding-bottom: 30px;
+      /* padding-bottom: 30px; */
     }
   `;
   return (

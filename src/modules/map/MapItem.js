@@ -15,7 +15,7 @@ const MapItem = ({ image, to, title, content }) => {
       div {
         width: 50%;
         path {
-          transition: 0.25s all;
+          transition: 0.15s all;
           fill: gray;
         }
         :hover {
@@ -37,11 +37,13 @@ const MapItem = ({ image, to, title, content }) => {
           <h2 className="mt-3 text-sm font-normal text-gray-300">{content}</h2>
         </div>
         <div className="ml-4 w-[120px] h-[120px] min-h-[120px] min-w-[120px] p-1 border-[#66FCF1] border-[3px] rounded-full ">
-          <img
-            src={image}
-            alt=""
-            className="w-[100%] h-full overflow-hidden rounded-full object-cover "
-          />
+          <NavLink>
+            <img
+              src={image}
+              alt=""
+              className="w-[100%] h-full overflow-hidden rounded-full object-cover "
+            />
+          </NavLink>
         </div>
       </div>
       <div className="mb-8">

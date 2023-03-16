@@ -12,6 +12,8 @@ const PostItem = ({
   image,
   category,
   date,
+  to,
+  toInfo,
 }) => {
   const StylePostItem = styled.div`
     padding: 20px;
@@ -30,13 +32,17 @@ const PostItem = ({
       <div className="flex items-center justify-between mb-[15px]">
         <div className="flex items-center gap-2">
           <div className="w-[30px] h-[30px] rounded-full">
-            <img
-              src={avtAuthor}
-              alt="avatar"
-              className="overflow-hidden rounded-full"
-            />
+            <NavLink to={toInfo}>
+              <img
+                src={avtAuthor}
+                alt="avatar"
+                className="overflow-hidden rounded-full"
+              />
+            </NavLink>
           </div>
-          <h2 className="text-gray-300">{nameAuthor}</h2>
+          <NavLink to={toInfo}>
+            <h2 className="text-gray-300">{nameAuthor}</h2>
+          </NavLink>
         </div>
         <NavLink>
           <ThreeDot></ThreeDot>
@@ -44,17 +50,21 @@ const PostItem = ({
       </div>
       <div className="item">
         <div className="flex flex-col gap-2">
-          <NavLink className="text-white font-semibold text-[18px]">
+          <NavLink to={to} className="text-white font-semibold text-[18px]">
             {title}
           </NavLink>
-          <p className="text-[#8e8e8e] text-[15px]">{content}</p>
+          <NavLink to={to}>
+            <p className="text-[#8e8e8e] text-[15px]">{content}</p>
+          </NavLink>
         </div>
         <div>
-          <img
-            src={image}
-            alt="img"
-            className="w-full h-[110px] overflow-hidden object-cover rounded-lg"
-          />
+          <NavLink to={to}>
+            <img
+              src={image}
+              alt="img"
+              className="w-full h-[110px] overflow-hidden object-cover rounded-lg"
+            />
+          </NavLink>
         </div>
       </div>
       <div className="flex items-center gap-3 text-white">

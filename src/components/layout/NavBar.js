@@ -152,7 +152,7 @@ const NavBar = () => {
       <div className="fixed">
         <div className="add-post">
           <NavLink
-            to={"/"}
+            to={"/add-new-post"}
             className="flex justify-center w-full h-full center"
           >
             <button className="">

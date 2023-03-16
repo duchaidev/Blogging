@@ -11,6 +11,9 @@ import SignUpPage from "./pages/SignUpPage";
 import Support from "./pages/Support";
 import Map from "./pages/Map";
 import BlogPage from "./pages/BlogPage";
+import AddNewPostUser from "./modules/home/AddNewPostUser";
+import AddNewPostAdmin from "./modules/home/AddNewPostAdmin";
+import AddNewCategory from "./pages/AddNewCategory";
 function App() {
   return (
     <div>
@@ -33,6 +36,18 @@ function App() {
             <Route
               path="/blog/:slug"
               element={<DetailBlog></DetailBlog>}
+            ></Route>
+            <Route
+              path="/add-new-post"
+              element={<AddNewPostUser></AddNewPostUser>}
+            ></Route>
+            <Route
+              path="/add-new-post/admin"
+              element={<AddNewPostAdmin></AddNewPostAdmin>}
+            ></Route>
+            <Route
+              path="/add-new-category/admin"
+              element={<AddNewCategory></AddNewCategory>}
             ></Route>
           </Route>
         </Routes>

@@ -13,6 +13,7 @@ const fakeData = [
       "https://files.fullstack.edu.vn/f8-prod/blog_posts/6630/63fd6b687b938.jpg",
     category: "IT",
     date: "2 ngày trước",
+    to: "/blog/le-duc-hai",
   },
   {
     avtAuthor: "logoo.png",
@@ -24,6 +25,8 @@ const fakeData = [
       "https://files.fullstack.edu.vn/f8-prod/blog_posts/6626/63fc19cf0ecb7.jpg",
     category: "Lập trình viên",
     date: "5 ngày trước",
+    to: "/blog/duc-hai",
+    toInfo: "/blog",
   },
   {
     avtAuthor: "logoo.png",
@@ -35,6 +38,7 @@ const fakeData = [
       "https://files.fullstack.edu.vn/f8-prod/blog_posts/6584/63f81cb512e5f.png",
     category: "Lập trình viên",
     date: "5 ngày trước",
+    to: "/blog",
   },
   {
     avtAuthor: "logoo.png",
@@ -46,6 +50,7 @@ const fakeData = [
       "https://files.fullstack.edu.vn/f8-prod/blog_posts/6574/63f72b782aa83.jpg",
     category: "Lập trình viên",
     date: "5 ngày trước",
+    to: "/blog",
   },
 ];
 
@@ -54,6 +59,8 @@ const PostList = () => {
     <div className="flex flex-col gap-8">
       {fakeData.map((item) => (
         <PostItem
+          toInfo={item.toInfo}
+          to={item.to}
           avtAuthor={item.avtAuthor}
           nameAuthor={item.nameAuthor}
           title={item.title}
