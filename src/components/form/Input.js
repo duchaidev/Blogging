@@ -14,9 +14,14 @@ const InputStyled = styled.input`
   transition: 0.3s all;
   width: 100%;
   margin-top: 5px;
+  color-scheme: white;
   :focus {
     border: 1px solid ${(props) => props.theme.bgButton};
     background-color: #fff;
+  }
+  ::placeholder {
+    color: white;
+    opacity: 0.4;
   }
 
   ${(props) =>
@@ -57,6 +62,7 @@ const Input = ({ type = "text", name = "", children, control, ...props }) => {
         type={type}
         name={name}
         id={name}
+        // disabled={props.disabled}
         placeholder={`Please enter your ${name}`}
         {...props}
         {...field}

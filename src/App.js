@@ -14,6 +14,10 @@ import BlogPage from "./pages/BlogPage";
 import AddNewPostUser from "./modules/home/AddNewPostUser";
 import AddNewPostAdmin from "./modules/home/AddNewPostAdmin";
 import AddNewCategory from "./pages/AddNewCategory";
+import AddNewUser from "./pages/AddNewUser";
+import ChangePassword from "./pages/ChangePassword";
+import DashBoardLayout from "./components/layout/DashBoardLayout";
+import DashBoardPosts from "./pages/DashBoardPosts";
 function App() {
   return (
     <div>
@@ -22,6 +26,12 @@ function App() {
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>
           <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
           <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+          <Route element={<DashBoardLayout></DashBoardLayout>}>
+            <Route
+              path="/manage/posts"
+              element={<DashBoardPosts></DashBoardPosts>}
+            ></Route>
+          </Route>
 
           <Route element={<Layout></Layout>}>
             <Route path="/" element={<HomePage></HomePage>}></Route>
@@ -48,6 +58,14 @@ function App() {
             <Route
               path="/add-new-category/admin"
               element={<AddNewCategory></AddNewCategory>}
+            ></Route>
+            <Route
+              path="/add-new-user/admin"
+              element={<AddNewUser></AddNewUser>}
+            ></Route>
+            <Route
+              path="/change-password"
+              element={<ChangePassword></ChangePassword>}
             ></Route>
           </Route>
         </Routes>
