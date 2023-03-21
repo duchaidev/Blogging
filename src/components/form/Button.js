@@ -35,7 +35,7 @@ const Button = ({
     return (
       <NavLink to={to}>
         <StyleButton>
-          <button type={type} {...props} classname={classname}>
+          <button type={type} {...props} className={classname}>
             {children}
           </button>
         </StyleButton>
@@ -45,7 +45,7 @@ const Button = ({
 
   return (
     <StyleButton>
-      <button type={type} onClick={onClick} {...props}>
+      <button type={type} onClick={onClick} {...props} className={classname}>
         {!isloading ? children : <Loading></Loading>}
       </button>
     </StyleButton>
