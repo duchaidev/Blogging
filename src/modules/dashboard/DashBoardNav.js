@@ -24,7 +24,7 @@ const dataNav = [
 
   {
     title: "Category",
-    url: "/manage/catrgory",
+    url: "/manage/category",
     icon: (
       <svg
         width="30"

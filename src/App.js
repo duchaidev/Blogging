@@ -18,6 +18,8 @@ import AddNewUser from "./pages/AddNewUser";
 import ChangePassword from "./pages/ChangePassword";
 import DashBoardLayout from "./components/layout/DashBoardLayout";
 import DashBoardPosts from "./pages/DashBoardPosts";
+import DashBoardCategory from "./pages/DashBoardCategory";
+import DashBoardUser from "./pages/DashBoardUser";
 function App() {
   return (
     <div>
@@ -27,6 +29,14 @@ function App() {
           <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
           <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
           <Route element={<DashBoardLayout></DashBoardLayout>}>
+            <Route
+              path="/manage/user"
+              element={<DashBoardUser></DashBoardUser>}
+            ></Route>
+            <Route
+              path="/manage/category"
+              element={<DashBoardCategory></DashBoardCategory>}
+            ></Route>
             <Route
               path="/manage/posts"
               element={<DashBoardPosts></DashBoardPosts>}

@@ -17,12 +17,12 @@
 16. Page Not Found
 17. Add New User UI
 18. Change PassWord UI
--->
-
 19. DashBoard Layout
 20. DashBoard User
 21. DashBoard Category
-22. DashBoard Post`
+22. DashBoard Post
+-->
+
 23. Checkbox, radio, toggle
 24. Add new post: overview, upload image, delete image, toggle hot, find category
 25. Display(Pagination, Filter), Add, Update & Delete Category

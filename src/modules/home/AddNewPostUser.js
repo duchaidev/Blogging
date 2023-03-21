@@ -7,14 +7,40 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Button from "../../components/form/Button";
 import TitleAdd from "../../components/title/TitleAdd";
-
+import ImageUpload from "../../components/image/ImageUpload";
+import useFirebaseImg from "../../hook/useFirebaseImg";
 const AddNewPostUser = () => {
-  const { control } = useForm({
+  const { control, watch, setValue, handleSubmit, getValues, reset } = useForm({
     mode: "onChange",
-    defaultValues: "",
+    defaultValues: {
+      status: 2,
+      title: "",
+      slug: "",
+      category: "",
+      hot: false,
+      image: "",
+    },
   });
-  const [value, setValue] = useState("");
+  const {
+    progress,
+    image,
+    handleDeleteImg,
+    onSelectImage,
+    setImage,
+    setProgress,
+  } = useFirebaseImg(setValue, getValues);
+  const [content, setContent] = useState("");
 
+  const modules = {
+    toolbar: [
+      ["bold", "italic", "underline", "strike"],
+      ["blockquote"],
+      [{ header: 1 }, { header: 2 }, { header: 3 }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      ["link", "image"],
+    ],
+  };
   return (
     <div className="min-h-screen">
       <TitleAdd>Add new post</TitleAdd>
@@ -48,6 +74,13 @@ const AddNewPostUser = () => {
               >
                 Image
               </Label>
+              <ImageUpload
+                className="w-[350px]"
+                onChange={onSelectImage}
+                progress={progress}
+                image={image}
+                handleDeleteImg={handleDeleteImg}
+              ></ImageUpload>
             </div>
             <div>
               <Label
@@ -60,9 +93,10 @@ const AddNewPostUser = () => {
           </div>
           <div>
             <ReactQuill
+              modules={modules}
               theme="snow"
-              value={value}
-              onChange={setValue}
+              value={content}
+              onChange={setContent}
               className="text-white "
             />
           </div>
