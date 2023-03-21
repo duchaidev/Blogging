@@ -8,3 +8,8 @@ export const theme = {
   second: "#788DA9",
   secondHover: "rgba(102, 252, 241, 0.11);",
 };
+export const useRole = {
+  ADMIN: 1,
+  MOD: 2,
+  USER: 3,
+};

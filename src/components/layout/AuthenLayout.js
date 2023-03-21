@@ -36,7 +36,7 @@ const AuthenLayout = ({ children }) => {
   return (
     <StyleDiv>
       <div className="bg-img">
-        <img src="bglogin.jpg" alt="" className="object-cover w-full h-full" />
+        {/* <img src="bglogin.jpg" alt="" className="object-cover w-full h-full" /> */}
       </div>
       <div className="container">
         <div className="mt-[30px]">

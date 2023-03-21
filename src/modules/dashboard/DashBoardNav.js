@@ -1,6 +1,8 @@
+import { signOut } from "firebase/auth";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { auth } from "../../firebase-app/firebase-auth";
 
 const dataNav = [
   {
@@ -104,7 +106,6 @@ const dataNav = [
   },
   {
     title: "Logout",
-    url: "/manage/logout",
     icon: (
       <svg
         width="30"
@@ -119,6 +120,7 @@ const dataNav = [
         />
       </svg>
     ),
+    onClick: () => signOut(auth),
   },
 ];
 const DashBoardNav = () => {
@@ -173,12 +175,27 @@ const DashBoardNav = () => {
     <StyleDashBoardNav className="">
       <div className="nav">
         <div className="nav-menu">
-          {dataNav.map((item) => (
-            <NavLink to={item.url} key={item.url} className="menu-item">
-              <span>{item.icon}</span>
-              <p>{item.title}</p>
-            </NavLink>
-          ))}
+          {dataNav.map((item) => {
+            if (item.onClick) {
+              return (
+                <NavLink
+                  to={item.url}
+                  key={item.url}
+                  className="menu-item"
+                  onClick={item.onClick}
+                >
+                  <span>{item.icon}</span>
+                  <p>{item.title}</p>
+                </NavLink>
+              );
+            }
+            return (
+              <NavLink to={item.url} key={item.url} className="menu-item">
+                <span>{item.icon}</span>
+                <p>{item.title}</p>
+              </NavLink>
+            );
+          })}
         </div>
       </div>
       <div></div>

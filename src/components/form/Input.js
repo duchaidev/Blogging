@@ -1,7 +1,6 @@
 import React from "react";
 import { useController } from "react-hook-form";
 import styled, { css } from "styled-components";
-import PropTypes from "prop-types";
 
 const InputStyled = styled.input`
   border: 1px solid transparent;
@@ -20,7 +19,7 @@ const InputStyled = styled.input`
     background-color: #fff;
   }
   ::placeholder {
-    color: white;
+    color: black;
     opacity: 0.4;
   }
 
@@ -71,10 +70,5 @@ const Input = ({ type = "text", name = "", children, control, ...props }) => {
     </DivStyled>
   );
 };
-Input.prototype = {
-  name: PropTypes.string,
-  type: PropTypes.string,
-  control: PropTypes.any.isRequired,
-  children: PropTypes.any,
-};
+
 export default Input;

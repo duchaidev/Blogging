@@ -1,6 +1,7 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { useAuth } from "../../context/auth-context";
 
 const Header = () => {
   const StyleHomePage = styled.div`
@@ -65,6 +66,9 @@ const Header = () => {
       }
     }
   `;
+  const { userInfo } = useAuth();
+  const navigate = useNavigate();
+
   return (
     <StyleHomePage>
       <div className="header">
@@ -80,9 +84,15 @@ const Header = () => {
           <input type="text" placeholder="Tìm kiếm blog, tài liệu...." />
         </div>
         <div className="header-right">
-          <NavLink to={"/sign-up"} className="w-full h-full">
-            <button className="w-full h-full">Sign Up</button>
-          </NavLink>
+          {userInfo?.email ? (
+            <NavLink to={"/manage/user"} className="w-full h-full">
+              <button className="w-full h-full">Dashboard</button>
+            </NavLink>
+          ) : (
+            <NavLink to={"/sign-up"} className="w-full h-full">
+              <button className="w-full h-full">Sign Up</button>
+            </NavLink>
+          )}
         </div>
       </div>
     </StyleHomePage>
