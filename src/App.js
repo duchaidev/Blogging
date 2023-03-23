@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
-import { AuthProvider } from "./context/auth-context";
+// import { AuthProvider, useAuth } from "./context/auth-context";
 import DetailBlog from "./pages/details/DetailBlog";
 import DetailCode from "./pages/details/DetailCode";
 import HomePage from "./pages/HomePage";
@@ -21,13 +21,15 @@ import DashBoardPosts from "./pages/DashBoardPosts";
 import DashBoardCategory from "./pages/DashBoardCategory";
 import DashBoardUser from "./pages/DashBoardUser";
 function App() {
+  // const { userInfo } = useAuth();
   return (
     <div>
-      <AuthProvider>
+      <>
         <Routes>
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>
           <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
           <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+          {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
           <Route element={<DashBoardLayout></DashBoardLayout>}>
             <Route
               path="/manage/user"
@@ -42,6 +44,7 @@ function App() {
               element={<DashBoardPosts></DashBoardPosts>}
             ></Route>
           </Route>
+          {/* ) : null} */}
 
           <Route element={<Layout></Layout>}>
             <Route path="/" element={<HomePage></HomePage>}></Route>
@@ -61,25 +64,33 @@ function App() {
               path="/add-new-post"
               element={<AddNewPostUser></AddNewPostUser>}
             ></Route>
+
+            {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
             <Route
               path="/add-new-post/admin"
               element={<AddNewPostAdmin></AddNewPostAdmin>}
             ></Route>
+            {/* ) : null} */}
+            {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
             <Route
               path="/add-new-category/admin"
               element={<AddNewCategory></AddNewCategory>}
             ></Route>
+            {/* ) : null} */}
+            {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
             <Route
               path="/add-new-user/admin"
               element={<AddNewUser></AddNewUser>}
             ></Route>
+            {/* ) : null} */}
+
             <Route
               path="/change-password"
               element={<ChangePassword></ChangePassword>}
             ></Route>
           </Route>
         </Routes>
-      </AuthProvider>
+      </>
     </div>
   );
 }

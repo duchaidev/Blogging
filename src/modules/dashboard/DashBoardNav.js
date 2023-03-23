@@ -106,6 +106,8 @@ const dataNav = [
   },
   {
     title: "Logout",
+    url: "/",
+
     icon: (
       <svg
         width="30"

@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth } from "../../context/auth-context";
 
@@ -67,7 +67,7 @@ const Header = () => {
     }
   `;
   const { userInfo } = useAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <StyleHomePage>

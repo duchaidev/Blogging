@@ -19,13 +19,13 @@ const DashBoardUser = () => {
           Manage Your Posts
         </h2>
         <div className="w-[300px] mt-[-20px] flex flex-col items-end gap-6">
-          <Button to="/add-new-post" type="button">
+          <Button to="/add-new-post/admin" type="button">
             Add New Post
           </Button>
           <Input control={control} kind="second" name="name"></Input>
         </div>
       </div>
-      <div>
+      <div className="mt-[10px]">
         <Table>
           <thead>
             <tr>

@@ -9,9 +9,10 @@ const ImageUpload = (props) => {
     handleDeleteImg = () => {},
     ...rest
   } = props;
+  console.log(progress);
   return (
     <label
-      className={`cursor-pointer flex items-center justify-center bg-[#788DA9] border border-dashed w-[300px] h-[200px] rounded-lg ${className} relative overflow-hidden group`}
+      className={`cursor-pointer flex items-center justify-center bg-[#788DA9] border border-dashed w-full h-[250px] rounded-lg ${className} relative overflow-hidden group`}
     >
       <input
         type="file"
@@ -67,10 +68,7 @@ const ImageUpload = (props) => {
 
       {!image && (
         <div
-          className="absolute bottom-0 left-0 w-0 h-1 transition-all bg-green-400"
-          style={{
-            width: `${progress}%`,
-          }}
+          className={`absolute bottom-0 left-0 w-[${progress}%] h-1 transition-all bg-green-400`}
         ></div>
       )}
     </label>

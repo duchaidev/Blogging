@@ -24,7 +24,7 @@ const schemaValidate = yup.object({
   password: yup
     .string()
     .required("Please your password")
-    .min(8, "Your password must be at least 8 characters or greater"),
+    .min(6, "Your password must be at least 8 characters or greater"),
 });
 const SignUpPage = () => {
   const navigate = useNavigate();
@@ -34,6 +34,7 @@ const SignUpPage = () => {
     if (userInfo?.email) {
       navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInfo]);
   document.title = "Sign Up";
 
@@ -64,15 +65,15 @@ const SignUpPage = () => {
     navigate("/");
   };
 
-  // useEffect( () => {
-  //   const errors = Object.values( errors );
-  //   if ( errors.length > 0 ) {
-  //     toast.error.( errors[ 0 ]?.message, {
-  //       pauseOnHover: false,
-  //       delay: 0,
-  //     })
-  //   }
-  // }, [errors])
+  useEffect(() => {
+    const errorsMessage = Object.values(errors);
+    if (errorsMessage.length > 0) {
+      toast.error(errorsMessage[0]?.message, {
+        pauseOnHover: false,
+        delay: 0,
+      });
+    }
+  }, [errors]);
   return (
     <AuthenLayout>
       <form

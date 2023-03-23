@@ -7,12 +7,13 @@ import Loading from "../loading/Loading";
 const Button = ({
   type = "button",
   onClick = () => {},
-  isloading,
+  isLoading,
   classname,
   children,
   to,
   ...props
 }) => {
+  // const {}
   const StyleButton = styled.div`
     margin-top: 20px;
     display: flex;
@@ -46,7 +47,7 @@ const Button = ({
   return (
     <StyleButton>
       <button type={type} onClick={onClick} {...props} className={classname}>
-        {!isloading ? children : <Loading></Loading>}
+        {!isLoading ? children : <Loading></Loading>}
       </button>
     </StyleButton>
   );

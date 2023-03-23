@@ -35,19 +35,21 @@ const AuthenLayout = ({ children }) => {
 
   return (
     <StyleDiv>
-      <div className="bg-img">
+      <div className="min-h-screen bg-img bg-slate-500">
         {/* <img src="bglogin.jpg" alt="" className="object-cover w-full h-full" /> */}
       </div>
       <div className="container">
         <div className="mt-[30px]">
           <NavLink to={"/"}>
-            <img src="logoo.png" alt="" className="rounded-lg" />
+            <img
+              src="avtdf.png"
+              alt=""
+              className="rounded-lg w-[128px] h-[128px]"
+            />
           </NavLink>
         </div>
 
-        <h3 className="text-[30px] font-bold mt-[10px] ">
-          Đăng nhập vào DH DEV
-        </h3>
+        <h3 className="text-[30px] font-bold mt-[10px] ">Đăng nhập</h3>
         {children}
       </div>
     </StyleDiv>
