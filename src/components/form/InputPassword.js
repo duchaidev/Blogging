@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useController } from "react-hook-form";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import PropTypes from "prop-types";
 import EyeClose from "../icon/EyeClose";
 import EyeOpen from "../icon/EyeOpen";
@@ -20,6 +20,17 @@ const InputStyled = styled.input`
     border: 1px solid ${(props) => props.theme.bgButton};
     background-color: #fff;
   }
+  ${(props) =>
+    props.kind === "second" &&
+    css`
+      color: black;
+      background-color: ${(props) => props.theme.second};
+      :focus {
+        background-color: ${(props) => props.theme.secondHover};
+        border: 1px solid ${(props) => props.theme.bgButton};
+        color: white;
+      }
+    `}
 `;
 const DivStyled = styled.div`
   position: relative;

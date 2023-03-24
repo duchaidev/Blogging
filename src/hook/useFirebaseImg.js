@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 import {
   getStorage,
@@ -49,7 +50,7 @@ const useFirebaseImg = (setValue, getValues) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           setImage(downloadURL);
-          console.log("File available at", downloadURL);
+          // toast.success("Upload success");
         });
       }
     );

@@ -4,7 +4,7 @@ const SpinnerStyles = styled.div`
   position: absolute;
   width: ${(props) => props.size};
   height: ${(props) => props.size};
-  border: ${(props) => props.borderSize} solid #434246;
+  border: ${(props) => props.borderSize} solid ${(props) => props.color};
   border-top: ${(props) => props.borderSize} solid transparent;
   border-radius: 100rem;
   display: inline-block;
@@ -15,8 +15,14 @@ const SpinnerStyles = styled.div`
     }
   }
 `;
-const Loading = ({ size = "30px", borderSize = "5px" }) => {
-  return <SpinnerStyles size={size} borderSize={borderSize}></SpinnerStyles>;
+const Loading = ({ size = "30px", borderSize = "5px", color = "#434246" }) => {
+  return (
+    <SpinnerStyles
+      size={size}
+      borderSize={borderSize}
+      color={color}
+    ></SpinnerStyles>
+  );
 };
 
 export default Loading;

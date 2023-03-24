@@ -11,15 +11,19 @@ import SignUpPage from "./pages/SignUpPage";
 import Support from "./pages/Support";
 import Map from "./pages/Map";
 import BlogPage from "./pages/BlogPage";
-import AddNewPostUser from "./modules/home/AddNewPostUser";
-import AddNewPostAdmin from "./modules/home/AddNewPostAdmin";
+import DashBoardLayout from "./components/layout/DashBoardLayout";
+import DashBoardUser from "./pages/dashboard/DashBoardUser";
+import DashBoardCategory from "./pages/dashboard/DashBoardCategory";
+import DashBoardPosts from "./pages/dashboard/DashBoardPosts";
+import AddNewPostAdmin from "./pages/AddNewPostAdmin";
 import AddNewCategory from "./pages/AddNewCategory";
 import AddNewUser from "./pages/AddNewUser";
+import AddNewPostUser from "./pages/AddNewPostUser";
 import ChangePassword from "./pages/ChangePassword";
-import DashBoardLayout from "./components/layout/DashBoardLayout";
-import DashBoardPosts from "./pages/DashBoardPosts";
-import DashBoardCategory from "./pages/DashBoardCategory";
-import DashBoardUser from "./pages/DashBoardUser";
+import EditPost from "./pages/edit/EditPost";
+import EditCategory from "./pages/edit/EditCategory";
+import EditUser from "./pages/edit/EditUser";
+
 function App() {
   // const { userInfo } = useAuth();
   return (
@@ -43,8 +47,31 @@ function App() {
               path="/manage/posts"
               element={<DashBoardPosts></DashBoardPosts>}
             ></Route>
+            <Route
+              path="/add-new-post/admin"
+              element={<AddNewPostAdmin></AddNewPostAdmin>}
+            ></Route>
+            <Route
+              path="/add-new-category/admin"
+              element={<AddNewCategory></AddNewCategory>}
+            ></Route>
+            <Route
+              path="/add-new-user/admin"
+              element={<AddNewUser></AddNewUser>}
+            ></Route>
+            <Route
+              path="/manage/update-post/admin"
+              element={<EditPost></EditPost>}
+            ></Route>
+            <Route
+              path="/manage/update-category"
+              element={<EditCategory></EditCategory>}
+            ></Route>
+            <Route
+              path="/manage/update-user"
+              element={<EditUser></EditUser>}
+            ></Route>
           </Route>
-          {/* ) : null} */}
 
           <Route element={<Layout></Layout>}>
             <Route path="/" element={<HomePage></HomePage>}></Route>
@@ -66,22 +93,7 @@ function App() {
             ></Route>
 
             {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
-            <Route
-              path="/add-new-post/admin"
-              element={<AddNewPostAdmin></AddNewPostAdmin>}
-            ></Route>
-            {/* ) : null} */}
-            {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
-            <Route
-              path="/add-new-category/admin"
-              element={<AddNewCategory></AddNewCategory>}
-            ></Route>
-            {/* ) : null} */}
-            {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
-            <Route
-              path="/add-new-user/admin"
-              element={<AddNewUser></AddNewUser>}
-            ></Route>
+
             {/* ) : null} */}
 
             <Route

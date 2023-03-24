@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import Input from "../../components/form/Input";
-import Label from "../../components/form/Label";
-import Bglayout from "../../components/layout/Bglayout";
+import Input from "../components/form/Input";
+import Label from "../components/form/Label";
+import Bglayout from "../components/layout/Bglayout";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import Button from "../../components/form/Button";
-import TitleAdd from "../../components/title/TitleAdd";
-import ImageUpload from "../../components/image/ImageUpload";
-import useFirebaseImg from "../../hook/useFirebaseImg";
-
-const AddNewPostAdmin = () => {
+import Button from "../components/form/Button";
+import TitleAdd from "../components/title/TitleAdd";
+import ImageUpload from "../components/image/ImageUpload";
+import useFirebaseImg from "../hook/useFirebaseImg";
+const AddNewPostUser = () => {
   const { control, watch, setValue, handleSubmit, getValues, reset } = useForm({
     mode: "onChange",
     defaultValues: {
@@ -42,13 +41,9 @@ const AddNewPostAdmin = () => {
       ["link", "image"],
     ],
   };
-
-  const handleUpload = (value) => {
-    console.log(value);
-  };
   return (
-    <form className="min-h-screen" onSubmit={handleSubmit(handleUpload)}>
-      <TitleAdd feature={true}>Add new post Admin</TitleAdd>
+    <div className="min-h-screen">
+      <TitleAdd>Add new post</TitleAdd>
       <Bglayout>
         <div className="flex flex-col w-full gap-10">
           <div className="grid grid-cols-2 gap-[100px]">
@@ -80,7 +75,7 @@ const AddNewPostAdmin = () => {
                 Image
               </Label>
               <ImageUpload
-                className="w-full"
+                className="w-[350px]"
                 onChange={onSelectImage}
                 progress={progress}
                 image={image}
@@ -108,8 +103,8 @@ const AddNewPostAdmin = () => {
         </div>
         <Button type="submit">Upload</Button>
       </Bglayout>
-    </form>
+    </div>
   );
 };
 
-export default AddNewPostAdmin;
+export default AddNewPostUser;

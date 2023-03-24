@@ -1,17 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
-import Button from "../components/form/Button";
-import Input from "../components/form/Input";
-import Label from "../components/form/Label";
-import Bglayout from "../components/layout/Bglayout";
-import TitleAdd from "../components/title/TitleAdd";
+import Button from "../../components/form/Button";
+import Input from "../../components/form/Input";
+import Label from "../../components/form/Label";
+import Bglayout from "../../components/layout/Bglayout";
+import TitleAdd from "../../components/title/TitleAdd";
 import { toast } from "react-toastify";
 import slugify from "slugify";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../firebase-app/firebase-auth";
+import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { db } from "../../firebase-app/firebase-auth";
+import { useSearchParams } from "react-router-dom";
 
-const AddNewCategory = () => {
+const EditCategory = () => {
   const {
     control,
     formState: { isSubmitting },
@@ -25,38 +26,46 @@ const AddNewCategory = () => {
       createdAt: new Date(),
     },
   });
-  const handleAddNewCategory = async (values) => {
+  const [params] = useSearchParams();
+  const cateId = params.get("id");
+  console.log(cateId);
+  useEffect(() => {
+    if (cateId) {
+      async function fetchCategory() {
+        const colRef = doc(db, "categories", cateId);
+        const singleDoc = await getDoc(colRef);
+        if (singleDoc.data()) {
+          reset(singleDoc.data());
+        }
+      }
+      fetchCategory();
+    }
+  }, [cateId]);
+  const handleUpdateCategory = async (values) => {
     if (values.category === "") {
       toast.dark("Enter your category");
       return;
     }
     try {
-      const cloneValue = { ...values };
-      cloneValue.slug = slugify(cloneValue.category || cloneValue.slug, {
+      values.slug = slugify(values.slug || values.category, {
         lower: true,
       });
-      const colRef = collection(db, "categories");
-      await addDoc(colRef, {
-        ...cloneValue,
+      const colRef = doc(db, "categories", cateId);
+      await updateDoc(colRef, {
+        ...values,
       });
       toast.success("Successfully!!!");
     } catch (err) {
       toast.error("False");
-    } finally {
-      reset({
-        category: "",
-        slug: "",
-        createdAt: new Date(),
-      });
     }
   };
   return (
     <div className="min-h-screen">
       <div className="flex justify-between">
-        <TitleAdd>Add new category</TitleAdd>
+        <TitleAdd>Edit category</TitleAdd>
       </div>
       <Bglayout classname="">
-        <form onSubmit={handleSubmit(handleAddNewCategory)}>
+        <form onSubmit={handleSubmit(handleUpdateCategory)}>
           <div className="flex flex-col w-full gap-10">
             <div className="grid grid-cols-2 gap-[100px]">
               <div>
@@ -93,4 +102,4 @@ const AddNewCategory = () => {
   );
 };
 
-export default AddNewCategory;
+export default EditCategory;
