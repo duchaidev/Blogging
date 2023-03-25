@@ -7,7 +7,7 @@ const data = [
   {
     image:
       "https://files.fullstack.edu.vn/f8-prod/learning-paths/3/63b4641535b16.png",
-    to: "/check",
+    to: "https://fullstack.edu.vn/learning-paths/back-end-development",
     title: "Lộ trình học Back-end",
     content:
       "Trái với Front-end thì lập trình viên Back-end là người làm việc với dữ liệu, công việc thường nặng tính logic hơn. Chúng ta sẽ cùng tìm hiểu thêm về lộ trình học Back-end nhé.",
@@ -15,7 +15,7 @@ const data = [
   {
     image:
       "https://files.fullstack.edu.vn/f8-prod/learning-paths/2/63b4642136f3e.png",
-    to: "/check",
+    to: "https://fullstack.edu.vn/courses/lessons-for-newbie",
     title: "Lộ trình học Front-end",
     content:
       "Lập trình viên Front-end là người xây dựng ra giao diện websites. Trong phần này F8 sẽ chia sẻ cho bạn lộ trình để trở thành lập trình viên Front-end nhé.",

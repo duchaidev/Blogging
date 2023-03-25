@@ -2,17 +2,17 @@ import React from "react";
 import { useDropdown } from "../../context/dropdown-context";
 import ThreeDot from "../icon/ThreeDot";
 
-const Select = ({ placehoder = " ", children, threedot }) => {
+const Select = ({ placehoder = " ", children, threedot, classname }) => {
   const { show, toggle } = useDropdown();
   return (
     <div className="mt-2">
       {threedot === true ? (
-        <div onClick={toggle} className="p-5 transition-all">
+        <div onClick={toggle} className={`p-5 transition-all ${classname}`}>
           <ThreeDot></ThreeDot>
         </div>
       ) : (
         <div
-          className="w-full h-[50px] bg-[#788DA9] rounded-t-lg flex justify-between rounded-xl px-5 items-center border border-[#788DA9]"
+          className="w-full h-[50px] bg-[#788DA9]  flex justify-between rounded-t-lg px-5 items-center border border-[#788DA9]"
           onClick={toggle}
         >
           <span className="text-lg font-semibold text-white">{placehoder}</span>

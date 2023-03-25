@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
-import { useDropdown } from "../../context/dropdown-context";
+import { useDropdown } from "../../../context/dropdown-context";
 
-const List = ({ children, threedot }) => {
+const ListHeader = ({ children, threedot }) => {
   const { show } = useDropdown();
   return (
     <Fragment>
@@ -11,7 +11,7 @@ const List = ({ children, threedot }) => {
         </div>
       )}
       {show && threedot && (
-        <div className="flex flex-col border border-[#4E4D52] shadow-slate-700 shadow-lg rounded-xl transition-all absolute bg-[#1F2833] overflow-hidden w-auto right-0">
+        <div className="flex flex-col border border-[#4E4D52] shadow-slate-700 shadow-lg rounded-xl transition-all absolute bg-[#1F2833] overflow-hidden w-auto right-0 z-50">
           {children}
         </div>
       )}
@@ -19,4 +19,4 @@ const List = ({ children, threedot }) => {
   );
 };
 
-export default List;
+export default ListHeader;

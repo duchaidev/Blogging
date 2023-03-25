@@ -227,7 +227,6 @@ const AddNewPostAdmin = () => {
                 id="subtitle"
                 className="w-full h-[90%] mt-2 bg-[#788DA9] outline-none transition-all border border-transparent px-5 py-2 rounded-lg text-black placeholder:text-slate-600 focus:bg-[#274047] focus:text-white focus:border-[#66FCF1]"
                 placeholder="Enter your subtitle"
-                // value={setSubTitle}
                 onChange={setSubTitle}
               ></textarea>
             </div>

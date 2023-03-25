@@ -41,7 +41,9 @@ const FeaturePostsList = () => {
           avatarAuthor={item?.user?.avatar}
           fullname={item?.user?.fullname}
           // urlAuthor={item?.user?.urlAuthor}
-          date={item.date}
+          date={new Date(item?.createdAt?.seconds * 1000).toLocaleDateString(
+            "vi-VI"
+          )}
         ></PostsItem>
       ))}
     </StyleList>

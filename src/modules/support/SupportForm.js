@@ -1,5 +1,14 @@
-import React from "react";
+import {
+  addDoc,
+  collection,
+  getDocs,
+  query,
+  serverTimestamp,
+  where,
+} from "firebase/firestore";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import Button from "../../components/form/Button";
 import Input from "../../components/form/Input";
@@ -8,6 +17,8 @@ import Address from "../../components/icon/Address";
 import Email from "../../components/icon/Email";
 import LogoSupport from "../../components/icon/LogoSupport";
 import Phone from "../../components/icon/Phone";
+import { useAuth } from "../../context/auth-context";
+import { db } from "../../firebase-app/firebase-auth";
 import InfoItem from "./InfoItem";
 
 const StyleSupportForm = styled.div`
@@ -22,13 +33,52 @@ const StyleSupportForm = styled.div`
   }
 `;
 const SupportForm = () => {
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, setValue, reset, getValues } = useForm({
     defaultValues: {
-      email: "",
+      createdAt: serverTimestamp(),
     },
   });
-  const submit = (value) => {
-    console.log(value);
+  const { userInfo } = useAuth();
+
+  useEffect(() => {
+    async function fetchUser() {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", userInfo.email)
+      );
+      const querySnapShot = await getDocs(q);
+      querySnapShot.forEach((item) => {
+        reset({
+          name: item.data().fullname,
+        });
+        setValue("user", {
+          id: item.id,
+          avatar: item.data().avatar,
+          email: item.data().email,
+          name: item.data().fullname,
+          role: item.data().role,
+          createAt: item.data().createAt,
+        });
+      });
+    }
+    fetchUser();
+  }, [reset, setValue, userInfo.email]);
+
+  const handleMessage = async (value) => {
+    const colRef = collection(db, "message");
+
+    await addDoc(colRef, {
+      ...value,
+      createdAt: serverTimestamp(),
+    });
+    toast.success("Successfully!!!");
+    reset({
+      name: getValues().name,
+      title: "",
+      zalo: "",
+      messcontent: "",
+      createdAt: serverTimestamp(),
+    });
   };
   return (
     <StyleSupportForm>
@@ -37,7 +87,7 @@ const SupportForm = () => {
           <LogoSupport></LogoSupport>
         </div>
         <div className="bg-[#273F48] mt-8 pb-8 pt-6 px-10 rounded-md">
-          <form onSubmit={handleSubmit(submit)}>
+          <form onSubmit={handleSubmit(handleMessage)}>
             <div className="grid gap-2">
               <h2 className="text-[25px] font-bold text-center text-white mb-2">
                 Liên hệ

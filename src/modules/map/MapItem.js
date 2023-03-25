@@ -48,25 +48,42 @@ const MapItem = ({ image, to, title, content }) => {
       </div>
       <div className="mb-8">
         <div className="flex flex-row items-end gap-3 align-bottom listitem">
-          <NavLink className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]">
+          <NavLink
+            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            title="Kiến thức nhập môn IT"
+          >
             <ClipBoard></ClipBoard>
           </NavLink>
-          <NavLink className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]">
+          <NavLink
+            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            title="HTML 5"
+          >
             <Html5></Html5>
           </NavLink>
-          <NavLink className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]">
+          <NavLink
+            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            title="Responsive"
+          >
             <Responsive></Responsive>
           </NavLink>
-          <NavLink className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]">
+          <NavLink
+            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            title="JavaScript"
+          >
             <Javas></Javas>
           </NavLink>
-          <NavLink className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]">
+          <NavLink
+            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            title="ReactJs"
+          >
             <Reactjs></Reactjs>
           </NavLink>
         </div>
         <div>
-          <Button className="absolute bottom-8 left-5" to={to}>
-            Xem chi tiết
+          <Button className="absolute flex items-center justify-center align-middle">
+            <NavLink to={to} className="w-full p-2" target="_blank">
+              Xem chi tiết
+            </NavLink>
           </Button>
         </div>
       </div>

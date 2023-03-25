@@ -23,6 +23,7 @@ import ChangePassword from "./pages/ChangePassword";
 import EditPost from "./pages/edit/EditPost";
 import EditCategory from "./pages/edit/EditCategory";
 import EditUser from "./pages/edit/EditUser";
+import DashBoardMess from "./pages/dashboard/DashBoardMess";
 
 function App() {
   // const { userInfo } = useAuth();
@@ -70,6 +71,10 @@ function App() {
             <Route
               path="/manage/update-user"
               element={<EditUser></EditUser>}
+            ></Route>
+            <Route
+              path="/manage/message"
+              element={<DashBoardMess></DashBoardMess>}
             ></Route>
           </Route>
 

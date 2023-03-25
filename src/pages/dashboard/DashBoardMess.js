@@ -21,44 +21,44 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import InputSearch from "../../components/form/InputSearch";
 import { debounce } from "lodash";
-const StyledDashBoardPosts = styled.div`
+const StyledDashBoardMess = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
-const DashBoardPosts = () => {
-  const [searchPost, setSearchPost] = useState("");
+const DashBoardMess = () => {
+  const [searchMessage, setSearchMessage] = useState("");
 
   const navigate = useNavigate();
 
-  const [postsList, setPostList] = useState([]);
+  const [messageList, setMessageList] = useState([]);
   useEffect(() => {
-    async function fetchPosts() {
-      const colRef = collection(db, "posts");
-      const newRef = searchPost
+    async function fetchMessage() {
+      const colRef = collection(db, "message");
+      const newRef = searchMessage
         ? query(
             colRef,
-            where("title", ">=", searchPost),
-            where("title", "<=", searchPost + "utf8")
+            where("title", ">=", searchMessage),
+            where("title", "<=", searchMessage + "utf8")
           )
         : colRef;
       onSnapshot(newRef, (snapshot) => {
         const result = [];
-        snapshot.forEach((post) => {
+        snapshot.forEach((mess) => {
           result.push({
-            id: post.id,
-            ...post.data(),
+            id: mess.id,
+            ...mess.data(),
           });
         });
-        setPostList(result);
+        setMessageList(result);
         console.log(result);
       });
     }
-    fetchPosts();
-  }, [searchPost]);
+    fetchMessage();
+  }, [searchMessage]);
 
-  const handleDelete = (postId) => {
-    const singleDoc = doc(db, "posts", postId);
+  const handleDelete = (messId) => {
+    const singleDoc = doc(db, "message", messId);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -75,10 +75,10 @@ const DashBoardPosts = () => {
     });
   };
   const handleChange = debounce((values) => {
-    setSearchPost(values.target.value);
+    setSearchMessage(values.target.value);
   }, 300);
   return (
-    <StyledDashBoardPosts>
+    <StyledDashBoardMess>
       <div className="flex justify-between">
         <h2 className="text-[#02E7F5] text-[26px] font-bold">
           Manage Your Posts
@@ -101,33 +101,28 @@ const DashBoardPosts = () => {
             <tr>
               <th></th>
               <th>Id</th>
-              <th>Post</th>
-              <th>Category</th>
+              <th>Title</th>
+              <th>Content</th>
               <th>Author</th>
               <th>Actions</th>
             </tr>
           </thead>
-          {postsList.length > 0 &&
-            postsList.map((post) => (
-              <tbody key={post.id}>
+          {messageList.length > 0 &&
+            messageList.map((mess) => (
+              <tbody key={mess.id}>
                 <tr>
                   <td></td>
-                  <td title={post?.id}>{post?.id?.slice(0, 8) + "...."}</td>
+                  <td title={mess?.id}>{mess?.id?.slice(0, 8) + "...."}</td>
 
                   <td>
                     <div className="flex items-center gap-x-3">
-                      <img
-                        src={post.image}
-                        alt=""
-                        className="w-[66px] h-[55px] rounded object-cover"
-                      />
                       <div className="flex-1">
-                        <h3 className="font-semibold" title={post?.title}>
-                          {post?.title.slice(0, 15) + "..."}
+                        <h3 className="font-semibold" title={mess?.title}>
+                          {mess?.title.slice(0, 20) + "..."}
                         </h3>
                         <time className="text-sm text-gray-500">
                           {new Date(
-                            post?.createdAt?.seconds * 1000
+                            mess?.createdAt?.seconds * 1000
                           ).toLocaleDateString("vi-VI")}
                         </time>
                       </div>
@@ -136,29 +131,19 @@ const DashBoardPosts = () => {
 
                   <td>
                     <span className="text-gray-500">
-                      {post?.category?.category}
+                      {mess?.messcontent?.slice(0, 30) + "..."}
                     </span>
                   </td>
                   <td>
-                    <span className="text-gray-500">
-                      {post?.user?.fullname}
-                    </span>
+                    <span className="text-gray-500">{mess?.user?.name}</span>
                   </td>
                   <td>
                     <div className="flex gap-2">
-                      <ActionView
-                        onClick={() => {
-                          navigate(`/blog/${post.slug}`);
-                        }}
-                      ></ActionView>
-                      <ActionEdit
-                        onClick={() => {
-                          navigate(`/manage/update-post/admin?id=${post?.id}`);
-                        }}
-                      ></ActionEdit>
+                      <ActionView onClick={() => {}}></ActionView>
+
                       <ActionDelete
                         onClick={() => {
-                          handleDelete(post.id);
+                          handleDelete(mess.id);
                         }}
                       ></ActionDelete>
                     </div>
@@ -168,8 +153,8 @@ const DashBoardPosts = () => {
             ))}
         </Table>
       </div>
-    </StyledDashBoardPosts>
+    </StyledDashBoardMess>
   );
 };
 
-export default DashBoardPosts;
+export default DashBoardMess;
