@@ -20,6 +20,7 @@ import {
   getDoc,
   getDocs,
   query,
+  serverTimestamp,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -48,6 +49,7 @@ const AddNewPostAdmin = () => {
       slug: "",
       hot: false,
       image: "",
+      createdAt: serverTimestamp(),
     },
   });
   const watchHot = watch("hot");
@@ -79,6 +81,7 @@ const AddNewPostAdmin = () => {
     setProgress,
   } = useFirebaseImg(setValue, getValues);
   const [content, setContent] = useState("");
+  const [subtitle, setSubTitle] = useState("");
   const modules = {
     toolbar: [
       ["bold", "italic", "underline", "strike"],
@@ -129,15 +132,15 @@ const AddNewPostAdmin = () => {
     setSelecCategory(item);
   };
   const handleUpload = async (value) => {
-    console.log(value.title);
     if (value.title === "") {
       toast.error("Enter your title");
       return;
     } else if (value.category === undefined) {
       toast.error("Choose Category");
       return;
-    } else if (value.content === undefined) {
+    } else if (value.content === "") {
       toast.error("Enter your content");
+      return;
     }
     const cloneValue = { ...value };
     cloneValue.slug = slugify(value.slug || value.title, { lower: true });
@@ -145,8 +148,10 @@ const AddNewPostAdmin = () => {
     await addDoc(colRef, {
       ...cloneValue,
       image,
+      subtitle: subtitle.target.value,
       createAt: userInfo.uid,
       content,
+      createdAt: serverTimestamp(),
     });
     toast.success("Successfully!!!");
     reset({
@@ -154,6 +159,7 @@ const AddNewPostAdmin = () => {
       slug: "",
       hot: false,
       image: "",
+      createdAt: serverTimestamp(),
     });
     setContent("");
     setImage("");
@@ -161,18 +167,8 @@ const AddNewPostAdmin = () => {
     setSelecCategory({});
   };
 
-  const handleUpdate = async (value) => {
-    if (value.category === undefined || value.content === undefined) {
-      toast.error("Choose Category");
-      return;
-    }
-    const colRef = doc(db, "posts", postId);
-    await updateDoc(colRef, { ...value, image, content });
-    toast.success("Successfully!!!");
-  };
-
   return (
-    <form className="min-h-screen" onSubmit={handleSubmit(handleUpdate)}>
+    <form className="min-h-screen" onSubmit={handleSubmit(handleUpload)}>
       <TitleAdd
         admin={true}
         on={watchHot === true}
@@ -219,7 +215,23 @@ const AddNewPostAdmin = () => {
                 handleDeleteimg={handleDeleteImg}
               ></ImageUpload>
             </div>
-            <div>
+            <div className="w-full h-full">
+              <Label
+                htmlFor="subtitle"
+                classname="mb-2 text-lg font-semibold text-white"
+              >
+                SubTitle
+              </Label>
+              <textarea
+                name="subtitle"
+                id="subtitle"
+                className="w-full h-[90%] mt-2 bg-[#788DA9] outline-none transition-all border border-transparent px-5 py-2 rounded-lg text-black placeholder:text-slate-600 focus:bg-[#274047] focus:text-white focus:border-[#66FCF1]"
+                placeholder="Enter your subtitle"
+                // value={setSubTitle}
+                onChange={setSubTitle}
+              ></textarea>
+            </div>
+            <div className="mt-[-60px] z-10">
               <Label
                 htmlFor="category"
                 classname="text-lg font-semibold text-white"
@@ -228,6 +240,7 @@ const AddNewPostAdmin = () => {
               </Label>
               <Dropdown>
                 <Select
+                  threedot={false}
                   placehoder={`${selectCategory.category || "Select Category"}`}
                 ></Select>
                 <List>

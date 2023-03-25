@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../components/form/Input";
 import Label from "../components/form/Label";
@@ -9,18 +9,67 @@ import Button from "../components/form/Button";
 import TitleAdd from "../components/title/TitleAdd";
 import ImageUpload from "../components/image/ImageUpload";
 import useFirebaseImg from "../hook/useFirebaseImg";
-const AddNewPostUser = () => {
-  const { control, watch, setValue, handleSubmit, getValues, reset } = useForm({
+import Dropdown from "../components/dropdown/Dropdown";
+import Select from "../components/dropdown/Select";
+import List from "../components/dropdown/List";
+import Option from "../components/dropdown/Option";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../firebase-app/firebase-auth";
+import { useAuth } from "../context/auth-context";
+import slugify from "slugify";
+import { toast } from "react-toastify";
+import { useSearchParams } from "react-router-dom";
+
+const AddNewPostAdmin = () => {
+  const { userInfo } = useAuth();
+  const [params] = useSearchParams();
+  const postId = params.get("id");
+  const {
+    control,
+    watch,
+    setValue,
+    handleSubmit,
+    getValues,
+    reset,
+    formState: { isSubmitting },
+  } = useForm({
     mode: "onChange",
     defaultValues: {
-      status: 2,
       title: "",
       slug: "",
-      category: "",
       hot: false,
       image: "",
     },
   });
+  const watchHot = watch("hot");
+  const [category, setCategory] = useState({});
+  const [selectCategory, setSelecCategory] = useState({});
+
+  useEffect(() => {
+    if (postId !== null) {
+      async function getPosts() {
+        const colRef = doc(db, "posts", postId);
+        const singleDoc = await getDoc(colRef);
+        console.log(singleDoc.data());
+        if (singleDoc.data()) {
+          reset(singleDoc.data());
+          setContent(singleDoc.data()?.content);
+          setSelecCategory(singleDoc.data()?.category || "IT");
+        }
+      }
+      getPosts();
+    }
+  }, [postId, reset]);
+
   const {
     progress,
     image,
@@ -30,7 +79,6 @@ const AddNewPostUser = () => {
     setProgress,
   } = useFirebaseImg(setValue, getValues);
   const [content, setContent] = useState("");
-
   const modules = {
     toolbar: [
       ["bold", "italic", "underline", "strike"],
@@ -41,9 +89,87 @@ const AddNewPostUser = () => {
       ["link", "image"],
     ],
   };
+  useEffect(() => {
+    async function fetchUser() {
+      const q = query(
+        collection(db, "users"),
+        where("email", "==", userInfo.email)
+      );
+      const querySnapShot = await getDocs(q);
+      querySnapShot.forEach((item) => {
+        setValue("user", {
+          id: item.id,
+          avatar: item.data().avatar,
+          email: item.data().email,
+          fullname: item.data().fullname,
+          role: item.data().role,
+          createAt: item.data().createAt,
+        });
+      });
+    }
+    fetchUser();
+  }, [setValue, userInfo.email]);
+  useEffect(() => {
+    const fetchCategory = async () => {
+      const colRef = collection(db, "categories");
+      const docSnap = await getDocs(colRef);
+      const result = [];
+      docSnap.forEach((doc) => {
+        result.push({
+          id: doc.id,
+          ...doc.data(),
+        });
+      });
+      setCategory(result);
+    };
+    fetchCategory();
+  }, []);
+  const handleCategory = (item) => {
+    setValue("category", { ...item });
+    setSelecCategory(item);
+  };
+  const handleUpload = async (value) => {
+    if (value.title === "") {
+      toast.error("Enter your title");
+      return;
+    } else if (value.category === undefined) {
+      toast.error("Choose Category");
+      return;
+    } else if (value.content === "") {
+      toast.error("Enter your content");
+      return;
+    }
+    const cloneValue = { ...value };
+    cloneValue.slug = slugify(value.slug || value.title, { lower: true });
+    const colRef = collection(db, "posts");
+    await addDoc(colRef, {
+      ...cloneValue,
+      image,
+      createAt: userInfo.uid,
+      content,
+    });
+    toast.success("Successfully!!!");
+    reset({
+      title: "",
+      slug: "",
+      hot: false,
+      image: "",
+    });
+    setContent("");
+    setImage("");
+    setProgress(0);
+    setSelecCategory({});
+  };
+
   return (
-    <div className="min-h-screen">
-      <TitleAdd>Add new post</TitleAdd>
+    <form className="min-h-screen" onSubmit={handleSubmit(handleUpload)}>
+      <TitleAdd
+        onClick={() => {
+          setValue("hot", !watchHot);
+        }}
+      >
+        Add new post Admin
+      </TitleAdd>
       <Bglayout>
         <div className="flex flex-col w-full gap-10">
           <div className="grid grid-cols-2 gap-[100px]">
@@ -70,16 +196,15 @@ const AddNewPostUser = () => {
             <div>
               <Label
                 htmlFor="image"
-                classname="text-lg font-semibold text-white"
+                classname="mb-2 text-lg font-semibold text-white"
               >
                 Image
               </Label>
               <ImageUpload
-                className="w-[350px]"
                 onChange={onSelectImage}
                 progress={progress}
                 image={image}
-                handleDeleteImg={handleDeleteImg}
+                handleDeleteimg={handleDeleteImg}
               ></ImageUpload>
             </div>
             <div>
@@ -89,6 +214,24 @@ const AddNewPostUser = () => {
               >
                 Category
               </Label>
+              <Dropdown>
+                <Select
+                  placehoder={`${selectCategory.category || "Select Category"}`}
+                ></Select>
+                <List>
+                  {category.length > 0 &&
+                    category.map((item) => (
+                      <Option
+                        key={item.id}
+                        onClick={() => {
+                          handleCategory(item);
+                        }}
+                      >
+                        {item.category}
+                      </Option>
+                    ))}
+                </List>
+              </Dropdown>
             </div>
           </div>
           <div>
@@ -97,14 +240,16 @@ const AddNewPostUser = () => {
               theme="snow"
               value={content}
               onChange={setContent}
-              className="text-white "
+              className="entry-content"
             />
           </div>
         </div>
-        <Button type="submit">Upload</Button>
+        <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting}>
+          Upload
+        </Button>
       </Bglayout>
-    </div>
+    </form>
   );
 };
 
-export default AddNewPostUser;
+export default AddNewPostAdmin;

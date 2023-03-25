@@ -1,4 +1,12 @@
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
@@ -11,33 +19,43 @@ import Table from "../../components/table/Table";
 import { db } from "../../firebase-app/firebase-auth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import InputSearch from "../../components/form/InputSearch";
+import { debounce } from "lodash";
 const StyledDashBoardPosts = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
 const DashBoardPosts = () => {
+  const [searchPost, setSearchPost] = useState("");
+
   const navigate = useNavigate();
-  const { control } = useForm({
-    mode: "onChange",
-    defaultValues: "",
-  });
+
   const [postsList, setPostList] = useState([]);
   useEffect(() => {
     async function fetchPosts() {
       const colRef = collection(db, "posts");
-      const result = [];
-      const docSnap = await getDocs(colRef);
-      docSnap.forEach((post) => {
-        result.push({
-          id: post.id,
-          ...post.data(),
+      const newRef = searchPost
+        ? query(
+            colRef,
+            where("title", ">=", searchPost),
+            where("title", "<=", searchPost + "utf8")
+          )
+        : colRef;
+      onSnapshot(newRef, (snapshot) => {
+        const result = [];
+        snapshot.forEach((post) => {
+          result.push({
+            id: post.id,
+            ...post.data(),
+          });
         });
+        setPostList(result);
+        console.log(result);
       });
-      setPostList(result);
     }
     fetchPosts();
-  }, []);
+  }, [searchPost]);
 
   const handleDelete = (postId) => {
     const singleDoc = doc(db, "posts", postId);
@@ -56,6 +74,9 @@ const DashBoardPosts = () => {
       }
     });
   };
+  const handleChange = debounce((values) => {
+    setSearchPost(values.target.value);
+  }, 300);
   return (
     <StyledDashBoardPosts>
       <div className="flex justify-between">
@@ -66,7 +87,12 @@ const DashBoardPosts = () => {
           <Button to="/add-new-post/admin" type="button">
             Add New Post
           </Button>
-          <Input control={control} kind="second" name="name"></Input>
+          <InputSearch
+            className=""
+            placeholder="Search Posts ...."
+            type="text"
+            onChange={handleChange}
+          ></InputSearch>
         </div>
       </div>
       <div>
@@ -86,7 +112,8 @@ const DashBoardPosts = () => {
               <tbody key={post.id}>
                 <tr>
                   <td></td>
-                  <td>{post.id.slice(0, 8) + "...."}</td>
+                  <td title={post?.id}>{post?.id?.slice(0, 8) + "...."}</td>
+
                   <td>
                     <div className="flex items-center gap-x-3">
                       <img
@@ -95,13 +122,14 @@ const DashBoardPosts = () => {
                         className="w-[66px] h-[55px] rounded object-cover"
                       />
                       <div className="flex-1">
-                        <h3 className="font-semibold">
-                          {post?.user?.fullname}
+                        <h3 className="font-semibold" title={post?.title}>
+                          {post?.title.slice(0, 15) + "..."}
                         </h3>
                         <time className="text-sm text-gray-500">02/11</time>
                       </div>
                     </div>
                   </td>
+
                   <td>
                     <span className="text-gray-500">
                       {post?.category?.category}
@@ -109,7 +137,6 @@ const DashBoardPosts = () => {
                   </td>
                   <td>
                     <span className="text-gray-500">
-                      {" "}
                       {post?.user?.fullname}
                     </span>
                   </td>

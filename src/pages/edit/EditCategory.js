@@ -8,7 +8,7 @@ import Bglayout from "../../components/layout/Bglayout";
 import TitleAdd from "../../components/title/TitleAdd";
 import { toast } from "react-toastify";
 import slugify from "slugify";
-import { addDoc, collection, doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-auth";
 import { useSearchParams } from "react-router-dom";
 

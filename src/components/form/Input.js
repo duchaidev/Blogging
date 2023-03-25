@@ -61,7 +61,6 @@ const Input = ({ type = "text", name = "", children, control, ...props }) => {
         type={type}
         name={name}
         id={name}
-        // disabled={props.disabled}
         placeholder={`Please enter your ${name}`}
         {...props}
         {...field}

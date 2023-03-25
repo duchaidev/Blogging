@@ -14,14 +14,11 @@ import Select from "../../components/dropdown/Select";
 import List from "../../components/dropdown/List";
 import Option from "../../components/dropdown/Option";
 import {
-  addDoc,
   collection,
   doc,
   getDoc,
   getDocs,
-  query,
   updateDoc,
-  where,
 } from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-auth";
 import slugify from "slugify";

@@ -1,8 +1,14 @@
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import Button from "../../components/form/Button";
-import Input from "../../components/form/Input";
+
 import ActionDelete from "../../components/icon/action/ActionDelete";
 import ActionEdit from "../../components/icon/action/ActionEdit";
 import ActionView from "../../components/icon/action/ActionView";
@@ -10,30 +16,46 @@ import Table from "../../components/table/Table";
 import { db } from "../../firebase-app/firebase-auth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import InputSearch from "../../components/form/InputSearch";
+import { debounce } from "lodash";
 
 const DashBoardUser = () => {
+  const [searchUser, setSearchUser] = useState("");
   const navigate = useNavigate();
-  const { control } = useForm({
-    mode: "onChange",
-    defaultValues: "",
-  });
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
       const colRef = collection(db, "users");
-      const docSnap = await getDocs(colRef);
-      const result = [];
-      docSnap.forEach((user) => {
-        result.push({
-          id: user.id,
-          ...user.data(),
+      const newRef = searchUser
+        ? query(
+            colRef,
+            where("email", ">=", searchUser),
+            where("email", "<=", searchUser + "utf8")
+          )
+        : colRef;
+      onSnapshot(newRef, (snapshot) => {
+        const result = [];
+        snapshot.forEach((user) => {
+          result.push({
+            id: user.id,
+            ...user.data(),
+          });
         });
+        setUsers(result);
+        console.log(result);
       });
-      setUsers(result);
     };
     fetchUsers();
-  }, []);
+  }, [searchUser]);
   const handleDelete = (userId) => {
+    //Không thể xóa tài khoản người khác
+    // deleteUser(auth, userId)
+    // .then(() => {
+    //   console.log("Xóa tài khoản người dùng thành công!");
+    // })
+    // .catch((error) => {
+    //   console.error("Lỗi khi xóa tài khoản người dùng: ", error);
+    // });
     const singleDoc = doc(db, "users", userId);
     Swal.fire({
       title: "Are you sure?",
@@ -50,6 +72,9 @@ const DashBoardUser = () => {
       }
     });
   };
+  const handleChange = debounce((values) => {
+    setSearchUser(values.target.value);
+  }, 300);
   return (
     <div>
       <div className="flex justify-between">
@@ -60,7 +85,12 @@ const DashBoardUser = () => {
           <Button to="/add-new-user/admin" type="button">
             Add New User
           </Button>
-          <Input control={control} kind="second" name="name"></Input>
+          <InputSearch
+            className=""
+            placeholder="Search User ...."
+            type="text"
+            onChange={handleChange}
+          ></InputSearch>
         </div>
       </div>
       <div className="mt-[10px]">

@@ -1,5 +1,13 @@
 import { async } from "@firebase/util";
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  deleteDoc,
+  onSnapshot,
+  where,
+  query,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Button from "../../components/form/Button";
@@ -10,31 +18,39 @@ import Table from "../../components/table/Table";
 import { db } from "../../firebase-app/firebase-auth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import InputSearch from "../../components/form/InputSearch";
+import { debounce } from "lodash";
 
 const DashBoardCategory = () => {
-  const { control } = useForm({
-    mode: "onChange",
-    defaultValues: "",
-  });
+  const [searchCategory, setSearchCate] = useState("");
   const navigate = useNavigate();
   const [categoryList, setCategoryList] = useState([]);
   useEffect(() => {
     const fetchCategory = async () => {
       const colRef = collection(db, "categories");
-      const docSnap = await getDocs(colRef);
-      const result = [];
-      docSnap.forEach((doc) => {
-        result.push({
-          id: doc.id,
-          ...doc.data(),
+      const newRef = searchCategory
+        ? query(
+            colRef,
+            where("category", ">=", searchCategory),
+            where("category", "<=", searchCategory + "utf8")
+          )
+        : colRef;
+      onSnapshot(newRef, (snapshot) => {
+        const result = [];
+        snapshot.forEach((doc) => {
+          result.push({
+            id: doc.id,
+            ...doc.data(),
+          });
         });
+        setCategoryList(result);
       });
-      setCategoryList(result);
     };
     fetchCategory();
-  }, []);
+  }, [searchCategory]);
   const handleDelete = async (cateId) => {
     const singleDoc = doc(db, "categories", cateId);
+
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -50,6 +66,9 @@ const DashBoardCategory = () => {
       }
     });
   };
+  const handleChange = debounce((values) => {
+    setSearchCate(values.target.value);
+  }, 300);
   return (
     <div>
       <div className="flex justify-between">
@@ -60,7 +79,12 @@ const DashBoardCategory = () => {
           <Button to="/add-new-category/admin" type="button">
             Add New Category
           </Button>
-          <Input control={control} kind="second" name="name"></Input>
+          <InputSearch
+            className=""
+            placeholder="Search User ...."
+            type="text"
+            onChange={handleChange}
+          ></InputSearch>
         </div>
       </div>
       <div className="mt-[10px]">
