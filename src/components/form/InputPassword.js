@@ -53,6 +53,7 @@ const InputPassword = ({ name = "", children, control, ...props }) => {
     control,
     name,
     defaultValue: "",
+    rules: { required: true },
   });
   return (
     <DivStyled>
@@ -61,8 +62,8 @@ const InputPassword = ({ name = "", children, control, ...props }) => {
         name={name}
         id={name}
         placeholder={`Please enter your ${name}`}
-        {...props}
         {...field}
+        {...props}
       />
       {!togglePassword ? (
         <EyeClose onClick={() => setTogglePassword(true)}></EyeClose>

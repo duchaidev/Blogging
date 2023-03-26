@@ -15,7 +15,7 @@ import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { useRole } from "../utils/constants";
 import { toast } from "react-toastify";
 import { useAuth } from "../context/auth-context";
-const schemaValidate = yup.object({
+const schemaValidate = yup.object().shape({
   fullname: yup.string().required("Please your fullname"),
   email: yup
     .string()
@@ -28,7 +28,14 @@ const schemaValidate = yup.object({
 });
 const SignUpPage = () => {
   const navigate = useNavigate();
-
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isValid, isSubmitting },
+  } = useForm({
+    mode: "onSubmit",
+    resolver: yupResolver(schemaValidate),
+  });
   const { userInfo } = useAuth();
   useEffect(() => {
     if (userInfo?.email) {
@@ -38,14 +45,6 @@ const SignUpPage = () => {
   }, [userInfo]);
   document.title = "Sign Up";
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors, isValid, isSubmitting },
-  } = useForm({
-    mode: "onSubmit",
-    resolver: yupResolver(schemaValidate),
-  });
   const handleSignUp = async (value) => {
     if (!isValid) return;
     await createUserWithEmailAndPassword(auth, value.email, value.password);

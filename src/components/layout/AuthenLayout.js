@@ -1,58 +1,41 @@
 import React from "react";
-import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-
+import styled from "styled-components";
+const SignUpPageStyled = styled.div`
+  background-color: black;
+  position: fixed;
+  .logo {
+    padding: 20px auto;
+  }
+  h1 {
+    font-size: 40px;
+    color: ${(props) => props.theme.primary};
+    font-weight: 600;
+    text-align: center;
+    line-height: 60px;
+    margin-bottom: 30px;
+  }
+`;
 const AuthenLayout = ({ children }) => {
-  const StyleDiv = styled.div`
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background-color: black;
-    overflow: hidden;
-    .bg-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      overflow: hidden;
-    }
-    .container {
-      width: 800px;
-      height: 600px;
-      background-color: #f3f3f3;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      border-radius: 5px;
-      display: flex;
-      flex-direction: column;
-      /* justify-content: center; */
-      align-items: center;
-    }
-  `;
-
   return (
-    <StyleDiv>
-      <div className="min-h-screen bg-img bg-slate-500">
-        {/* <img src="bglogin.jpg" alt="" className="object-cover w-full h-full" /> */}
-      </div>
-      <div className="container">
-        <div className="mt-[30px]">
-          <NavLink to={"/"}>
-            <img
-              src="avtdf.png"
-              alt=""
-              className="rounded-lg w-[128px] h-[128px]"
-            />
-          </NavLink>
-        </div>
-
-        <h3 className="text-[30px] font-bold mt-[10px] ">Đăng nhập</h3>
+    <SignUpPageStyled className="z-50 min-w-full min-h-screen">
+      <img
+        src="bglogin.jpg"
+        alt=""
+        className="z-10 object-cover w-full h-full"
+      />
+      <div className="w-auto h-auto z-40 mx-auto bg-[#F3F3F3] absolute top-[32%] right-[50%] translate-y-[-50%] translate-x-[50%]  flex flex-col justify-center items-center py-8 px-48 rounded-xl">
+        <NavLink to={"/"}>
+          <img
+            srcSet="/logoo.png"
+            className="w-28 aspect-square"
+            alt="monkey-blogging"
+          />
+        </NavLink>
+        <h1>Monkey Blogging</h1>
         {children}
       </div>
-    </StyleDiv>
+    </SignUpPageStyled>
   );
 };
 
