@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../../components/form/Input";
 import Label from "../../components/form/Label";
-import Bglayout from "../../components/layout/Bglayout";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Button from "../../components/form/Button";
@@ -25,6 +24,7 @@ import { db } from "../../firebase-app/firebase-auth";
 import slugify from "slugify";
 import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
+import BgDashBoard from "../../components/layout/dashboard/BgDashBoard";
 
 const EditPost = ({ admin = true }) => {
   const [params] = useSearchParams();
@@ -147,7 +147,7 @@ const EditPost = ({ admin = true }) => {
         Edit Post
       </TitleAdd>
 
-      <Bglayout>
+      <BgDashBoard>
         <div className="flex flex-col w-full gap-10">
           <div className="grid grid-cols-2 gap-[100px]">
             <div>
@@ -224,7 +224,7 @@ const EditPost = ({ admin = true }) => {
         <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting}>
           Upload
         </Button>
-      </Bglayout>
+      </BgDashBoard>
     </form>
   );
 };

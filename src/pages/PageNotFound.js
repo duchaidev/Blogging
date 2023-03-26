@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../components/form/Button";
-import Header from "../components/layout/Header";
+import Header from "../components/layout/layoutmain/Header";
 
 const PageNotFound = () => {
   const StylePageNotFound = styled.div`

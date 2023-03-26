@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import Input from "../components/form/Input";
 import Label from "../components/form/Label";
-import Bglayout from "../components/layout/Bglayout";
 import "react-quill/dist/quill.snow.css";
 import Button from "../components/form/Button";
 import TitleAdd from "../components/title/TitleAdd";
@@ -20,6 +19,7 @@ import { db } from "../firebase-app/firebase-auth";
 import { useAuth } from "../context/auth-context";
 import { toast } from "react-toastify";
 import slugify from "slugify";
+import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
 
 const AddNewCode = () => {
   const { userInfo } = useAuth();
@@ -118,7 +118,7 @@ const AddNewCode = () => {
       >
         Add new code
       </TitleAdd>
-      <Bglayout>
+      <BgDashBoard>
         <div className="flex flex-col w-full gap-10">
           <div className="grid grid-cols-2 gap-[100px]">
             <div>
@@ -170,7 +170,7 @@ const AddNewCode = () => {
         <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting}>
           Upload
         </Button>
-      </Bglayout>
+      </BgDashBoard>
     </form>
   );
 };

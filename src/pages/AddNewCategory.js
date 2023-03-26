@@ -4,12 +4,12 @@ import "react-quill/dist/quill.snow.css";
 import Button from "../components/form/Button";
 import Input from "../components/form/Input";
 import Label from "../components/form/Label";
-import Bglayout from "../components/layout/Bglayout";
 import TitleAdd from "../components/title/TitleAdd";
 import { toast } from "react-toastify";
 import slugify from "slugify";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from "../firebase-app/firebase-auth";
+import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
 
 const AddNewCategory = () => {
   const {
@@ -55,7 +55,7 @@ const AddNewCategory = () => {
       <div className="flex justify-between">
         <TitleAdd>Add new category</TitleAdd>
       </div>
-      <Bglayout classname="">
+      <BgDashBoard classname="">
         <form onSubmit={handleSubmit(handleAddNewCategory)}>
           <div className="flex flex-col w-full gap-10">
             <div className="grid grid-cols-2 gap-[100px]">
@@ -88,7 +88,7 @@ const AddNewCategory = () => {
             Upload
           </Button>
         </form>
-      </Bglayout>
+      </BgDashBoard>
     </div>
   );
 };

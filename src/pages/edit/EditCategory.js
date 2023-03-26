@@ -4,13 +4,13 @@ import "react-quill/dist/quill.snow.css";
 import Button from "../../components/form/Button";
 import Input from "../../components/form/Input";
 import Label from "../../components/form/Label";
-import Bglayout from "../../components/layout/Bglayout";
 import TitleAdd from "../../components/title/TitleAdd";
 import { toast } from "react-toastify";
 import slugify from "slugify";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-auth";
 import { useSearchParams } from "react-router-dom";
+import BgDashBoard from "../../components/layout/dashboard/BgDashBoard";
 
 const EditCategory = () => {
   const {
@@ -64,7 +64,7 @@ const EditCategory = () => {
       <div className="flex justify-between">
         <TitleAdd>Edit category</TitleAdd>
       </div>
-      <Bglayout classname="">
+      <BgDashBoard classname="">
         <form onSubmit={handleSubmit(handleUpdateCategory)}>
           <div className="flex flex-col w-full gap-10">
             <div className="grid grid-cols-2 gap-[100px]">
@@ -97,7 +97,7 @@ const EditCategory = () => {
             Upload
           </Button>
         </form>
-      </Bglayout>
+      </BgDashBoard>
     </div>
   );
 };

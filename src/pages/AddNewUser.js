@@ -6,7 +6,6 @@ import InputPassword from "../components/form/InputPassword";
 import Label from "../components/form/Label";
 import Trash from "../components/icon/Trash";
 import ImageUpload from "../components/image/ImageUpload";
-import Bglayout from "../components/layout/Bglayout";
 import FieldCheckboxes from "../components/radio/FieldCheckboxes";
 import Radio from "../components/radio/Radio";
 import TitleAdd from "../components/title/TitleAdd";
@@ -19,6 +18,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth, db } from "../firebase-app/firebase-auth";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import slugify from "slugify";
+import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
 
 const schemaValidate = yup.object({
   fullname: yup.string().required("Enter your fullname"),
@@ -97,7 +97,7 @@ const AddNewUser = () => {
   return (
     <div className="min-h-screen">
       <TitleAdd>Add new user</TitleAdd>
-      <Bglayout>
+      <BgDashBoard>
         <form onSubmit={handleSubmit(handleCreateUser)}>
           <div className="w-[140px] h-[140px] rounded-full mx-auto border-[3px] border-[#66FCF1] mt-5 relative group overflow-hidden">
             <ImageUpload
@@ -213,7 +213,7 @@ const AddNewUser = () => {
             </Button>
           </div>
         </form>
-      </Bglayout>
+      </BgDashBoard>
     </div>
   );
 };

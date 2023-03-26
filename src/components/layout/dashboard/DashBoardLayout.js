@@ -1,8 +1,8 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import styled from "styled-components";
-import DashBoardNav from "../../modules/dashboard/DashBoardNav";
-import Header from "./Header";
+import DashBoardNav from "./DashBoardNav";
+import Header from "../layoutmain/Header";
 
 const DashBoardLayout = () => {
   const StyleLayout = styled.div`

@@ -14,7 +14,6 @@ import Input from "../components/form/Input";
 import InputPassword from "../components/form/InputPassword";
 import Label from "../components/form/Label";
 import Trash from "../components/icon/Trash";
-import Bglayout from "../components/layout/Bglayout";
 import TitleAdd from "../components/title/TitleAdd";
 import { useAuth } from "../context/auth-context";
 import { auth, db } from "../firebase-app/firebase-auth";
@@ -24,6 +23,7 @@ import useFirebaseImg from "../hook/useFirebaseImg";
 import { toast } from "react-toastify";
 import ImageUpload from "../components/image/ImageUpload";
 import slugify from "slugify";
+import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
 
 const schemaValidate = yup.object({
   fullname: yup.string().required("Enter your fullname"),
@@ -180,7 +180,7 @@ const ChangePassword = () => {
       onSubmit={handleSubmit(handleChangePassword)}
     >
       <TitleAdd isSubmitting={isSubmitting}>Change Password</TitleAdd>
-      <Bglayout>
+      <BgDashBoard>
         <div>
           <div className="w-[140px] h-[140px] rounded-full mx-auto border-[3px] border-[#66FCF1] mt-5 relative group">
             <ImageUpload
@@ -293,7 +293,7 @@ const ChangePassword = () => {
             </Button>
           </div>
         </div>
-      </Bglayout>
+      </BgDashBoard>
     </form>
   );
 };

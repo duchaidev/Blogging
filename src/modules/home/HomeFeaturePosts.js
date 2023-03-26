@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import FeaturePostsList from "./postList/FeaturePostsList";
-import Title from "./Title";
+import TitleFeature from "./TitleFeature";
 
 const HomeFeaturePosts = () => {
   const StyleHomeFP = styled.div`
@@ -9,7 +9,7 @@ const HomeFeaturePosts = () => {
   `;
   return (
     <StyleHomeFP>
-      <Title to="/blog">Bài viết nổi bật</Title>
+      <TitleFeature to="/blog">Bài viết nổi bật</TitleFeature>
       <FeaturePostsList></FeaturePostsList>
     </StyleHomeFP>
   );

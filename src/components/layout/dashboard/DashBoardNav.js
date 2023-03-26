@@ -2,7 +2,7 @@ import { signOut } from "firebase/auth";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { auth } from "../../firebase-app/firebase-auth";
+import { auth } from "../../../firebase-app/firebase-auth";
 
 const dataNav = [
   {

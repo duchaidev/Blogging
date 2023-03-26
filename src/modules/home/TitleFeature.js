@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const Title = ({ to, children }) => {
+const TitleFeature = ({ to, children }) => {
   return (
     <div>
       <div className="flex justify-between">
@@ -16,4 +16,4 @@ const Title = ({ to, children }) => {
   );
 };
 
-export default Title;
+export default TitleFeature;

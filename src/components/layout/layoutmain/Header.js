@@ -3,12 +3,12 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { useAuth } from "../../context/auth-context";
-import { auth, db } from "../../firebase-app/firebase-auth";
-import DropdownHeader from "../dropdown/dropdownHeader/DropdownHeader";
-import ListHeader from "../dropdown/dropdownHeader/ListHeader";
-import OptionHeader from "../dropdown/dropdownHeader/OptionHeader";
-import SelectHeader from "../dropdown/dropdownHeader/SelectHeader";
+import { useAuth } from "../../../context/auth-context";
+import { auth, db } from "../../../firebase-app/firebase-auth";
+import DropdownHeader from "../../dropdown/dropdownHeader/DropdownHeader";
+import ListHeader from "../../dropdown/dropdownHeader/ListHeader";
+import OptionHeader from "../../dropdown/dropdownHeader/OptionHeader";
+import SelectHeader from "../../dropdown/dropdownHeader/SelectHeader";
 const StyleHomePage = styled.div`
   width: 100%;
   height: 100%;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PostsItem from "./PostsItem";
 import { db } from "../../../firebase-app/firebase-auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
-const CodeFeatureList = () => {
+const FeatureCodeList = () => {
   const StyleCodeList = styled.div`
     margin-top: 20px;
     display: grid;
@@ -49,4 +49,4 @@ const CodeFeatureList = () => {
   );
 };
 
-export default CodeFeatureList;
+export default FeatureCodeList;

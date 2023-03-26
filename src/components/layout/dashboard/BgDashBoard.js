@@ -1,6 +1,6 @@
 import React from "react";
 
-const Bglayout = ({ classname, children }) => {
+const BgDashBoard = ({ classname, children }) => {
   return (
     <div
       className={`min-h-screen px-16 py-8 mx-10 mt-5 border border-b-transparent ${classname}`}
@@ -11,4 +11,4 @@ const Bglayout = ({ classname, children }) => {
   );
 };
 
-export default Bglayout;
+export default BgDashBoard;

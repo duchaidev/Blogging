@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import CodeFeatureList from "./postList/CodeFeatureList";
-import Title from "./Title";
+import FeatureCodeList from "./postList/FeatureCodeList";
+import TitleFeature from "./TitleFeature";
 
 const HomeFeatureCode = () => {
   const StyleFCode = styled.div`
@@ -9,8 +9,8 @@ const HomeFeatureCode = () => {
   `;
   return (
     <StyleFCode>
-      <Title to="/code">Source Code nổi bật</Title>
-      <CodeFeatureList></CodeFeatureList>
+      <TitleFeature to="/code">Source Code nổi bật</TitleFeature>
+      <FeatureCodeList></FeatureCodeList>
     </StyleFCode>
   );
 };

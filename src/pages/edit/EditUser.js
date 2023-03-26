@@ -8,7 +8,6 @@ import { toast } from "react-toastify";
 import { db } from "../../firebase-app/firebase-auth";
 import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import TitleAdd from "../../components/title/TitleAdd";
-import Bglayout from "../../components/layout/Bglayout";
 import ImageUpload from "../../components/image/ImageUpload";
 import Trash from "../../components/icon/Trash";
 import Label from "../../components/form/Label";
@@ -19,6 +18,7 @@ import Radio from "../../components/radio/Radio";
 import { useRole } from "../../utils/constants";
 import Button from "../../components/form/Button";
 import { useSearchParams } from "react-router-dom";
+import BgDashBoard from "../../components/layout/dashboard/BgDashBoard";
 
 const schemaValidate = yup.object({
   fullname: yup.string().required("Enter your fullname"),
@@ -100,7 +100,7 @@ const EditUser = () => {
   return (
     <div className="min-h-screen">
       <TitleAdd>Edit user</TitleAdd>
-      <Bglayout>
+      <BgDashBoard>
         <form onSubmit={handleSubmit(handleEditUser)}>
           <div className="w-[140px] h-[140px] rounded-full mx-auto border-[3px] border-[#66FCF1] mt-5 relative group overflow-hidden">
             <ImageUpload
@@ -222,7 +222,7 @@ const EditUser = () => {
             </Button>
           </div>
         </form>
-      </Bglayout>
+      </BgDashBoard>
     </div>
   );
 };

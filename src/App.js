@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Layout from "./components/layout/Layout";
 // import { AuthProvider, useAuth } from "./context/auth-context";
 import DetailBlog from "./pages/details/DetailBlog";
 import HomePage from "./pages/HomePage";
@@ -10,7 +9,6 @@ import SignUpPage from "./pages/SignUpPage";
 import Support from "./pages/Support";
 import Map from "./pages/Map";
 import BlogPage from "./pages/BlogPage";
-import DashBoardLayout from "./components/layout/DashBoardLayout";
 import DashBoardUser from "./pages/dashboard/DashBoardUser";
 import DashBoardCategory from "./pages/dashboard/DashBoardCategory";
 import DashBoardPosts from "./pages/dashboard/DashBoardPosts";
@@ -28,6 +26,8 @@ import DashBoardCode from "./pages/dashboard/DashBoardCode";
 import AddNewCode from "./pages/AddNewCode";
 import ManagePostUser from "./pages/ManagePostUser";
 import CodePage from "./pages/CodePage";
+import Layout from "./components/layout/layoutmain/Layout";
+import DashBoardLayout from "./components/layout/dashboard/DashBoardLayout";
 
 function App() {
   // const { userInfo } = useAuth();
