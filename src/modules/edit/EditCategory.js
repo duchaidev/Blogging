@@ -40,7 +40,7 @@ const EditCategory = () => {
       }
       fetchCategory();
     }
-  }, [cateId]);
+  }, [cateId, reset]);
   const handleUpdateCategory = async (values) => {
     if (values.category === "") {
       toast.dark("Enter your category");

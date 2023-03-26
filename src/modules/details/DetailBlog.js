@@ -8,13 +8,13 @@ import {
   where,
 } from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-auth";
-import PageNotFound from "../PageNotFound";
 import parse from "html-react-parser";
 import Dropdown from "../../components/dropdown/Dropdown";
 import Select from "../../components/dropdown/Select";
 import List from "../../components/dropdown/List";
 import Option from "../../components/dropdown/Option";
 import { toast } from "react-toastify";
+import PageNotFound from "../../pages/PageNotFound";
 
 const DetailBlog = () => {
   const url = window.location.href;
