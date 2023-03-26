@@ -22,13 +22,14 @@
 21. DashBoard Category
 22. DashBoard Post
 24. Add new post: overview, upload image, delete image, toggle hot, find category
--->
-
 23. Checkbox, radio, toggle
 24. Display(Pagination, Filter), Add, Update & Delete Category
 25. Display(Pagination, Filter), Add, Update & Delete User
 26. Display, Filter, Add, Update & Delete Post
 27. Update post with React quill, Handle upload image in React quill
+28. Change Password
+-->
+
 28. Optimize source code(PropTypes, logic, error boundary, routes, UI UX...)
 29. SendMessage Support
 30. Optimize source code(PropTypes, logic, error boundary, routes, UI UX...)

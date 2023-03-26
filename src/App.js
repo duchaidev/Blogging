@@ -24,6 +24,7 @@ import EditPost from "./pages/edit/EditPost";
 import EditCategory from "./pages/edit/EditCategory";
 import EditUser from "./pages/edit/EditUser";
 import DashBoardMess from "./pages/dashboard/DashBoardMess";
+import ViewMess from "./pages/ViewMess";
 
 function App() {
   // const { userInfo } = useAuth();
@@ -76,6 +77,7 @@ function App() {
               path="/manage/message"
               element={<DashBoardMess></DashBoardMess>}
             ></Route>
+            <Route path="/mess" element={<ViewMess></ViewMess>}></Route>
           </Route>
 
           <Route element={<Layout></Layout>}>
@@ -96,10 +98,6 @@ function App() {
               path="/add-new-post"
               element={<AddNewPostUser></AddNewPostUser>}
             ></Route>
-
-            {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
-
-            {/* ) : null} */}
 
             <Route
               path="/change-password"

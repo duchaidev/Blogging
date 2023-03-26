@@ -1,13 +1,19 @@
 import React from "react";
 import { useDropdown } from "../../../context/dropdown-context";
-import ThreeDot from "../../icon/ThreeDot";
 
-const SelectHeader = ({ placehoder = " ", children, classname }) => {
+const SelectHeader = ({ avatar, children, classname }) => {
   const { toggle } = useDropdown();
   return (
-    <div className="">
-      <div onClick={toggle} className={`p-5 transition-all ${classname}`}>
-        <ThreeDot></ThreeDot>
+    <div className="w-full h-full">
+      <div
+        onClick={toggle}
+        className={`transition-all ${classname} w-full h-full `}
+      >
+        <img
+          src={`${avatar || "/avtdf.png"}`}
+          alt=""
+          className="object-cover w-full h-12 rounded-full border-[2px] border-[#66FCF1] mb-2"
+        />
       </div>
     </div>
   );

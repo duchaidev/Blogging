@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { toast } from "react-toastify";
 
 import {
   getStorage,
@@ -8,7 +7,6 @@ import {
   getDownloadURL,
   deleteObject,
 } from "firebase/storage";
-var slugify = require("slugify");
 
 const useFirebaseImg = (setValue, getValues) => {
   const [progress, setProgress] = useState(0);

@@ -18,6 +18,7 @@ import {
   doc,
   getDoc,
   getDocs,
+  serverTimestamp,
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase-app/firebase-auth";
@@ -42,6 +43,7 @@ const EditPost = () => {
       title: "",
       slug: "",
       hot: false,
+      createdAt: serverTimestamp(),
     },
   });
   const watchHot = watch("hot");
@@ -62,11 +64,15 @@ const EditPost = () => {
       getPosts();
     }
   }, [postId, reset]);
+  const imageUrl = getValues("image");
 
-  const { progress, image, handleDeleteImg, onSelectImage } = useFirebaseImg(
-    setValue,
-    getValues
-  );
+  const { progress, image, setImage, handleDeleteImg, onSelectImage } =
+    useFirebaseImg(setValue, getValues);
+
+  useEffect(() => {
+    setImage(imageUrl);
+  }, [imageUrl, setImage]);
+
   const [content, setContent] = useState("");
   const modules = {
     toolbar: [
@@ -111,9 +117,18 @@ const EditPost = () => {
     const colRef = doc(db, "posts", postId);
     value.slug = slugify(value.slug || value.title, { lower: true });
     if (image === "") {
-      await updateDoc(colRef, { ...value, content });
+      await updateDoc(colRef, {
+        ...value,
+        content,
+        createdAt: serverTimestamp(),
+      });
     } else {
-      await updateDoc(colRef, { ...value, image, content });
+      await updateDoc(colRef, {
+        ...value,
+        image,
+        content,
+        createdAt: serverTimestamp(),
+      });
     }
 
     toast.success("Successfully!!!");
@@ -122,6 +137,7 @@ const EditPost = () => {
   return (
     <form className="min-h-screen" onSubmit={handleSubmit(handleUpdate)}>
       <TitleAdd
+        isSubmitting={isSubmitting}
         admin={true}
         on={watchHot === true}
         onClick={() => {
@@ -130,6 +146,7 @@ const EditPost = () => {
       >
         Edit Post
       </TitleAdd>
+
       <Bglayout>
         <div className="flex flex-col w-full gap-10">
           <div className="grid grid-cols-2 gap-[100px]">

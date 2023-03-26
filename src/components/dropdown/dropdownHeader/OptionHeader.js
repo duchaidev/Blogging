@@ -1,39 +1,34 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 import { useDropdown } from "../../../context/dropdown-context";
 
-const OptionHeader = ({
-  onClick,
-  children,
-  threedot,
-  to,
-  blank = " _blank ",
-}) => {
+const StyleOption = styled.div`
+  p {
+    cursor: pointer;
+    color: white;
+    opacity: 0.6;
+  }
+`;
+const OptionHeader = ({ onClick, children, to, blank = "", className }) => {
   const { setShow } = useDropdown();
   const handleClick = () => {
     onClick && onClick();
     setShow(false);
   };
   return (
-    <div className="">
-      {threedot ? (
-        <NavLink
-          to={to}
-          target={blank}
-          className="flex items-center w-auto gap-2 px-5 py-3 text-white transition-all whitespace-nowrap"
-          onClick={handleClick}
-        >
-          {children}
-        </NavLink>
-      ) : (
-        <div
-          className="px-5 py-3 border-b-[1px] border-[#4E4D52] transition-all text-white"
-          onClick={handleClick}
-        >
-          {children}
-        </div>
-      )}
-    </div>
+    <StyleOption
+      className={`border border-x-transparent border-t-transparent border-b-gray-600 border-opacity-50 ${className}`}
+    >
+      <NavLink
+        to={to}
+        target={blank}
+        className={`flex items-center w-auto gap-2 py-3 text-white transition-all whitespace-nowrap `}
+        onClick={handleClick}
+      >
+        {children}
+      </NavLink>
+    </StyleOption>
   );
 };
 

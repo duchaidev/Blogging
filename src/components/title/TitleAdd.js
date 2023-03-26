@@ -1,10 +1,14 @@
 import React from "react";
+import Button from "../form/Button";
 
-const TitleAdd = ({ admin, children, ...props }) => {
+const TitleAdd = ({ admin, children, isSubmitting, ...props }) => {
   const { on, onClick, ...rest } = props;
   return (
     <div className="flex justify-between">
       <h2 className="font-bold text-2xl text-[#66FCF1]">{children}</h2>
+      <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting}>
+        Upload
+      </Button>
       {admin ? (
         <div className="translate-y-[-10px]">
           <span className="text-gray-300 ">Fearture Post</span>

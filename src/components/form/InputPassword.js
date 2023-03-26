@@ -20,6 +20,10 @@ const InputStyled = styled.input`
     border: 1px solid ${(props) => props.theme.bgButton};
     background-color: #fff;
   }
+  ::placeholder {
+    color: black;
+    opacity: 0.4;
+  }
   ${(props) =>
     props.kind === "second" &&
     css`

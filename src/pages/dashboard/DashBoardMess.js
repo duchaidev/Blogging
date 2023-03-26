@@ -103,6 +103,7 @@ const DashBoardMess = () => {
               <th>Id</th>
               <th>Title</th>
               <th>Content</th>
+              <th>Zalo</th>
               <th>Author</th>
               <th>Actions</th>
             </tr>
@@ -135,11 +136,18 @@ const DashBoardMess = () => {
                     </span>
                   </td>
                   <td>
+                    <span className="text-gray-500">{mess?.zalo}</span>
+                  </td>
+                  <td>
                     <span className="text-gray-500">{mess?.user?.name}</span>
                   </td>
                   <td>
                     <div className="flex gap-2">
-                      <ActionView onClick={() => {}}></ActionView>
+                      <ActionView
+                        onClick={() => {
+                          navigate(`/mess?id=${mess?.id}`);
+                        }}
+                      ></ActionView>
 
                       <ActionDelete
                         onClick={() => {

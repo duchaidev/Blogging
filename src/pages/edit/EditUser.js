@@ -3,18 +3,10 @@ import slugify from "slugify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useFirebaseImg from "../../hook/useFirebaseImg";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
-import { auth, db } from "../../firebase-app/firebase-auth";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  serverTimestamp,
-  updateDoc,
-} from "firebase/firestore";
+import { db } from "../../firebase-app/firebase-auth";
+import { doc, getDoc, serverTimestamp, updateDoc } from "firebase/firestore";
 import TitleAdd from "../../components/title/TitleAdd";
 import Bglayout from "../../components/layout/Bglayout";
 import ImageUpload from "../../components/image/ImageUpload";
@@ -54,19 +46,20 @@ const EditUser = () => {
       email: "",
       password: "",
       role: 3,
-      createAt: new Date(),
+      createdAt: serverTimestamp(),
     },
     resolver: yupResolver(schemaValidate),
   });
+  const imageUrl = getValues("avatar");
+
   const watchRole = watch("role");
-  const {
-    progress,
-    image,
-    handleDeleteImg,
-    onSelectImage,
-    setImage,
-    setProgress,
-  } = useFirebaseImg(setValue, getValues);
+  const { progress, image, setImage, handleDeleteImg, onSelectImage } =
+    useFirebaseImg(setValue, getValues);
+
+  useEffect(() => {
+    setImage(imageUrl);
+  }, [imageUrl, setImage]);
+
   useEffect(() => {
     const errorsMessage = Object.values(errors);
     if (errorsMessage.length > 0) {
@@ -94,9 +87,13 @@ const EditUser = () => {
       trim: true,
     });
     if (image === "") {
-      await updateDoc(colRef, { ...values });
+      await updateDoc(colRef, { ...values, createdAt: serverTimestamp() });
     } else {
-      await updateDoc(colRef, { ...values, avatar: image });
+      await updateDoc(colRef, {
+        ...values,
+        avatar: image,
+        createdAt: serverTimestamp(),
+      });
     }
     toast.success("Successfully!!!");
   };

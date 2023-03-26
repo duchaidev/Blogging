@@ -21,7 +21,6 @@ import {
   getDocs,
   query,
   serverTimestamp,
-  updateDoc,
   where,
 } from "firebase/firestore";
 import { db } from "../firebase-app/firebase-auth";
@@ -164,12 +163,14 @@ const AddNewPostAdmin = () => {
     setContent("");
     setImage("");
     setProgress(0);
+    setSubTitle("");
     setSelecCategory({});
   };
 
   return (
     <form className="min-h-screen" onSubmit={handleSubmit(handleUpload)}>
       <TitleAdd
+        isSubmitting={isSubmitting}
         admin={true}
         on={watchHot === true}
         onClick={() => {

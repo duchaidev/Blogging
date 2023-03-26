@@ -101,7 +101,6 @@ const AddNewUser = () => {
       <Bglayout>
         <form onSubmit={handleSubmit(handleCreateUser)}>
           <div className="w-[140px] h-[140px] rounded-full mx-auto border-[3px] border-[#66FCF1] mt-5 relative group overflow-hidden">
-            {/* <div className="w-full h-full mt-[-8px]"> */}
             <ImageUpload
               className="!w-full !h-full border-none !rounded-full !mt-0"
               onChange={onSelectImage}
@@ -109,7 +108,6 @@ const AddNewUser = () => {
               image={image}
               handleDeleteimg={handleDeleteImg}
             ></ImageUpload>
-            {/* </div> */}
             {image && (
               <button
                 className="w-[55px] h-[55px] p-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-full bg-gray-500 cursor-pointer invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all"

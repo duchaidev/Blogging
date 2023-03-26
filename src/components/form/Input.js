@@ -49,7 +49,14 @@ const DivStyled = styled.div`
   }
 `;
 
-const Input = ({ type = "text", name = "", children, control, ...props }) => {
+const Input = ({
+  type = "text",
+  name = "",
+  children,
+  value,
+  control,
+  ...props
+}) => {
   const { field } = useController({
     control,
     name,

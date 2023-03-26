@@ -58,6 +58,7 @@ const SignUpPage = () => {
       password: value.password,
       email: value.email,
       avatar: "/avtdf.png",
+      avatardf: "/avtdf.png",
       role: useRole.USER,
       createAt: serverTimestamp(),
     });
