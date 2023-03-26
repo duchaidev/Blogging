@@ -2,18 +2,14 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDocs,
   onSnapshot,
   query,
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import Button from "../../components/form/Button";
-import Input from "../../components/form/Input";
 import ActionDelete from "../../components/icon/action/ActionDelete";
-import ActionEdit from "../../components/icon/action/ActionEdit";
 import ActionView from "../../components/icon/action/ActionView";
 import Table from "../../components/table/Table";
 import { db } from "../../firebase-app/firebase-auth";

@@ -1,27 +1,17 @@
-import {
-  addDoc,
-  collection,
-  getDocs,
-  query,
-  serverTimestamp,
-  where,
-} from "firebase/firestore";
+import { serverTimestamp } from "firebase/firestore";
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import styled from "styled-components";
-import Button from "../../components/form/Button";
 import Input from "../../components/form/Input";
 import Textarea from "../../components/form/Textarea";
 import Address from "../../components/icon/Address";
 import Email from "../../components/icon/Email";
 import LogoSupport from "../../components/icon/LogoSupport";
 import Phone from "../../components/icon/Phone";
-import { useAuth } from "../../context/auth-context";
 import { db } from "../../firebase-app/firebase-auth";
 import InfoItem from "./InfoItem";
 import { useSearchParams } from "react-router-dom";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 const StyleSupportForm = styled.div`
   .form {
@@ -35,7 +25,7 @@ const StyleSupportForm = styled.div`
   }
 `;
 const ViewSupportForm = () => {
-  const { control, setValue, reset } = useForm({
+  const { control, reset } = useForm({
     defaultValues: {
       createdAt: serverTimestamp(),
     },
