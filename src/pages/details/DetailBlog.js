@@ -19,13 +19,13 @@ import { toast } from "react-toastify";
 const DetailBlog = () => {
   const url = window.location.href;
   console.log(url);
+  const { slug } = useParams();
 
   const copy = async () => {
     await navigator.clipboard.writeText(url);
     toast.success("Coppy Success!!!");
   };
 
-  const { slug } = useParams();
   const [post, setPost] = useState([]);
   useEffect(() => {
     const fetchPost = async () => {

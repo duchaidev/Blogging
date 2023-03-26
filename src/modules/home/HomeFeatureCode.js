@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import CodeList from "./postList/CodeList";
+import CodeFeatureList from "./postList/CodeFeatureList";
 import Title from "./Title";
 
 const HomeFeatureCode = () => {
@@ -9,8 +9,8 @@ const HomeFeatureCode = () => {
   `;
   return (
     <StyleFCode>
-      <Title to="code">Source Code nổi bật</Title>
-      <CodeList></CodeList>
+      <Title to="/code">Source Code nổi bật</Title>
+      <CodeFeatureList></CodeFeatureList>
     </StyleFCode>
   );
 };

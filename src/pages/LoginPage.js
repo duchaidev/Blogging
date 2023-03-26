@@ -20,7 +20,6 @@ const LoginPage = () => {
       .string()
       .required("Please your email")
       .email("Please enter valid email address"),
-
     password: yup
       .string()
       .required("Please your password")
@@ -33,7 +32,7 @@ const LoginPage = () => {
     handleSubmit,
     formState: { errors, isValid, isSubmitting },
   } = useForm({
-    mode: "onSubmit",
+    mode: "onBlur",
     resolver: yupResolver(schemaValidate),
   });
   const { userInfo } = useAuth();

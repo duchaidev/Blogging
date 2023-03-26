@@ -20,7 +20,7 @@ import {
   getDoc,
   getDocs,
   query,
-  updateDoc,
+  serverTimestamp,
   where,
 } from "firebase/firestore";
 import { db } from "../firebase-app/firebase-auth";
@@ -48,6 +48,7 @@ const AddNewPostAdmin = () => {
       slug: "",
       hot: false,
       image: "",
+      createdAt: serverTimestamp(),
     },
   });
   const watchHot = watch("hot");
@@ -79,6 +80,7 @@ const AddNewPostAdmin = () => {
     setProgress,
   } = useFirebaseImg(setValue, getValues);
   const [content, setContent] = useState("");
+  const [subtitle, setSubTitle] = useState("");
   const modules = {
     toolbar: [
       ["bold", "italic", "underline", "strike"],
@@ -108,7 +110,7 @@ const AddNewPostAdmin = () => {
       });
     }
     fetchUser();
-  }, [setValue, userInfo.email]);
+  }, [setValue, userInfo.email, isSubmitting]);
   useEffect(() => {
     const fetchCategory = async () => {
       const colRef = collection(db, "categories");
@@ -145,8 +147,9 @@ const AddNewPostAdmin = () => {
     await addDoc(colRef, {
       ...cloneValue,
       image,
-      createAt: userInfo.uid,
+      subtitle: subtitle.target.value,
       content,
+      createdAt: serverTimestamp(),
     });
     toast.success("Successfully!!!");
     reset({
@@ -154,21 +157,25 @@ const AddNewPostAdmin = () => {
       slug: "",
       hot: false,
       image: "",
+      createdAt: serverTimestamp(),
     });
     setContent("");
     setImage("");
     setProgress(0);
+    setSubTitle("");
     setSelecCategory({});
   };
 
   return (
     <form className="min-h-screen" onSubmit={handleSubmit(handleUpload)}>
       <TitleAdd
+        isSubmitting={isSubmitting}
+        on={watchHot === true}
         onClick={() => {
           setValue("hot", !watchHot);
         }}
       >
-        Add new post Admin
+        Add new post
       </TitleAdd>
       <Bglayout>
         <div className="flex flex-col w-full gap-10">
@@ -207,7 +214,22 @@ const AddNewPostAdmin = () => {
                 handleDeleteimg={handleDeleteImg}
               ></ImageUpload>
             </div>
-            <div>
+            <div className="w-full h-full">
+              <Label
+                htmlFor="subtitle"
+                classname="mb-2 text-lg font-semibold text-white"
+              >
+                SubTitle
+              </Label>
+              <textarea
+                name="subtitle"
+                id="subtitle"
+                className="w-full h-[90%] mt-2 bg-[#788DA9] outline-none transition-all border border-transparent px-5 py-2 rounded-lg text-black placeholder:text-slate-600 focus:bg-[#274047] focus:text-white focus:border-[#66FCF1]"
+                placeholder="Enter your subtitle"
+                onChange={setSubTitle}
+              ></textarea>
+            </div>
+            <div className="mt-[-60px] z-10">
               <Label
                 htmlFor="category"
                 classname="text-lg font-semibold text-white"
@@ -216,6 +238,7 @@ const AddNewPostAdmin = () => {
               </Label>
               <Dropdown>
                 <Select
+                  threedot={false}
                   placehoder={`${selectCategory.category || "Select Category"}`}
                 ></Select>
                 <List>

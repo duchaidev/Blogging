@@ -1,7 +1,5 @@
-import { async } from "@firebase/util";
 import {
   collection,
-  getDocs,
   doc,
   deleteDoc,
   onSnapshot,
@@ -9,9 +7,7 @@ import {
   query,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
 import Button from "../../components/form/Button";
-import Input from "../../components/form/Input";
 import ActionDelete from "../../components/icon/action/ActionDelete";
 import ActionEdit from "../../components/icon/action/ActionEdit";
 import Table from "../../components/table/Table";
@@ -103,12 +99,12 @@ const DashBoardCategory = () => {
               <tbody key={item.id}>
                 <tr>
                   <td></td>
-                  <td>{item.id.slice(0, 8) + "....."}</td>
+                  <td>{item.id}</td>
                   <td>
                     <span>{item.category}</span>
                   </td>
                   <td>
-                    <span className="text-gray-500">{item.slug}</span>
+                    <span className="italic text-gray-500">{item.slug}</span>
                   </td>
 
                   <td>

@@ -7,6 +7,7 @@ import HomeSlide from "../modules/home/HomeSlide";
 const HomePage = () => {
   const StyleHomePage = styled.div`
     margin-top: 30px;
+    min-height: 100vh;
   `;
   return (
     <StyleHomePage>

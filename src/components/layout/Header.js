@@ -143,16 +143,21 @@ const Header = () => {
                               String(user?.email).slice(0, 8) ||
                               ""}
                           </p>
-                          <p className="text-sm italic !text-gray-400 whitespace-nowrap">
-                            02/11/2022
-                          </p>
+                          <span className="text-sm italic !text-gray-400 whitespace-nowrap">
+                            {new Date(
+                              user?.createdAt?.seconds * 1000
+                            ).toLocaleDateString("vi-VI")}
+                          </span>
                         </div>
                       </div>
                     </OptionHeader>
                     <OptionHeader to="/add-new-post">
                       <p className="whitespace-nowrap">Viết Blog</p>
                     </OptionHeader>
-                    <OptionHeader to="/add-new-post">
+                    <OptionHeader to="/add-new-post/admin">
+                      <p className="whitespace-nowrap">Viết Blog Admin</p>
+                    </OptionHeader>
+                    <OptionHeader to="/manage-post">
                       <p className="whitespace-nowrap">Bài viết của tôi</p>
                     </OptionHeader>
                     <OptionHeader to="/change-password">

@@ -10,6 +10,7 @@ const PostsItem = ({
   avatarAuthor,
   urlAuthor,
   fullname,
+  target = "",
   date,
 }) => {
   const StyleItem = styled.div`
@@ -22,7 +23,7 @@ const PostsItem = ({
   `;
   return (
     <StyleItem className="grid gap-2">
-      <NavLink to={urlPost}>
+      <NavLink to={urlPost} target={target}>
         <img
           src={image}
           alt=""
@@ -30,7 +31,7 @@ const PostsItem = ({
           title={title}
         />
       </NavLink>
-      <NavLink className="text-white" to={urlPost}>
+      <NavLink className="text-white" to={urlPost} target={target}>
         <h2 title={title}>{title.slice(0, 35) + "..."}</h2>
       </NavLink>
       <div className="flex items-center gap-2">

@@ -110,7 +110,7 @@ const AddNewPostAdmin = () => {
       });
     }
     fetchUser();
-  }, [setValue, userInfo.email]);
+  }, [setValue, userInfo.email, isSubmitting]);
   useEffect(() => {
     const fetchCategory = async () => {
       const colRef = collection(db, "categories");
@@ -148,7 +148,6 @@ const AddNewPostAdmin = () => {
       ...cloneValue,
       image,
       subtitle: subtitle.target.value,
-      createAt: userInfo.uid,
       content,
       createdAt: serverTimestamp(),
     });

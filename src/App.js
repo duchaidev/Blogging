@@ -3,7 +3,6 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 // import { AuthProvider, useAuth } from "./context/auth-context";
 import DetailBlog from "./pages/details/DetailBlog";
-import DetailCode from "./pages/details/DetailCode";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import PageNotFound from "./pages/PageNotFound";
@@ -25,6 +24,10 @@ import EditCategory from "./pages/edit/EditCategory";
 import EditUser from "./pages/edit/EditUser";
 import DashBoardMess from "./pages/dashboard/DashBoardMess";
 import ViewMess from "./pages/ViewMess";
+import DashBoardCode from "./pages/dashboard/DashBoardCode";
+import AddNewCode from "./pages/AddNewCode";
+import ManagePostUser from "./pages/ManagePostUser";
+import CodePage from "./pages/CodePage";
 
 function App() {
   // const { userInfo } = useAuth();
@@ -62,6 +65,10 @@ function App() {
               element={<AddNewUser></AddNewUser>}
             ></Route>
             <Route
+              path="/add-new-code/admin"
+              element={<AddNewCode></AddNewCode>}
+            ></Route>
+            <Route
               path="/manage/update-post/admin"
               element={<EditPost></EditPost>}
             ></Route>
@@ -77,6 +84,10 @@ function App() {
               path="/manage/message"
               element={<DashBoardMess></DashBoardMess>}
             ></Route>
+            <Route
+              path="/manage/code"
+              element={<DashBoardCode></DashBoardCode>}
+            ></Route>
             <Route path="/mess" element={<ViewMess></ViewMess>}></Route>
           </Route>
 
@@ -87,17 +98,24 @@ function App() {
             <Route path="/blog" element={<BlogPage></BlogPage>}></Route>
 
             <Route
-              path="/code/:slug"
-              element={<DetailCode></DetailCode>}
-            ></Route>
-            <Route
               path="/blog/:slug"
               element={<DetailBlog></DetailBlog>}
             ></Route>
             <Route
+              path="/manage-post"
+              element={<ManagePostUser></ManagePostUser>}
+            ></Route>
+            <Route
+              path="/manage/update-post"
+              element={<EditPost admin={false}></EditPost>}
+            ></Route>
+
+            <Route path="/topic/:slug" element={<BlogPage></BlogPage>}></Route>
+            <Route
               path="/add-new-post"
               element={<AddNewPostUser></AddNewPostUser>}
             ></Route>
+            <Route path="/code" element={<CodePage></CodePage>}></Route>
 
             <Route
               path="/change-password"

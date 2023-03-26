@@ -26,7 +26,7 @@ import slugify from "slugify";
 import { toast } from "react-toastify";
 import { useSearchParams } from "react-router-dom";
 
-const EditPost = () => {
+const EditPost = ({ admin = true }) => {
   const [params] = useSearchParams();
   const postId = params.get("id");
   const {
@@ -138,7 +138,7 @@ const EditPost = () => {
     <form className="min-h-screen" onSubmit={handleSubmit(handleUpdate)}>
       <TitleAdd
         isSubmitting={isSubmitting}
-        admin={true}
+        admin={admin}
         on={watchHot === true}
         onClick={() => {
           setValue("hot", !watchHot);

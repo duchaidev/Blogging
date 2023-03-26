@@ -8,51 +8,76 @@ import {
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Button from "../../components/form/Button";
-import ActionDelete from "../../components/icon/action/ActionDelete";
-import ActionEdit from "../../components/icon/action/ActionEdit";
-import ActionView from "../../components/icon/action/ActionView";
-import Table from "../../components/table/Table";
-import { db } from "../../firebase-app/firebase-auth";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-import InputSearch from "../../components/form/InputSearch";
 import { debounce } from "lodash";
+import { db } from "../firebase-app/firebase-auth";
+import Button from "../components/form/Button";
+import InputSearch from "../components/form/InputSearch";
+import Table from "../components/table/Table";
+import ActionView from "../components/icon/action/ActionView";
+import ActionEdit from "../components/icon/action/ActionEdit";
+import ActionDelete from "../components/icon/action/ActionDelete";
+import { useAuth } from "../context/auth-context";
 const StyledDashBoardPosts = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
 `;
-const DashBoardPosts = () => {
+const ManagePostUser = () => {
   const [searchPost, setSearchPost] = useState("");
 
   const navigate = useNavigate();
-
+  const { userInfo } = useAuth();
   const [postsList, setPostList] = useState([]);
+  //   useEffect(() => {
+  //     const fetchPosts = async () => {
+  //       const colRef = query(
+  //         collection(db, "posts"),
+  //         where("category.slug", "==", userInfo.email)
+  //       );
+  //       const docSnap = await getDocs(newRef);
+  //       const result = [];
+  //       docSnap.forEach((post) => {
+  //         result.push({
+  //           id: post.id,
+  //           ...post.data(),
+  //         });
+  //       });
+  //       setPostList(result);
+  //     };
+  //     fetchPosts();
+  //   }, []);
+
   useEffect(() => {
-    async function fetchPosts() {
-      const colRef = collection(db, "posts");
-      const newRef = searchPost
-        ? query(
-            colRef,
-            where("title", ">=", searchPost),
-            where("title", "<=", searchPost + "utf8")
-          )
-        : colRef;
-      onSnapshot(newRef, (snapshot) => {
-        const result = [];
-        snapshot.forEach((post) => {
-          result.push({
-            id: post.id,
-            ...post.data(),
+    if (userInfo) {
+      async function fetchPosts() {
+        const colRef = collection(db, "posts");
+        const newRef = searchPost
+          ? query(
+              colRef,
+              where("title", ">=", searchPost),
+              where("title", "<=", searchPost + "utf8")
+            )
+          : query(
+              collection(db, "posts"),
+              where("user.email", "==", String(userInfo.email))
+            );
+        onSnapshot(newRef, (snapshot) => {
+          const result = [];
+          snapshot.forEach((post) => {
+            result.push({
+              id: post.id,
+              ...post.data(),
+            });
           });
+          setPostList(result);
+          console.log(result);
         });
-        setPostList(result);
-        console.log(result);
-      });
+      }
+      fetchPosts();
     }
-    fetchPosts();
-  }, [searchPost]);
+  }, [searchPost, userInfo]);
 
   const handleDelete = (postId) => {
     const singleDoc = doc(db, "posts", postId);
@@ -150,7 +175,7 @@ const DashBoardPosts = () => {
                       ></ActionView>
                       <ActionEdit
                         onClick={() => {
-                          navigate(`/manage/update-post/admin?id=${post?.id}`);
+                          navigate(`/manage/update-post?id=${post?.id}`);
                         }}
                       ></ActionEdit>
                       <ActionDelete
@@ -169,4 +194,4 @@ const DashBoardPosts = () => {
   );
 };
 
-export default DashBoardPosts;
+export default ManagePostUser;

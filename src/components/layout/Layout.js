@@ -9,7 +9,7 @@ const Layout = () => {
     background-color: ${(props) => props.theme.backround};
     z-index: 1000;
     padding-right: 100px;
-
+    min-height: 100vh;
     .main {
       display: grid;
       grid-template-columns: 200px minmax(0, 1fr);

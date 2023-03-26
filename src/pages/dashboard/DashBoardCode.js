@@ -23,20 +23,20 @@ const StyledDashBoardPosts = styled.div`
   flex-direction: column;
   gap: 10px;
 `;
-const DashBoardPosts = () => {
-  const [searchPost, setSearchPost] = useState("");
+const DashBoardCode = () => {
+  const [searchCode, setSearchCode] = useState("");
 
   const navigate = useNavigate();
 
-  const [postsList, setPostList] = useState([]);
+  const [codeList, setCodeList] = useState([]);
   useEffect(() => {
-    async function fetchPosts() {
-      const colRef = collection(db, "posts");
-      const newRef = searchPost
+    async function fetchCodeList() {
+      const colRef = collection(db, "code");
+      const newRef = searchCode
         ? query(
             colRef,
-            where("title", ">=", searchPost),
-            where("title", "<=", searchPost + "utf8")
+            where("title", ">=", searchCode),
+            where("title", "<=", searchCode + "utf8")
           )
         : colRef;
       onSnapshot(newRef, (snapshot) => {
@@ -47,15 +47,15 @@ const DashBoardPosts = () => {
             ...post.data(),
           });
         });
-        setPostList(result);
+        setCodeList(result);
         console.log(result);
       });
     }
-    fetchPosts();
-  }, [searchPost]);
+    fetchCodeList();
+  }, [searchCode]);
 
-  const handleDelete = (postId) => {
-    const singleDoc = doc(db, "posts", postId);
+  const handleDelete = (codeId) => {
+    const singleDoc = doc(db, "code", codeId);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -72,21 +72,19 @@ const DashBoardPosts = () => {
     });
   };
   const handleChange = debounce((values) => {
-    setSearchPost(values.target.value);
+    setSearchCode(values.target.value);
   }, 300);
   return (
     <StyledDashBoardPosts>
       <div className="flex justify-between">
-        <h2 className="text-[#02E7F5] text-[26px] font-bold">
-          Manage Your Posts
-        </h2>
+        <h2 className="text-[#02E7F5] text-[26px] font-bold">Manage Code</h2>
         <div className="w-[300px] mt-[-20px] flex flex-col items-end gap-6">
-          <Button to="/add-new-post/admin" type="button">
-            Add New Post
+          <Button to="/add-new-code/admin" type="button">
+            Add New Code
           </Button>
           <InputSearch
             className=""
-            placeholder="Search Posts ...."
+            placeholder="Search Code ...."
             type="text"
             onChange={handleChange}
           ></InputSearch>
@@ -98,64 +96,63 @@ const DashBoardPosts = () => {
             <tr>
               <th></th>
               <th>Id</th>
-              <th>Post</th>
-              <th>Category</th>
+              <th>Code</th>
+              <th>Url</th>
               <th>Author</th>
               <th>Actions</th>
             </tr>
           </thead>
-          {postsList.length > 0 &&
-            postsList.map((post) => (
-              <tbody key={post.id}>
+          {codeList.length > 0 &&
+            codeList.map((code) => (
+              <tbody key={code.id}>
                 <tr>
                   <td></td>
-                  <td title={post?.id}>{post?.id?.slice(0, 8) + "...."}</td>
+                  <td title={code?.id}>{code?.id?.slice(0, 8) + "...."}</td>
 
                   <td>
                     <div className="flex items-center gap-x-3">
                       <img
-                        src={post.image}
+                        src={code.image}
                         alt=""
                         className="w-[66px] h-[55px] rounded object-cover"
                       />
                       <div className="flex-1">
-                        <h3 className="font-semibold" title={post?.title}>
-                          {post?.title.slice(0, 15) + "..."}
+                        <h3 className="font-semibold" title={code?.title}>
+                          {code?.title.slice(0, 15) + "..."}
                         </h3>
                         <time className="text-sm text-gray-500">
                           {new Date(
-                            post?.createdAt?.seconds * 1000
+                            code?.createdAt?.seconds * 1000
                           ).toLocaleDateString("vi-VI")}
                         </time>
                       </div>
                     </div>
                   </td>
-
                   <td>
-                    <span className="text-gray-500">
-                      {post?.category?.category}
+                    <span className="text-gray-500" title={code.urlcode}>
+                      {code?.urlcode.slice(0, 18) + "...."}
                     </span>
                   </td>
                   <td>
                     <span className="text-gray-500">
-                      {post?.user?.fullname}
+                      {code?.user?.fullname}
                     </span>
                   </td>
                   <td>
                     <div className="flex gap-2">
                       <ActionView
                         onClick={() => {
-                          navigate(`/blog/${post.slug}`);
+                          navigate(`/blog/${code.slug}`);
                         }}
                       ></ActionView>
                       <ActionEdit
                         onClick={() => {
-                          navigate(`/manage/update-post/admin?id=${post?.id}`);
+                          navigate(`/manage/update-code/admin?id=${code?.id}`);
                         }}
                       ></ActionEdit>
                       <ActionDelete
                         onClick={() => {
-                          handleDelete(post.id);
+                          handleDelete(code.id);
                         }}
                       ></ActionDelete>
                     </div>
@@ -169,4 +166,4 @@ const DashBoardPosts = () => {
   );
 };
 
-export default DashBoardPosts;
+export default DashBoardCode;

@@ -28,8 +28,8 @@
 26. Display, Filter, Add, Update & Delete Post
 27. Update post with React quill, Handle upload image in React quill
 28. Change Password
--->
-
-28. Optimize source code(PropTypes, logic, error boundary, routes, UI UX...)
-29. SendMessage Support
+29. Query PostList with slug
 30. Optimize source code(PropTypes, logic, error boundary, routes, UI UX...)
+31. SendMessage Support
+32. Optimize source code(PropTypes, logic, error boundary, routes, UI UX...)
+-->

@@ -2,10 +2,8 @@ import { updatePassword } from "firebase/auth";
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
   query,
-  serverTimestamp,
   updateDoc,
   where,
 } from "firebase/firestore";
@@ -15,7 +13,6 @@ import Button from "../components/form/Button";
 import Input from "../components/form/Input";
 import InputPassword from "../components/form/InputPassword";
 import Label from "../components/form/Label";
-import AvtDefault from "../components/icon/AvtDefault";
 import Trash from "../components/icon/Trash";
 import Bglayout from "../components/layout/Bglayout";
 import TitleAdd from "../components/title/TitleAdd";

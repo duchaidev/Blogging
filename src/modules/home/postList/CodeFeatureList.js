@@ -1,12 +1,10 @@
-import { collection, getDocs, query, where } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { db } from "../../../firebase-app/firebase-auth";
 import PostsItem from "./PostsItem";
-
-//
-const FeaturePostsList = () => {
-  const StyleList = styled.div`
+import { db } from "../../../firebase-app/firebase-auth";
+import { collection, getDocs, query, where } from "firebase/firestore";
+const CodeFeatureList = () => {
+  const StyleCodeList = styled.div`
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -14,42 +12,41 @@ const FeaturePostsList = () => {
     row-gap: 40px;
   `;
 
-  const [postList, setPostList] = useState([]);
+  const [codeList, setCodeList] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      const colRef = collection(db, "posts");
+      const colRef = collection(db, "code");
       const queries = query(colRef, where("hot", "==", true));
       const docsnap = await getDocs(queries);
       const result = [];
-      docsnap.forEach((post) => {
+      docsnap.forEach((code) => {
         result.push({
-          id: post.id,
-          ...post.data(),
+          id: code.id,
+          ...code.data(),
         });
       });
-      setPostList(result);
+      setCodeList(result);
     };
     fetchPosts();
   }, []);
-
   return (
-    <StyleList>
-      {postList.map((item) => (
+    <StyleCodeList>
+      {codeList.map((item) => (
         <PostsItem
           key={item.id}
+          target="_blank"
           image={item.image}
-          urlPost={`/blog/${item.slug}`}
+          urlPost={item.urlcode}
           title={item.title}
           avatarAuthor={item?.user?.avatar}
           fullname={item?.user?.fullname}
-          // urlAuthor={item?.user?.urlAuthor}
           date={new Date(item?.createdAt?.seconds * 1000).toLocaleDateString(
             "vi-VI"
           )}
         ></PostsItem>
       ))}
-    </StyleList>
+    </StyleCodeList>
   );
 };
 
-export default FeaturePostsList;
+export default CodeFeatureList;
