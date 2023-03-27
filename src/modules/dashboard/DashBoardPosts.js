@@ -120,7 +120,7 @@ const DashBoardPosts = () => {
                       />
                       <div className="flex-1">
                         <h3 className="font-semibold" title={post?.title}>
-                          {post?.title.slice(0, 15) + "..."}
+                          {post?.title?.slice(0, 15) + "..."}
                         </h3>
                         <time className="text-sm text-gray-500">
                           {new Date(

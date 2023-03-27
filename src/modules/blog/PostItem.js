@@ -49,7 +49,7 @@ const PostItem = ({
               <img
                 src={avtAuthor}
                 alt="avatar"
-                className="overflow-hidden rounded-full"
+                className="object-cover overflow-hidden rounded-full aspect-square"
               />
             </NavLink>
           </div>

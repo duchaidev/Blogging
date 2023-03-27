@@ -102,7 +102,7 @@ const SignUpPage = () => {
           </span>
         </div>
         <Button type="submit" isloading={isSubmitting} disable={isSubmitting}>
-          Đăng nhập
+          Đăng ký
         </Button>
       </form>
     </AuthenLayout>

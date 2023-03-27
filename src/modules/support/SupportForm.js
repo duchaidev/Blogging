@@ -41,28 +41,30 @@ const SupportForm = () => {
   const { userInfo } = useAuth();
 
   useEffect(() => {
-    async function fetchUser() {
-      const q = query(
-        collection(db, "users"),
-        where("email", "==", userInfo.email)
-      );
-      const querySnapShot = await getDocs(q);
-      querySnapShot.forEach((item) => {
-        reset({
-          name: item.data().fullname,
+    if (userInfo?.email) {
+      async function fetchUser() {
+        const q = query(
+          collection(db, "users"),
+          where("email", "==", String(userInfo.email))
+        );
+        const querySnapShot = await getDocs(q);
+        querySnapShot.forEach((item) => {
+          reset({
+            name: item.data().fullname,
+          });
+          setValue("user", {
+            id: item.id,
+            avatar: item.data().avatar,
+            email: item.data().email,
+            name: item.data().fullname,
+            role: item.data().role,
+            createAt: item.data().createAt,
+          });
         });
-        setValue("user", {
-          id: item.id,
-          avatar: item.data().avatar,
-          email: item.data().email,
-          name: item.data().fullname,
-          role: item.data().role,
-          createAt: item.data().createAt,
-        });
-      });
+      }
+      fetchUser();
     }
-    fetchUser();
-  }, [reset, setValue, userInfo.email]);
+  }, [reset, setValue, userInfo]);
 
   const handleMessage = async (value) => {
     const colRef = collection(db, "message");

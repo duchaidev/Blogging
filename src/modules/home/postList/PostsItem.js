@@ -27,7 +27,7 @@ const PostsItem = ({
         <img
           src={image}
           alt=""
-          className="h-[190px] w-full object-cover rounded-xl img-content"
+          className="h-[190px] w-full object-cover rounded-xl img-content border border-gray-500"
           title={title}
         />
       </NavLink>

@@ -30,24 +30,6 @@ const ManagePostUser = () => {
   const navigate = useNavigate();
   const { userInfo } = useAuth();
   const [postsList, setPostList] = useState([]);
-  //   useEffect(() => {
-  //     const fetchPosts = async () => {
-  //       const colRef = query(
-  //         collection(db, "posts"),
-  //         where("category.slug", "==", userInfo.email)
-  //       );
-  //       const docSnap = await getDocs(newRef);
-  //       const result = [];
-  //       docSnap.forEach((post) => {
-  //         result.push({
-  //           id: post.id,
-  //           ...post.data(),
-  //         });
-  //       });
-  //       setPostList(result);
-  //     };
-  //     fetchPosts();
-  //   }, []);
 
   useEffect(() => {
     if (userInfo) {
@@ -106,7 +88,7 @@ const ManagePostUser = () => {
           Manage Your Posts
         </h2>
         <div className="w-[300px] mt-[-20px] flex flex-col items-end gap-6">
-          <Button to="/add-new-post/admin" type="button">
+          <Button to="/add-new-post" type="button">
             Add New Post
           </Button>
           <InputSearch

@@ -5,6 +5,7 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { useAuth } from "../../../context/auth-context";
 import { auth, db } from "../../../firebase-app/firebase-auth";
+import { useRole } from "../../../utils/constants";
 import DropdownHeader from "../../dropdown/dropdownHeader/DropdownHeader";
 import ListHeader from "../../dropdown/dropdownHeader/ListHeader";
 import OptionHeader from "../../dropdown/dropdownHeader/OptionHeader";
@@ -97,7 +98,6 @@ const Header = () => {
       fetchUser();
     }
   }, [userInfo]);
-
   return (
     <StyleHomePage>
       <div className="header">
@@ -112,83 +112,90 @@ const Header = () => {
         <div className="input">
           <input type="text" placeholder="Tìm kiếm blog, tài liệu...." />
         </div>
-        {userInfo?.email ? (
-          <div className="z-10 flex items-end gap-5">
+        <div className="z-10 flex items-end gap-5">
+          {userInfo?.email && Number(user.role) === Number(useRole.ADMIN) && (
             <div className="header-right z-1">
               <NavLink to={"/manage/user"} className="w-full h-full z-1">
                 <button className="w-full h-full">Dashboard</button>
               </NavLink>
             </div>
-
-            <div className="z-50 w-12 h-12 bg-white rounded-full">
-              <div className="z-50 w-full h-full rounded-full">
-                <DropdownHeader>
-                  <SelectHeader
-                    classname=""
-                    avatar={user?.avatar}
-                  ></SelectHeader>
-                  <ListHeader>
-                    <OptionHeader to="" blank="">
-                      <div className="flex items-center gap-4">
-                        <div className="overflow-hidden rounded-full w-14 h-14">
-                          <img
-                            src={user?.avatar || "/avtdf.png"}
-                            alt="avtart"
-                            className="object-cover w-full h-full rounded-full"
-                          />
+          )}
+          {userInfo?.email ? (
+            <div>
+              <div className="z-50 w-12 h-12 bg-white rounded-full">
+                <div className="z-50 w-full h-full rounded-full">
+                  <DropdownHeader>
+                    <SelectHeader
+                      classname=""
+                      avatar={user?.avatar}
+                    ></SelectHeader>
+                    <ListHeader>
+                      <OptionHeader to="" blank="">
+                        <div className="flex items-center gap-4">
+                          <div className="overflow-hidden rounded-full w-14 h-14">
+                            <img
+                              src={user?.avatar || "/avtdf.png"}
+                              alt="avtart"
+                              className="object-cover w-full h-full rounded-full"
+                            />
+                          </div>
+                          <div className="flex flex-col gap-[2px]">
+                            <p className="text-white !opacity-100 whitespace-nowrap font-semibold">
+                              {user?.fullname ||
+                                String(user?.email).slice(0, 8) ||
+                                ""}
+                            </p>
+                            <span className="text-sm italic !text-gray-400 whitespace-nowrap">
+                              {new Date(
+                                user?.createdAt?.seconds * 1000
+                              ).toLocaleDateString("vi-VI")}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex flex-col gap-[2px]">
-                          <p className="text-white !opacity-100 whitespace-nowrap font-semibold">
-                            {user?.fullname ||
-                              String(user?.email).slice(0, 8) ||
-                              ""}
-                          </p>
-                          <span className="text-sm italic !text-gray-400 whitespace-nowrap">
-                            {new Date(
-                              user?.createdAt?.seconds * 1000
-                            ).toLocaleDateString("vi-VI")}
-                          </span>
-                        </div>
-                      </div>
-                    </OptionHeader>
-                    <OptionHeader to="/add-new-post">
-                      <p className="whitespace-nowrap">Viết Blog</p>
-                    </OptionHeader>
-                    <OptionHeader to="/add-new-post/admin">
-                      <p className="whitespace-nowrap">Viết Blog Admin</p>
-                    </OptionHeader>
-                    <OptionHeader to="/manage-post">
-                      <p className="whitespace-nowrap">Bài viết của tôi</p>
-                    </OptionHeader>
-                    <OptionHeader to="/change-password">
-                      <p className="whitespace-nowrap">Cài đặt</p>
-                    </OptionHeader>
-                    <div>
-                      <OptionHeader
-                        threedot
-                        blank=""
-                        className="!border-b-transparent"
-                      >
-                        <p
-                          className="whitespace-nowrap"
-                          onClick={() => signOut(auth)}
-                        >
-                          Đăng xuất
-                        </p>
                       </OptionHeader>
-                    </div>
-                  </ListHeader>
-                </DropdownHeader>
+
+                      {Number(user.role) === Number(useRole.ADMIN) ? (
+                        <OptionHeader to="/add-new-post/admin">
+                          <p className="whitespace-nowrap">Viết Blog Admin</p>
+                        </OptionHeader>
+                      ) : (
+                        <OptionHeader to="/add-new-post">
+                          <p className="whitespace-nowrap">Viết Blog</p>
+                        </OptionHeader>
+                      )}
+                      <OptionHeader to="/manage-post">
+                        <p className="whitespace-nowrap">Bài viết của tôi</p>
+                      </OptionHeader>
+                      <OptionHeader to="/change-password">
+                        <p className="whitespace-nowrap">Cài đặt</p>
+                      </OptionHeader>
+                      <div>
+                        <OptionHeader
+                          threedot
+                          blank=""
+                          className="!border-b-transparent"
+                        >
+                          <p
+                            className="whitespace-nowrap"
+                            onClick={() => signOut(auth)}
+                          >
+                            Đăng xuất
+                          </p>
+                        </OptionHeader>
+                      </div>
+                    </ListHeader>
+                  </DropdownHeader>
+                </div>
               </div>
             </div>
-          </div>
-        ) : (
-          <div className="header-right">
-            <NavLink to={"/sign-up"} className="w-full h-full">
-              <button className="w-full h-full">Sign Up</button>
-            </NavLink>
-          </div>
-        )}
+          ) : (
+            <div className="header-right">
+              <NavLink to={"/sign-up"} className="w-full h-full">
+                <button className="w-full h-full">Sign Up</button>
+              </NavLink>
+            </div>
+          )}
+        </div>
       </div>
     </StyleHomePage>
   );

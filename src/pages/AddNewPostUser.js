@@ -26,10 +26,13 @@ import { db } from "../firebase-app/firebase-auth";
 import { useAuth } from "../context/auth-context";
 import slugify from "slugify";
 import { toast } from "react-toastify";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
+import PageNotFound from "./PageNotFound";
 
-const AddNewPostAdmin = () => {
+const AddNewPostUser = () => {
+  const navigate = useNavigate();
+
   const { userInfo } = useAuth();
   const [params] = useSearchParams();
   const postId = params.get("id");
@@ -105,12 +108,12 @@ const AddNewPostAdmin = () => {
           email: item.data().email,
           fullname: item.data().fullname,
           role: item.data().role,
-          createAt: item.data().createAt,
+          createdAt: item.data().createdAt,
         });
       });
     }
     fetchUser();
-  }, [setValue, userInfo.email, isSubmitting]);
+  }, [setValue, userInfo, isSubmitting]);
   useEffect(() => {
     const fetchCategory = async () => {
       const colRef = collection(db, "categories");
@@ -165,6 +168,7 @@ const AddNewPostAdmin = () => {
     setSubTitle("");
     setSelecCategory({});
   };
+  if (!userInfo) return <PageNotFound></PageNotFound>;
 
   return (
     <form className="min-h-screen" onSubmit={handleSubmit(handleUpload)}>
@@ -275,4 +279,4 @@ const AddNewPostAdmin = () => {
   );
 };
 
-export default AddNewPostAdmin;
+export default AddNewPostUser;

@@ -105,7 +105,7 @@ const AddNewPostAdmin = () => {
           email: item.data().email,
           fullname: item.data().fullname,
           role: item.data().role,
-          createAt: item.data().createAt,
+          createdAt: item.data().createdAt,
         });
       });
     }

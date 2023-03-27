@@ -5,6 +5,7 @@ import SupportForm from "../modules/support/SupportForm";
 
 const Support = () => {
   const StyleSupport = styled.div``;
+
   return (
     <StyleSupport>
       <TitleHeader>Liên hệ</TitleHeader>

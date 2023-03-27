@@ -45,7 +45,7 @@ const AddNewUser = () => {
       email: "",
       password: "",
       role: 3,
-      createAt: new Date(),
+      createdAt: new Date(),
     },
     resolver: yupResolver(schemaValidate),
   });
@@ -89,7 +89,7 @@ const AddNewUser = () => {
       password: "",
       image: "",
       role: 3,
-      createAt: new Date(),
+      createdAt: new Date(),
     });
     setImage("");
     setProgress(0);

@@ -1,6 +1,9 @@
-import React, { Suspense } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import React, { Suspense, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./context/auth-context";
+import { useAuth } from "./context/auth-context";
+import { db } from "./firebase-app/firebase-auth";
+import { useRole } from "./utils/constants";
 // import { AuthProvider, useAuth } from "./context/auth-context";
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const LoginPage = React.lazy(() => import("./pages/LoginPage"));
@@ -47,18 +50,41 @@ const DashBoardCode = React.lazy(() =>
 );
 
 function App() {
-  // const { userInfo } = useAuth();
+  const [user, setUser] = useState([]);
+  const { userInfo } = useAuth();
+  // const navigate = useNavigate();
+  useEffect(() => {
+    if (userInfo) {
+      async function fetchUser() {
+        const q = query(
+          collection(db, "users"),
+          where("email", "==", String(userInfo?.email))
+        );
+        const querySnapShot = await getDocs(q);
+        querySnapShot.forEach((item) => {
+          setUser({
+            id: item.id,
+            avatar: item.data().avatar,
+            email: item.data().email,
+            fullname: item.data().fullname,
+            role: item.data().role,
+            createAt: item.data().createAt,
+          });
+        });
+      }
+      fetchUser();
+    }
+  }, [userInfo]);
   return (
     <div>
-      <AuthProvider>
-        <Suspense
-          fallback={<div className="bg-[#1F2833] min-h-screen">...Loading</div>}
-        >
-          <Routes>
-            <Route path="/login" element={<LoginPage></LoginPage>}></Route>
-            <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
-            <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
-            {/* {userInfo?.email === "leduchai2k3@gmail.com" ? ( */}
+      <Suspense
+        fallback={<div className="bg-[#1F2833] min-h-screen">...Loading</div>}
+      >
+        <Routes>
+          <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+          <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
+          <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
+          {userInfo?.email && Number(user.role) === Number(useRole.ADMIN) && (
             <Route element={<DashBoardLayout></DashBoardLayout>}>
               <Route
                 path="/manage/user"
@@ -110,44 +136,40 @@ function App() {
               ></Route>
               <Route path="/mess" element={<ViewMess></ViewMess>}></Route>
             </Route>
+          )}
+          <Route element={<Layout></Layout>}>
+            <Route path="/" element={<HomePage></HomePage>}></Route>
+            <Route path="/support" element={<Support></Support>}></Route>
+            <Route path="/lo-trinh" element={<Map></Map>}></Route>
+            <Route path="/blog" element={<BlogPage></BlogPage>}></Route>
 
-            <Route element={<Layout></Layout>}>
-              <Route path="/" element={<HomePage></HomePage>}></Route>
-              <Route path="/support" element={<Support></Support>}></Route>
-              <Route path="/lo-trinh" element={<Map></Map>}></Route>
-              <Route path="/blog" element={<BlogPage></BlogPage>}></Route>
+            <Route
+              path="/blog/:slug"
+              element={<DetailBlog></DetailBlog>}
+            ></Route>
+            <Route
+              path="/manage-post"
+              element={<ManagePostUser></ManagePostUser>}
+            ></Route>
+            <Route
+              path="/manage/update-post"
+              element={<EditPost admin={false}></EditPost>}
+            ></Route>
 
-              <Route
-                path="/blog/:slug"
-                element={<DetailBlog></DetailBlog>}
-              ></Route>
-              <Route
-                path="/manage-post"
-                element={<ManagePostUser></ManagePostUser>}
-              ></Route>
-              <Route
-                path="/manage/update-post"
-                element={<EditPost admin={false}></EditPost>}
-              ></Route>
+            <Route path="/topic/:slug" element={<BlogPage></BlogPage>}></Route>
+            <Route
+              path="/add-new-post"
+              element={<AddNewPostUser></AddNewPostUser>}
+            ></Route>
+            <Route path="/code" element={<CodePage></CodePage>}></Route>
 
-              <Route
-                path="/topic/:slug"
-                element={<BlogPage></BlogPage>}
-              ></Route>
-              <Route
-                path="/add-new-post"
-                element={<AddNewPostUser></AddNewPostUser>}
-              ></Route>
-              <Route path="/code" element={<CodePage></CodePage>}></Route>
-
-              <Route
-                path="/change-password"
-                element={<ChangePassword></ChangePassword>}
-              ></Route>
-            </Route>
-          </Routes>
-        </Suspense>
-      </AuthProvider>
+            <Route
+              path="/change-password"
+              element={<ChangePassword></ChangePassword>}
+            ></Route>
+          </Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 }

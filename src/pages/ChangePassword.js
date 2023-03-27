@@ -24,6 +24,7 @@ import { toast } from "react-toastify";
 import ImageUpload from "../components/image/ImageUpload";
 import slugify from "slugify";
 import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
+import { useNavigate } from "react-router-dom";
 
 const schemaValidate = yup.object({
   fullname: yup.string().required("Enter your fullname"),
@@ -51,7 +52,10 @@ const ChangePassword = () => {
     },
     resolver: yupResolver(schemaValidate),
   });
+
+  const navigate = useNavigate();
   const { userInfo } = useAuth();
+  if (!userInfo?.email) navigate("/");
   const imageUrl = getValues("avatar");
   const [user, setUser] = useState([]);
   useEffect(() => {

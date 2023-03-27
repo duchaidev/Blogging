@@ -22,7 +22,7 @@ const AuthenLayout = ({ children }) => {
       <img
         src="bglogin.jpg"
         alt=""
-        className="z-10 object-cover w-full h-full"
+        className="z-10 object-cover w-full h-full min-h-screen"
       />
       <div className="w-auto h-auto z-40 mx-auto bg-[#F3F3F3] absolute top-[32%] right-[50%] translate-y-[-50%] translate-x-[50%]  flex flex-col justify-center items-center py-8 px-48 rounded-xl">
         <NavLink to={"/"}>

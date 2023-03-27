@@ -60,7 +60,7 @@ const DetailBlog = () => {
               <div className="w-[50px] h-[50px] rounded-full border-[3px] border-[#66FCF1] ">
                 <img
                   className="object-cover w-full h-full rounded-full"
-                  src="https://images.unsplash.com/photo-1678737171914-da88eb1fb7fd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyMnx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=60"
+                  src={post?.user?.avatar}
                   alt="avt"
                 />
               </div>

@@ -78,7 +78,6 @@ const EditUser = () => {
       });
     };
     fetchUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleEditUser = async (values) => {
     const colRef = doc(db, "users", userId);
