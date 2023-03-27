@@ -101,7 +101,7 @@ const SignUpPage = () => {
             </NavLink>
           </span>
         </div>
-        <Button type="submit" isloading={isSubmitting} disable={isSubmitting}>
+        <Button type="submit" isLoading={isSubmitting} disable={isSubmitting}>
           Đăng ký
         </Button>
       </form>
