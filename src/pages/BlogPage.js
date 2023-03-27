@@ -12,6 +12,7 @@ const StyleBlog = styled.div`
   }
 `;
 const BlogPage = () => {
+  document.title = "Blog";
   return (
     <StyleBlog className="min-h-screen">
       <TitleHeader

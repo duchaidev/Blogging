@@ -24,6 +24,7 @@ const StyledDashBoardMess = styled.div`
 `;
 const DashBoardMess = () => {
   const [searchMessage, setSearchMessage] = useState("");
+  document.title = "Manage Message";
 
   const navigate = useNavigate();
 

@@ -12,6 +12,7 @@ import { db } from "../firebase-app/firebase-auth";
 import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
 
 const AddNewCategory = () => {
+  document.title = "Add New Category";
   const {
     control,
     formState: { isSubmitting },

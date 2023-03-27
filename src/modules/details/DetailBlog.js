@@ -20,6 +20,7 @@ const DetailBlog = () => {
   const url = window.location.href;
   console.log(url);
   const { slug } = useParams();
+  document.title = "Blog";
 
   const copy = async () => {
     await navigator.clipboard.writeText(url);

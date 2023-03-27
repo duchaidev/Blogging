@@ -30,6 +30,7 @@ import { useSearchParams } from "react-router-dom";
 import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
 
 const AddNewPostAdmin = () => {
+  document.title = "Add New Post AD";
   const { userInfo } = useAuth();
   const [params] = useSearchParams();
   const postId = params.get("id");

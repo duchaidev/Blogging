@@ -33,7 +33,14 @@ const StyleSupportForm = styled.div`
   }
 `;
 const SupportForm = () => {
-  const { control, handleSubmit, setValue, reset, getValues } = useForm({
+  const {
+    control,
+    handleSubmit,
+    setValue,
+    reset,
+    getValues,
+    formState: { isSubmitting },
+  } = useForm({
     defaultValues: {
       createdAt: serverTimestamp(),
     },
@@ -58,7 +65,7 @@ const SupportForm = () => {
             email: item.data().email,
             name: item.data().fullname,
             role: item.data().role,
-            createAt: item.data().createAt,
+            createdAt: item.data().createdAt,
           });
         });
       }
@@ -114,7 +121,13 @@ const SupportForm = () => {
               ></Input>
               <Textarea control={control} name="messcontent"></Textarea>
 
-              <Button type="submit">Send Message</Button>
+              <Button
+                type="submit"
+                isLoading={isSubmitting}
+                disabled={isSubmitting}
+              >
+                Send Message
+              </Button>
             </div>
           </form>
         </div>

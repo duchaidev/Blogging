@@ -25,6 +25,7 @@ const StyledDashBoardPosts = styled.div`
 `;
 const DashBoardCode = () => {
   const [searchCode, setSearchCode] = useState("");
+  document.title = "Manage Code";
 
   const navigate = useNavigate();
 

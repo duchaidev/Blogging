@@ -3,6 +3,7 @@ import TitleHeader from "../components/title/TitleHeader";
 import MapList from "../modules/map/MapList";
 
 const Map = () => {
+  document.title = "Map";
   return (
     <div className="min-h-screen">
       <TitleHeader

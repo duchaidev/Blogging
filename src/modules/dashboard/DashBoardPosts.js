@@ -25,6 +25,7 @@ const StyledDashBoardPosts = styled.div`
 `;
 const DashBoardPosts = () => {
   const [searchPost, setSearchPost] = useState("");
+  document.title = "Manage Posts";
 
   const navigate = useNavigate();
 

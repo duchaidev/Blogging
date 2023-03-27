@@ -29,6 +29,7 @@ const schemaValidate = yup.object({
   password: yup.string().required("Enter your password"),
 });
 const AddNewUser = () => {
+  document.title = "Add New User";
   const {
     control,
     watch,

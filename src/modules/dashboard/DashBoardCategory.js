@@ -18,6 +18,8 @@ import InputSearch from "../../components/form/InputSearch";
 import { debounce } from "lodash";
 
 const DashBoardCategory = () => {
+  document.title = "Manage Category";
+
   const [searchCategory, setSearchCate] = useState("");
   const navigate = useNavigate();
   const [categoryList, setCategoryList] = useState([]);

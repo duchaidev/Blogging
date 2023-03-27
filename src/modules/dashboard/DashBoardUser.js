@@ -20,6 +20,7 @@ import InputSearch from "../../components/form/InputSearch";
 import { debounce } from "lodash";
 
 const DashBoardUser = () => {
+  document.title = "Manage User";
   const [searchUser, setSearchUser] = useState("");
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);

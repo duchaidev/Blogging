@@ -9,6 +9,7 @@ const HomePage = () => {
     margin-top: 30px;
     min-height: 100vh;
   `;
+  document.title = "Home";
   return (
     <StyleHomePage>
       <HomeSlide></HomeSlide>

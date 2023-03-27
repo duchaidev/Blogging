@@ -59,6 +59,7 @@ const AddNewPostUser = () => {
   const [selectCategory, setSelecCategory] = useState({});
 
   useEffect(() => {
+    document.title = "Add New Post";
     if (postId !== null) {
       async function getPosts() {
         const colRef = doc(db, "posts", postId);

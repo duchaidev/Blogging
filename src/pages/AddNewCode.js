@@ -23,7 +23,7 @@ import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
 
 const AddNewCode = () => {
   const { userInfo } = useAuth();
-
+  document.title = "Add new code";
   const {
     control,
     watch,
