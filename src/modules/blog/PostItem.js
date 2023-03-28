@@ -173,7 +173,9 @@ const PostItem = ({
             {title}
           </NavLink>
           <NavLink to={to}>
-            <p className="text-[#8e8e8e] text-[15px]">{content}</p>
+            <p className="text-[#8e8e8e] text-[15px]" title={content}>
+              {content}
+            </p>
           </NavLink>
         </div>
         <div>

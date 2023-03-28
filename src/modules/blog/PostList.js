@@ -40,7 +40,10 @@ const PostList = () => {
             avtAuthor={item.user?.avatar}
             nameAuthor={item.user?.fullname}
             title={item.title}
-            content={item.subtitle || parse(item.content.slice(0, 210) + "...")}
+            content={
+              String(item.subtitle).slice(0, 180) + "..." ||
+              parse(item.content.slice(0, 180) + "...")
+            }
             image={item.image}
             category={item.category?.category}
             date={new Date(item?.createdAt?.seconds * 1000).toLocaleDateString(
