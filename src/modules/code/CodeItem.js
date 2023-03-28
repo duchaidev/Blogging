@@ -24,7 +24,7 @@ const CodeItem = ({ image, title, urlcode, avatar, name, urldemo }) => {
             Download
           </button>
         </NavLink>
-        <NavLink to={urldemo}>
+        <NavLink to={urldemo} target="_blank">
           <button className="px-4 py-2 bg-[#40c6bd] rounded-sm">Demo</button>
         </NavLink>
       </div>
