@@ -7,7 +7,7 @@ const CodeItem = ({ image, title, urlcode, avatar, name, urldemo }) => {
       <div>
         <NavLink to={urlcode}>
           <img
-            className="object-cover w-full aspect-[4/3] overflow-hidden border border-[#495678] rounded-sm"
+            className="object-cover w-full aspect-video overflow-hidden border border-[#495678] rounded-sm hover:scale-105 transition-all "
             src={image}
             alt=""
           />
