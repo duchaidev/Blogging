@@ -1,6 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { Suspense, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import Loading from "./components/loading/Loading";
 import { useAuth } from "./context/auth-context";
 import { db } from "./firebase-app/firebase-auth";
 import { useRole } from "./utils/constants";
@@ -78,7 +79,11 @@ function App() {
   return (
     <div>
       <Suspense
-        fallback={<div className="bg-[#1F2833] min-h-screen">...Loading</div>}
+        fallback={
+          <div className="bg-[#1F2833] min-h-screen min-w-full flex items-center justify-center">
+            <Loading size="80px" borderSize="10px" color="#66FCF1"></Loading>
+          </div>
+        }
       >
         <Routes>
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>
