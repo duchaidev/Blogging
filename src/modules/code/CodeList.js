@@ -29,6 +29,7 @@ const CodeList = () => {
         codeList.map((item) => (
           <CodeItem
             key={item.id}
+            urldemo={item?.urldemo || ""}
             image={item.image}
             title={item.title}
             urlcode={item.urlcode}

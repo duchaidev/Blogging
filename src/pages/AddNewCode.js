@@ -40,6 +40,7 @@ const AddNewCode = () => {
       hot: false,
       image: "",
       urlcode: "",
+      urldemo: "",
       createdAt: serverTimestamp(),
     },
   });
@@ -100,6 +101,7 @@ const AddNewCode = () => {
       hot: false,
       image: "",
       urlcode: "",
+      urldemo: "",
       createdAt: serverTimestamp(),
     });
     setImage("");
@@ -119,7 +121,7 @@ const AddNewCode = () => {
         Add new code
       </TitleAdd>
       <BgDashBoard>
-        <div className="flex flex-col w-full gap-10">
+        <div className="flex flex-col w-full gap-10 mb-10">
           <div className="grid grid-cols-2 gap-[100px]">
             <div>
               <Label
@@ -156,14 +158,25 @@ const AddNewCode = () => {
               ></ImageUpload>
             </div>
 
-            <div>
-              <Label
-                htmlFor="urlcode"
-                classname="!mb-2 text-lg font-semibold text-white"
-              >
-                UrlCode
-              </Label>
-              <Input control={control} name="urlcode" kind="second"></Input>
+            <div className="flex flex-col gap-5">
+              <div>
+                <Label
+                  htmlFor="urlcode"
+                  classname="!mb-2 text-lg font-semibold text-white"
+                >
+                  UrlCode
+                </Label>
+                <Input control={control} name="urlcode" kind="second"></Input>
+              </div>
+              <div>
+                <Label
+                  htmlFor="urldemo"
+                  classname="!mb-2 text-lg font-semibold text-white"
+                >
+                  UrlDemo
+                </Label>
+                <Input control={control} name="urldemo" kind="second"></Input>
+              </div>
             </div>
           </div>
         </div>
