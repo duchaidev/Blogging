@@ -121,7 +121,8 @@ const ChangePassword = () => {
       trim: true,
     });
     const colRef = doc(db, "users", userId);
-    if (values.password !== userInfo?.password) {
+    console.log(user);
+    if (values.password !== user?.password) {
       toast.error("Password not same !");
       return;
     }

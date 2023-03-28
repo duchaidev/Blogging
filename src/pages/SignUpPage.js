@@ -53,13 +53,11 @@ const SignUpPage = () => {
       photoURL: "/avtdf.png",
     });
     await setDoc(doc(db, "users", auth.currentUser.uid), {
-      fullname: value.fullname,
-      password: value.password,
-      email: value.email,
+      ...value,
       avatar: "/avtdf.png",
       avatardf: "/avtdf.png",
       role: useRole.USER,
-      createAt: serverTimestamp(),
+      createdAt: serverTimestamp(),
     });
     toast.success("Successfully!!!");
     navigate("/");

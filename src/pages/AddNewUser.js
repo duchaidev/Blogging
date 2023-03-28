@@ -71,14 +71,12 @@ const AddNewUser = () => {
   const handleCreateUser = async (values) => {
     await createUserWithEmailAndPassword(auth, values.email, values.password);
     await addDoc(collection(db, "users"), {
-      fullname: values.fullname,
+      ...values,
       username: slugify(values.username || values.fullname, {
         lower: true,
         replacement: "",
         trim: true,
       }),
-      email: values.email,
-      role: values.role,
       avatar: image,
       createdAt: serverTimestamp(),
     });

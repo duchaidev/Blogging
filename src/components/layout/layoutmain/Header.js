@@ -91,13 +91,17 @@ const Header = () => {
             email: item.data().email,
             fullname: item.data().fullname,
             role: item.data().role,
-            createAt: item.data().createAt,
+            createdAt: item.data().createdAt,
           });
         });
       }
       fetchUser();
     }
   }, [userInfo]);
+  console.log(user);
+  console.log(
+    new Date(user?.createdAt?.seconds * 1000).toLocaleDateString("vi-VI")
+  );
   return (
     <StyleHomePage>
       <div className="header">
@@ -131,7 +135,10 @@ const Header = () => {
                     ></SelectHeader>
                     <ListHeader>
                       <OptionHeader to="" blank="">
-                        <div className="flex items-center gap-4">
+                        <NavLink
+                          className="flex items-center gap-4"
+                          to="/change-password"
+                        >
                           <div className="overflow-hidden rounded-full w-14 h-14">
                             <img
                               src={user?.avatar || "/avtdf.png"}
@@ -151,7 +158,7 @@ const Header = () => {
                               ).toLocaleDateString("vi-VI")}
                             </span>
                           </div>
-                        </div>
+                        </NavLink>
                       </OptionHeader>
 
                       {Number(user.role) === Number(useRole.ADMIN) ? (
