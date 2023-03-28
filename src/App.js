@@ -1,6 +1,7 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { Suspense, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import Button from "./components/form/Button";
 import Loading from "./components/loading/Loading";
 import { useAuth } from "./context/auth-context";
 import { db } from "./firebase-app/firebase-auth";
@@ -51,6 +52,10 @@ const DashBoardCode = React.lazy(() =>
 );
 
 function App() {
+  const [show, setShow] = useState(true);
+  const handleShow = () => {
+    setShow(false);
+  };
   const [user, setUser] = useState([]);
   const { userInfo } = useAuth();
   // const navigate = useNavigate();
@@ -76,8 +81,22 @@ function App() {
       fetchUser();
     }
   }, [userInfo]);
+
   return (
     <div>
+      {show && !userInfo && (
+        <div className="fixed z-50 flex items-center justify-center h-full min-w-full text-red translate-y-[-10%]">
+          <div className="flex flex-col w-auto h-auto gap-8 py-8 opacity-100 px-14 bg-slate-50">
+            <p>Tài khoản mật khẩu ADMIN:</p>
+            <p>Tài khoản: duchaidev@gmail.com</p>
+            <p>Mật khẩu: admin123</p>
+            <button className="p-5 bg-[#66FCF1]" onClick={handleShow}>
+              Đóng Modal
+            </button>
+          </div>
+        </div>
+      )}
+
       <Suspense
         fallback={
           <div className="bg-[#1F2833] min-h-screen min-w-full flex items-center justify-center">
@@ -151,6 +170,7 @@ function App() {
             <Route
               path="/blog/:slug"
               element={<DetailBlog></DetailBlog>}
+              cd
             ></Route>
             <Route
               path="/manage-post"

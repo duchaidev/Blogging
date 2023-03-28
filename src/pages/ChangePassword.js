@@ -136,7 +136,13 @@ const ChangePassword = () => {
       values.new_password === values.renew_password
     ) {
       if (image === "") {
-        await updateDoc(colRef, { ...values, createdAt: user?.createdAt });
+        await updateDoc(colRef, {
+          ...user,
+          createdAt: user?.createdAt,
+          password: values.new_password,
+          fullname: values.fullname,
+          username: values.username,
+        });
       } else {
         await updateDoc(colRef, {
           ...user,

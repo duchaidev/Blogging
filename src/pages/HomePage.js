@@ -8,6 +8,7 @@ const HomePage = () => {
   const StyleHomePage = styled.div`
     margin-top: 30px;
     min-height: 100vh;
+    padding-bottom: 50px;
   `;
   document.title = "Home";
   return (
