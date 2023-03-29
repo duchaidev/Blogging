@@ -1,5 +1,11 @@
 import { signOut } from "firebase/auth";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  where,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -10,6 +16,8 @@ import DropdownHeader from "../../dropdown/dropdownHeader/DropdownHeader";
 import ListHeader from "../../dropdown/dropdownHeader/ListHeader";
 import OptionHeader from "../../dropdown/dropdownHeader/OptionHeader";
 import SelectHeader from "../../dropdown/dropdownHeader/SelectHeader";
+import { debounce } from "lodash";
+
 const StyleHomePage = styled.div`
   width: 100%;
   height: 100%;
@@ -73,9 +81,62 @@ const StyleHomePage = styled.div`
   }
 `;
 const Header = () => {
+  const [search, setSearch] = useState("");
   const [user, setUser] = useState([]);
   const { userInfo } = useAuth();
-  // const navigate = useNavigate();
+
+  const [postsList, setPostList] = useState([]);
+  useEffect(() => {
+    if (search !== "") {
+      async function fetchPosts() {
+        const newRef = query(
+          collection(db, "posts"),
+          where("title", ">=", search),
+          where("title", "<=", search + "\uf8ff")
+        );
+        const newRefCode = query(
+          collection(db, "code"),
+          where("title", ">=", search),
+          where("title", "<=", search + "\uf8ff")
+        );
+        const newRefUser = query(
+          collection(db, "user"),
+          where("fullname", ">=", search),
+          where("fullname", "<=", search + "\uf8ff")
+        );
+
+        const result = [];
+        onSnapshot(newRef, (snapshot) => {
+          snapshot.forEach((post) => {
+            result.push({
+              id: post.id,
+              ...post.data(),
+            });
+          });
+        });
+        onSnapshot(newRefCode, (snapshot) => {
+          snapshot.forEach((code) => {
+            result.push({
+              id: code.id,
+              ...code.data(),
+            });
+          });
+        });
+        onSnapshot(newRefUser, (snapshot) => {
+          snapshot.forEach((user) => {
+            result.push({
+              id: user.id,
+              ...user.data(),
+            });
+          });
+        });
+        setPostList(result);
+        console.log(postsList);
+      }
+      fetchPosts();
+    }
+  }, [search]);
+
   useEffect(() => {
     if (userInfo) {
       async function fetchUser() {
@@ -98,10 +159,11 @@ const Header = () => {
       fetchUser();
     }
   }, [userInfo]);
-  console.log(user);
-  console.log(
-    new Date(user?.createdAt?.seconds * 1000).toLocaleDateString("vi-VI")
-  );
+
+  const handleChange = debounce((e) => {
+    console.log(e.target.value);
+    setSearch(e.target.value);
+  }, 300);
   return (
     <StyleHomePage>
       <div className="header">
@@ -114,7 +176,11 @@ const Header = () => {
           <h3>DH Blogging</h3>
         </div>
         <div className="input">
-          <input type="text" placeholder="Tìm kiếm blog, tài liệu...." />
+          <input
+            type="text"
+            placeholder="Tìm kiếm blog, tài liệu...."
+            onChange={handleChange}
+          />
         </div>
         <div className="z-10 flex items-end gap-5">
           {userInfo?.email && Number(user.role) === Number(useRole.ADMIN) && (
