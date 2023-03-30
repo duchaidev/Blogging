@@ -6,7 +6,7 @@ const List = ({ children, threedot }) => {
   return (
     <Fragment>
       {show && !threedot && (
-        <div className="flex flex-col border border-[#4E4D52] w-full shadow-slate-700 shadow-lg transition-all absolute bg-[#1F2833] ">
+        <div className="flex flex-col border border-[#4E4D52] w-full shadow-slate-700 shadow-lg transition-all absolute bg-[#1F2833]">
           {children}
         </div>
       )}

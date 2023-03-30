@@ -1,9 +1,12 @@
 import { signOut } from "firebase/auth";
 import {
   collection,
+  endAt,
   getDocs,
   onSnapshot,
+  orderBy,
   query,
+  startAt,
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -17,6 +20,9 @@ import ListHeader from "../../dropdown/dropdownHeader/ListHeader";
 import OptionHeader from "../../dropdown/dropdownHeader/OptionHeader";
 import SelectHeader from "../../dropdown/dropdownHeader/SelectHeader";
 import { debounce } from "lodash";
+import ListSearch from "../../dropdown/dropdownSearch/ListSearch";
+import OptionSearch from "../../dropdown/dropdownSearch/OptionSearch";
+import InputSearch from "../../form/InputSearch";
 
 const StyleHomePage = styled.div`
   width: 100%;
@@ -81,61 +87,11 @@ const StyleHomePage = styled.div`
   }
 `;
 const Header = () => {
+  const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState([]);
   const { userInfo } = useAuth();
-
   const [postsList, setPostList] = useState([]);
-  useEffect(() => {
-    if (search !== "") {
-      async function fetchPosts() {
-        const newRef = query(
-          collection(db, "posts"),
-          where("title", ">=", search),
-          where("title", "<=", search + "\uf8ff")
-        );
-        const newRefCode = query(
-          collection(db, "code"),
-          where("title", ">=", search),
-          where("title", "<=", search + "\uf8ff")
-        );
-        const newRefUser = query(
-          collection(db, "user"),
-          where("fullname", ">=", search),
-          where("fullname", "<=", search + "\uf8ff")
-        );
-
-        const result = [];
-        onSnapshot(newRef, (snapshot) => {
-          snapshot.forEach((post) => {
-            result.push({
-              id: post.id,
-              ...post.data(),
-            });
-          });
-        });
-        onSnapshot(newRefCode, (snapshot) => {
-          snapshot.forEach((code) => {
-            result.push({
-              id: code.id,
-              ...code.data(),
-            });
-          });
-        });
-        onSnapshot(newRefUser, (snapshot) => {
-          snapshot.forEach((user) => {
-            result.push({
-              id: user.id,
-              ...user.data(),
-            });
-          });
-        });
-        setPostList(result);
-        console.log(postsList);
-      }
-      fetchPosts();
-    }
-  }, [search]);
 
   useEffect(() => {
     if (userInfo) {
@@ -159,10 +115,64 @@ const Header = () => {
       fetchUser();
     }
   }, [userInfo]);
+  useEffect(() => {
+    // if (search !== "") {
+    async function fetchPosts() {
+      const newRef = query(
+        collection(db, "posts"),
+        where("title", ">=", search),
+        where("title", "<=", search + "\uf8ff")
+      );
+      const newRefCode = query(
+        collection(db, "code"),
+        where("title", ">=", search),
+        where("title", "<=", search + "\uf8ff")
+      );
+      const newRefUser = query(
+        collection(db, "user"),
+        where("fullname", ">=", search),
+        where("fullname", "<=", search + "\uf8ff")
+      );
 
-  const handleChange = debounce((e) => {
-    console.log(e.target.value);
-    setSearch(e.target.value);
+      const result = [];
+      onSnapshot(newRef, (snapshot) => {
+        snapshot.forEach((post) => {
+          result.push({
+            id: post.id,
+            ...post.data(),
+          });
+        });
+      });
+      onSnapshot(newRefCode, (snapshot) => {
+        snapshot.forEach((code) => {
+          result.push({
+            id: code.id,
+            ...code.data(),
+          });
+        });
+      });
+      onSnapshot(newRefUser, (snapshot) => {
+        snapshot.forEach((user) => {
+          result.push({
+            id: user.id,
+            ...user.data(),
+          });
+        });
+        setPostList(result);
+      });
+    }
+    fetchPosts();
+    // }
+  }, [search]);
+
+  function handleFocus() {
+    setIsFocused(true);
+  }
+  function handleBlur() {
+    setIsFocused(false);
+  }
+  const handleChange = debounce((values) => {
+    setSearch(values.target.value);
   }, 300);
   return (
     <StyleHomePage>
@@ -175,12 +185,27 @@ const Header = () => {
           </div>
           <h3>DH Blogging</h3>
         </div>
-        <div className="input">
-          <input
-            type="text"
-            placeholder="Tìm kiếm blog, tài liệu...."
-            onChange={handleChange}
-          />
+        <div className="input" onFocus={handleFocus} onBlur={handleBlur}>
+          <DropdownHeader>
+            <div>
+              <InputSearch
+                className=" !m-0 !text-white"
+                placeholder="Tìm kiếm blog, tài liệu...."
+                onChange={handleChange}
+              ></InputSearch>
+              <ListSearch showh={search} focused={isFocused}>
+                {postsList?.length > 0 &&
+                  postsList.map((item) => (
+                    <OptionSearch
+                      key={item.id}
+                      image={item.image}
+                      title={item.title}
+                      to={item.urldemo || `/blog/${item.slug}`}
+                    ></OptionSearch>
+                  ))}
+              </ListSearch>
+            </div>
+          </DropdownHeader>
         </div>
         <div className="z-10 flex items-end gap-5">
           {userInfo?.email && Number(user.role) === Number(useRole.ADMIN) && (

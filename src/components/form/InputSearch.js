@@ -14,7 +14,7 @@ const StyleInput = styled.input`
   margin-top: 5px;
   color-scheme: white;
   ::placeholder {
-    color: black;
+    color: white;
     opacity: 0.4;
   }
 
@@ -26,9 +26,19 @@ const StyleInput = styled.input`
     color: white;
   }
 `;
-const InputSearch = ({ placehoder, type = "text", ...props }) => {
+const InputSearch = ({
+  placehoder,
+  type = "text",
+  className = "",
+  ...props
+}) => {
   return (
-    <StyleInput placeholder={placehoder} type={type} {...props}></StyleInput>
+    <StyleInput
+      placeholder={placehoder}
+      type={type}
+      {...props}
+      className={className}
+    ></StyleInput>
   );
 };
 
