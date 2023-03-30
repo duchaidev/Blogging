@@ -1,7 +1,6 @@
 import { collection, getDocs, query, where } from "firebase/firestore";
 import React, { Suspense, useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Button from "./components/form/Button";
 import Loading from "./components/loading/Loading";
 import { useAuth } from "./context/auth-context";
 import { db } from "./firebase-app/firebase-auth";

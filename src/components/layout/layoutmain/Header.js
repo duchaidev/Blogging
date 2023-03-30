@@ -177,7 +177,10 @@ const Header = () => {
         <div className="header-left">
           <div>
             <NavLink to={"/"}>
-              <img src="logoo.png" alt="logo" />
+              <img
+                src="https://firebasestorage.googleapis.com/v0/b/blogging-ff828.appspot.com/o/images%2Flogoo.png?alt=media&token=dbcd008c-241e-46aa-8337-656763be352e"
+                alt="logo"
+              />
             </NavLink>
           </div>
           <h3>DH Blogging</h3>
