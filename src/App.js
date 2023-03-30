@@ -108,59 +108,61 @@ function App() {
           <Route path="/login" element={<LoginPage></LoginPage>}></Route>
           <Route path="/sign-up" element={<SignUpPage></SignUpPage>}></Route>
           <Route path="*" element={<PageNotFound></PageNotFound>}></Route>
-          {userInfo?.email && Number(user.role) === Number(useRole.ADMIN) && (
-            <Route element={<DashBoardLayout></DashBoardLayout>}>
-              <Route
-                path="/manage/user"
-                element={<DashBoardUser></DashBoardUser>}
-              ></Route>
-              <Route
-                path="/manage/category"
-                element={<DashBoardCategory></DashBoardCategory>}
-              ></Route>
-              <Route
-                path="/manage/posts"
-                element={<DashBoardPosts></DashBoardPosts>}
-              ></Route>
-              <Route
-                path="/add-new-post/admin"
-                element={<AddNewPostAdmin></AddNewPostAdmin>}
-              ></Route>
-              <Route
-                path="/add-new-category/admin"
-                element={<AddNewCategory></AddNewCategory>}
-              ></Route>
-              <Route
-                path="/add-new-user/admin"
-                element={<AddNewUser></AddNewUser>}
-              ></Route>
-              <Route
-                path="/add-new-code/admin"
-                element={<AddNewCode></AddNewCode>}
-              ></Route>
-              <Route
-                path="/manage/update-post/admin"
-                element={<EditPost></EditPost>}
-              ></Route>
-              <Route
-                path="/manage/update-category"
-                element={<EditCategory></EditCategory>}
-              ></Route>
-              <Route
-                path="/manage/update-user"
-                element={<EditUser></EditUser>}
-              ></Route>
-              <Route
-                path="/manage/message"
-                element={<DashBoardMess></DashBoardMess>}
-              ></Route>
-              <Route
-                path="/manage/code"
-                element={<DashBoardCode></DashBoardCode>}
-              ></Route>
-              <Route path="/mess" element={<ViewMess></ViewMess>}></Route>
-            </Route>
-          )}
+          {userInfo?.email &&
+            (Number(user.role) === Number(useRole.ADMIN) ||
+              Number(user.role) === Number(useRole.MOD)) && (
+              <Route element={<DashBoardLayout></DashBoardLayout>}>
+                <Route
+                  path="/manage/user"
+                  element={<DashBoardUser></DashBoardUser>}
+                ></Route>
+                <Route
+                  path="/manage/category"
+                  element={<DashBoardCategory></DashBoardCategory>}
+                ></Route>
+                <Route
+                  path="/manage/posts"
+                  element={<DashBoardPosts></DashBoardPosts>}
+                ></Route>
+                <Route
+                  path="/add-new-post/admin"
+                  element={<AddNewPostAdmin></AddNewPostAdmin>}
+                ></Route>
+                <Route
+                  path="/add-new-category/admin"
+                  element={<AddNewCategory></AddNewCategory>}
+                ></Route>
+                <Route
+                  path="/add-new-user/admin"
+                  element={<AddNewUser></AddNewUser>}
+                ></Route>
+                <Route
+                  path="/add-new-code/admin"
+                  element={<AddNewCode></AddNewCode>}
+                ></Route>
+                <Route
+                  path="/manage/update-post/admin"
+                  element={<EditPost></EditPost>}
+                ></Route>
+                <Route
+                  path="/manage/update-category"
+                  element={<EditCategory></EditCategory>}
+                ></Route>
+                <Route
+                  path="/manage/update-user"
+                  element={<EditUser></EditUser>}
+                ></Route>
+                <Route
+                  path="/manage/message"
+                  element={<DashBoardMess></DashBoardMess>}
+                ></Route>
+                <Route
+                  path="/manage/code"
+                  element={<DashBoardCode></DashBoardCode>}
+                ></Route>
+                <Route path="/mess" element={<ViewMess></ViewMess>}></Route>
+              </Route>
+            )}
           <Route element={<Layout></Layout>}>
             <Route path="/" element={<HomePage></HomePage>}></Route>
             <Route path="/support" element={<Support></Support>}></Route>

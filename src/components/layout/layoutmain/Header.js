@@ -1,12 +1,9 @@
 import { signOut } from "firebase/auth";
 import {
   collection,
-  endAt,
   getDocs,
   onSnapshot,
-  orderBy,
   query,
-  startAt,
   where,
 } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
@@ -208,13 +205,15 @@ const Header = () => {
           </DropdownHeader>
         </div>
         <div className="z-10 flex items-end gap-5">
-          {userInfo?.email && Number(user.role) === Number(useRole.ADMIN) && (
-            <div className="header-right z-1">
-              <NavLink to={"/manage/user"} className="w-full h-full z-1">
-                <button className="w-full h-full">Dashboard</button>
-              </NavLink>
-            </div>
-          )}
+          {userInfo?.email &&
+            (Number(user.role) === Number(useRole.ADMIN) ||
+              Number(user.role) === Number(useRole.MOD)) && (
+              <div className="header-right z-1">
+                <NavLink to={"/manage/user"} className="w-full h-full z-1">
+                  <button className="w-full h-full">Dashboard</button>
+                </NavLink>
+              </div>
+            )}
           {userInfo?.email ? (
             <div>
               <div className="z-50 w-12 h-12 bg-white rounded-full">

@@ -2,6 +2,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDocs,
   onSnapshot,
   query,
   where,
@@ -18,12 +19,40 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import InputSearch from "../../components/form/InputSearch";
 import { debounce } from "lodash";
+import { useAuth } from "../../context/auth-context";
+import { useRole } from "../../utils/constants";
 
 const DashBoardUser = () => {
   document.title = "Manage User";
   const [searchUser, setSearchUser] = useState("");
   const navigate = useNavigate();
   const [users, setUsers] = useState([]);
+  const [user, setUser] = useState([]);
+  const { userInfo } = useAuth();
+  // const navigate = useNavigate();
+  useEffect(() => {
+    if (userInfo) {
+      async function fetchUser() {
+        const q = query(
+          collection(db, "users"),
+          where("email", "==", String(userInfo?.email))
+        );
+        const querySnapShot = await getDocs(q);
+        querySnapShot.forEach((item) => {
+          setUser({
+            id: item.id,
+            avatar: item.data().avatar,
+            email: item.data().email,
+            fullname: item.data().fullname,
+            role: item.data().role,
+            createAt: item.data().createAt,
+          });
+        });
+      }
+      fetchUser();
+    }
+  }, [userInfo]);
+
   useEffect(() => {
     const fetchUsers = async () => {
       const colRef = collection(db, "users");
@@ -107,7 +136,9 @@ const DashBoardUser = () => {
               <th>Actions</th>
             </tr>
           </thead>
-          {users.length > 0 &&
+          {users?.length > 0 &&
+            userInfo?.email &&
+            Number(user.role) === Number(useRole.ADMIN) &&
             users.map((user) => (
               <tbody key={user.id}>
                 <tr>
