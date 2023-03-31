@@ -27,7 +27,7 @@ const AuthenLayout = ({ children }) => {
       <div className="w-auto h-auto z-40 mx-auto bg-[#F3F3F3] absolute top-[32%] right-[50%] translate-y-[-50%] translate-x-[50%]  flex flex-col justify-center items-center py-8 px-48 rounded-xl">
         <NavLink to={"/"}>
           <img
-            srcSet="/logoo.png"
+            srcSet="https://firebasestorage.googleapis.com/v0/b/blogging-ff828.appspot.com/o/images%2Fbglogin.jpg?alt=media&token=d03ddc55-a1ae-4380-8eab-118eaca5ba81"
             className="w-28 aspect-square"
             alt="monkey-blogging"
           />
