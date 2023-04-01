@@ -26,13 +26,11 @@ import { db } from "../firebase-app/firebase-auth";
 import { useAuth } from "../context/auth-context";
 import slugify from "slugify";
 import { toast } from "react-toastify";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import BgDashBoard from "../components/layout/dashboard/BgDashBoard";
 import PageNotFound from "./PageNotFound";
 
 const AddNewPostUser = () => {
-  const navigate = useNavigate();
-
   const { userInfo } = useAuth();
   const [params] = useSearchParams();
   const postId = params.get("id");

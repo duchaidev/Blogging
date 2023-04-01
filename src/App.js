@@ -6,6 +6,7 @@ import { useAuth } from "./context/auth-context";
 import { db } from "./firebase-app/firebase-auth";
 import { useRole } from "./utils/constants";
 // import { AuthProvider, useAuth } from "./context/auth-context";
+// import { AuthProvider, useAuth } from "./context/auth-context";
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const LoginPage = React.lazy(() => import("./pages/LoginPage"));
 const PageNotFound = React.lazy(() => import("./pages/PageNotFound"));
