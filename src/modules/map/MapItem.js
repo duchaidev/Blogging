@@ -29,15 +29,20 @@ const MapItem = ({ image, to, title, content }) => {
   `;
   return (
     <StyleMapItem
-      className=" bg-[#232830] p-6 rounded border border-[#495678] flex 
+      className=" bg-[#fff] p-6 rounded border border-[#495678] flex 
     flex-col gap-3 relative max-w-[35%] dark:bg-[#1C2735] "
     >
       <div className="flex">
         <div className="max-w-[70%]">
-          <NavLink to={to} className="text-xl font-bold text-gray-200">
+          <NavLink
+            to={to}
+            className="text-xl font-bold text-gray-900 dark:text-gray-200"
+          >
             {title}
           </NavLink>
-          <h2 className="mt-3 text-sm font-normal text-gray-300">{content}</h2>
+          <h2 className="mt-3 text-sm font-normal text-gray-700 dark:text-gray-400">
+            {content}
+          </h2>
         </div>
         <div className="ml-4 w-[120px] h-[120px] min-h-[120px] min-w-[120px] p-1 border-[#66FCF1] border-[3px] rounded-full ">
           <NavLink>
@@ -52,31 +57,31 @@ const MapItem = ({ image, to, title, content }) => {
       <div className="mb-8">
         <div className="flex flex-row items-end gap-3 align-bottom listitem">
           <NavLink
-            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            className="flex items-center justify-center border border-black dark:border-gray-300 rounded-full hover:border-[#66FCF1]"
             title="Kiến thức nhập môn IT"
           >
             <ClipBoard></ClipBoard>
           </NavLink>
           <NavLink
-            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            className="flex items-center justify-center border rounded-full border-black dark:border-gray-300 hover:border-[#66FCF1]"
             title="HTML 5"
           >
             <Html5></Html5>
           </NavLink>
           <NavLink
-            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            className="flex items-center justify-center border rounded-full border-black dark:border-gray-300 hover:border-[#66FCF1]"
             title="Responsive"
           >
             <Responsive></Responsive>
           </NavLink>
           <NavLink
-            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            className="flex items-center justify-center border rounded-full border-black dark:border-gray-300 hover:border-[#66FCF1]"
             title="JavaScript"
           >
             <Javas></Javas>
           </NavLink>
           <NavLink
-            className="flex items-center justify-center border rounded-full hover:border-[#66FCF1]"
+            className="flex items-center justify-center border rounded-full border-black dark:border-gray-300 hover:border-[#66FCF1]"
             title="ReactJs"
           >
             <Reactjs></Reactjs>
