@@ -7,16 +7,18 @@ const TitleHeader = ({ children, content = "" }) => {
   return content ? (
     <StyleTitleH>
       <div>
-        <h2 className="text-[30px] text-white font-semibold mb-1">
+        <h2 className="text-[30px] dark:text-white text-black font-semibold mb-1">
           {children}
         </h2>
-        <h2 className="text-base font-normal text-gray-400">{content}</h2>
+        <h2 className="text-base font-normal text-gray-700 dark:text-gray-400">
+          {content}
+        </h2>
       </div>
     </StyleTitleH>
   ) : (
     <StyleTitleH>
       <div>
-        <h2 className="text-[30px] text-white font-semibold mb-1">
+        <h2 className="text-[30px] dark:text-white text-black font-semibold mb-1">
           {children}
         </h2>
         <div className="w-full border border-gray-500"></div>

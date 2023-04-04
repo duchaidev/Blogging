@@ -1,10 +1,10 @@
 // import { collection, getDocs, query, where } from "firebase/firestore";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-// import { useAuth } from "../../../context/auth-context";
-// import { db } from "../../../firebase-app/firebase-auth";
-// import { useRole } from "../../../utils/constants";
+import { useDispatch } from "react-redux";
+import { toggleDarkMode } from "../../../redux-toolkit/globalSlide";
+
 const StyleNavbar = styled.div`
   margin-left: 30px;
 
@@ -22,7 +22,6 @@ const StyleNavbar = styled.div`
   .mode {
     width: 50px;
     height: 50px;
-    background-color: #a9fff9;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,7 +33,7 @@ const StyleNavbar = styled.div`
     display: flex;
     flex-direction: column;
     width: 70px;
-    background-color: #273f48;
+    background-color: #6f7f85;
     padding: 3px;
     border-radius: 10px;
     margin-top: 20px;
@@ -150,31 +149,13 @@ const sidebarLink = [
 ];
 
 const NavBar = () => {
-  // const [user, setUser] = useState([]);
-  // const { userInfo } = useAuth();
-  // // const navigate = useNavigate();
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     async function fetchUser() {
-  //       const q = query(
-  //         collection(db, "users"),
-  //         where("email", "==", String(userInfo?.email))
-  //       );
-  //       const querySnapShot = await getDocs(q);
-  //       querySnapShot.forEach((item) => {
-  //         setUser({
-  //           id: item.id,
-  //           avatar: item.data().avatar,
-  //           email: item.data().email,
-  //           fullname: item.data().fullname,
-  //           role: item.data().role,
-  //           createAt: item.data().createAt,
-  //         });
-  //       });
-  //     }
-  //     fetchUser();
-  //   }
-  // }, [userInfo]);
+  const dispatch = useDispatch();
+  const className = "dark";
+  const element = window.document.documentElement;
+  const handleDarkMode = () => {
+    element.classList.toggle(className);
+    dispatch(toggleDarkMode());
+  };
   return (
     <StyleNavbar>
       <div className="fixed">
@@ -200,7 +181,7 @@ const NavBar = () => {
             </button>
           </NavLink>
         </div>
-        <div className="nav-menu">
+        <div className="nav-menu dark:!bg-[#273f48]">
           {sidebarLink.map((item) => {
             return (
               <NavLink to={item.url} className="menu-item" key={item.title}>
@@ -214,25 +195,23 @@ const NavBar = () => {
         </div>
 
         <div className="mode ">
-          <NavLink
-            to={"/"}
-            className="flex justify-center w-full h-full center"
+          <button
+            className="flex items-center justify-center w-full h-full rounded-full transition-all bg-[#1F2833] dark:bg-[#a9fff9]"
+            onClick={handleDarkMode}
           >
-            <button className="">
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 48 48"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M24 47.25C17.5417 47.25 12.0521 44.9896 7.53125 40.4688C3.01042 35.9479 0.75 30.4583 0.75 24C0.75 17.5417 3.01042 12.0521 7.53125 7.53125C12.0521 3.01042 17.5417 0.75 24 0.75C24.6028 0.75 25.1952 0.771528 25.7773 0.814584C26.3594 0.857639 26.9295 0.922222 27.4875 1.00833C25.7222 2.25694 24.3117 3.88272 23.256 5.88567C22.2003 7.88861 21.6733 10.0517 21.675 12.375C21.675 16.25 23.0312 19.5437 25.7437 22.2562C28.4562 24.9687 31.75 26.325 35.625 26.325C37.9931 26.325 40.1674 25.7971 42.1479 24.7414C44.1285 23.6857 45.7431 22.2761 46.9917 20.5125C47.0778 21.0722 47.1424 21.6423 47.1854 22.2227C47.2285 22.8031 47.25 23.3955 47.25 24C47.25 30.4583 44.9896 35.9479 40.4688 40.4688C35.9479 44.9896 30.4583 47.25 24 47.25ZM24 42.0833C27.7889 42.0833 31.1903 41.0388 34.2042 38.9497C37.2181 36.8607 39.4139 34.1379 40.7917 30.7812C39.9306 30.9965 39.0694 31.1687 38.2083 31.2979C37.3472 31.4271 36.4861 31.4917 35.625 31.4917C30.3292 31.4917 25.8187 29.6291 22.0935 25.9039C18.3683 22.1788 16.5066 17.6691 16.5083 12.375C16.5083 11.5139 16.5729 10.6528 16.7021 9.79167C16.8312 8.93056 17.0035 8.06944 17.2188 7.20833C13.8604 8.58611 11.1367 10.7819 9.04767 13.7958C6.95861 16.8097 5.91494 20.2111 5.91667 24C5.91667 28.9944 7.68194 33.2569 11.2125 36.7875C14.7431 40.3181 19.0056 42.0833 24 42.0833Z"
-                  fill="black"
-                />
-              </svg>
-            </button>
-          </NavLink>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 48 48"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24 47.25C17.5417 47.25 12.0521 44.9896 7.53125 40.4688C3.01042 35.9479 0.75 30.4583 0.75 24C0.75 17.5417 3.01042 12.0521 7.53125 7.53125C12.0521 3.01042 17.5417 0.75 24 0.75C24.6028 0.75 25.1952 0.771528 25.7773 0.814584C26.3594 0.857639 26.9295 0.922222 27.4875 1.00833C25.7222 2.25694 24.3117 3.88272 23.256 5.88567C22.2003 7.88861 21.6733 10.0517 21.675 12.375C21.675 16.25 23.0312 19.5437 25.7437 22.2562C28.4562 24.9687 31.75 26.325 35.625 26.325C37.9931 26.325 40.1674 25.7971 42.1479 24.7414C44.1285 23.6857 45.7431 22.2761 46.9917 20.5125C47.0778 21.0722 47.1424 21.6423 47.1854 22.2227C47.2285 22.8031 47.25 23.3955 47.25 24C47.25 30.4583 44.9896 35.9479 40.4688 40.4688C35.9479 44.9896 30.4583 47.25 24 47.25ZM24 42.0833C27.7889 42.0833 31.1903 41.0388 34.2042 38.9497C37.2181 36.8607 39.4139 34.1379 40.7917 30.7812C39.9306 30.9965 39.0694 31.1687 38.2083 31.2979C37.3472 31.4271 36.4861 31.4917 35.625 31.4917C30.3292 31.4917 25.8187 29.6291 22.0935 25.9039C18.3683 22.1788 16.5066 17.6691 16.5083 12.375C16.5083 11.5139 16.5729 10.6528 16.7021 9.79167C16.8312 8.93056 17.0035 8.06944 17.2188 7.20833C13.8604 8.58611 11.1367 10.7819 9.04767 13.7958C6.95861 16.8097 5.91494 20.2111 5.91667 24C5.91667 28.9944 7.68194 33.2569 11.2125 36.7875C14.7431 40.3181 19.0056 42.0833 24 42.0833Z"
+                fill="#9B9FA4"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </StyleNavbar>

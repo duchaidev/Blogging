@@ -20,7 +20,7 @@ const Layout = () => {
     }
   `;
   return (
-    <StyleLayout>
+    <StyleLayout className="dark:bg-[#1F2833]">
       <Header></Header>
       <div className="main">
         <NavBar></NavBar>

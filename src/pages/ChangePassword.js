@@ -224,6 +224,7 @@ const ChangePassword = () => {
                     control={control}
                     name="fullname"
                     kind="second"
+                    className="dark:focus:!text-white"
                   ></Input>
                 </div>
                 <div>
@@ -237,6 +238,7 @@ const ChangePassword = () => {
                     control={control}
                     name="username"
                     kind="second"
+                    className="dark:focus:!text-white"
                   ></Input>
                 </div>
                 <div>
@@ -264,6 +266,7 @@ const ChangePassword = () => {
                     control={control}
                     name="password"
                     kind="second"
+                    className="dark:focus:!text-white"
                   ></InputPassword>
                 </div>
                 <div>
@@ -277,6 +280,7 @@ const ChangePassword = () => {
                     control={control}
                     name="new_password"
                     kind="second"
+                    className="dark:focus:!text-white"
                   ></InputPassword>
                 </div>
                 <div>
@@ -290,6 +294,7 @@ const ChangePassword = () => {
                     control={control}
                     name="renew_password"
                     kind="second"
+                    className="dark:focus:!text-white"
                   ></InputPassword>
                 </div>
               </div>

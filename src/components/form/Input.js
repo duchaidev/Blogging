@@ -20,7 +20,7 @@ const InputStyled = styled.input`
   }
   ::placeholder {
     color: black;
-    opacity: 0.4;
+    opacity: 0.6;
   }
 
   ${(props) =>
@@ -31,7 +31,8 @@ const InputStyled = styled.input`
       :focus {
         background-color: ${(props) => props.theme.secondHover};
         border: 1px solid ${(props) => props.theme.bgButton};
-        color: white;
+        color: black;
+        /* color: black; */
       }
     `}
 `;
@@ -55,6 +56,7 @@ const Input = ({
   children,
   value,
   control,
+  className,
   ...props
 }) => {
   const { field } = useController({
@@ -68,6 +70,7 @@ const Input = ({
         type={type}
         name={name}
         id={name}
+        className={className}
         placeholder={`Please enter your ${name}`}
         {...props}
         {...field}

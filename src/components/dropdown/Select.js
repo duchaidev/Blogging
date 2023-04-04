@@ -12,10 +12,12 @@ const Select = ({ placehoder = " ", children, threedot, classname }) => {
         </div>
       ) : (
         <div
-          className="w-full h-[50px] bg-[#788DA9]  flex justify-between rounded-t-lg px-5 items-center border border-[#788DA9]"
+          className="w-full h-[50px] dark:bg-[#788DA9]  flex justify-between rounded-t-lg px-5 items-center border border-[#788DA9]"
           onClick={toggle}
         >
-          <span className="text-lg font-semibold text-white">{placehoder}</span>
+          <span className="text-lg font-semibold text-black dark:text-white">
+            {placehoder}
+          </span>
           {show ? (
             <svg
               width="20"

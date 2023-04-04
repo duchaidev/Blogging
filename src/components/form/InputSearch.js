@@ -17,13 +17,12 @@ const StyleInput = styled.input`
     color: white;
     opacity: 0.4;
   }
-
   color: black;
   background-color: ${(props) => props.theme.second};
   :focus {
     background-color: ${(props) => props.theme.secondHover};
     border: 1px solid ${(props) => props.theme.bgButton};
-    color: white;
+    color: black;
   }
 `;
 const InputSearch = ({
@@ -34,10 +33,10 @@ const InputSearch = ({
 }) => {
   return (
     <StyleInput
+      className={className}
       placeholder={placehoder}
       type={type}
       {...props}
-      className={className}
     ></StyleInput>
   );
 };

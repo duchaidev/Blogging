@@ -78,7 +78,7 @@ const DashBoardCategory = () => {
             Add New Category
           </Button>
           <InputSearch
-            className=""
+            className="dark:focus:!text-white"
             placeholder="Search User ...."
             type="text"
             onChange={handleChange}
@@ -101,12 +101,14 @@ const DashBoardCategory = () => {
               <tbody key={item.id}>
                 <tr>
                   <td></td>
-                  <td>{item.id}</td>
+                  <td className="!text-black dark:!text-white">{item.id}</td>
                   <td>
-                    <span>{item.category}</span>
+                    <span className="!text-black dark:!text-white">
+                      {item.category}
+                    </span>
                   </td>
                   <td>
-                    <span className="italic text-gray-500">{item.slug}</span>
+                    <span className="italic text-gray-500 ">{item.slug}</span>
                   </td>
 
                   <td>

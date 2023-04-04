@@ -85,7 +85,7 @@ const DashBoardMess = () => {
             Add New Post
           </Button>
           <InputSearch
-            className=""
+            className="dark:focus:!text-white"
             placeholder="Search Posts ...."
             type="text"
             onChange={handleChange}
@@ -110,7 +110,9 @@ const DashBoardMess = () => {
               <tbody key={mess.id}>
                 <tr>
                   <td></td>
-                  <td title={mess?.id}>{mess?.id?.slice(0, 8) + "...."}</td>
+                  <td title={mess?.id} className="!text-black dark:!text-white">
+                    {mess?.id?.slice(0, 8) + "...."}
+                  </td>
 
                   <td>
                     <div className="flex items-center gap-x-3">

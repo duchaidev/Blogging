@@ -28,7 +28,10 @@ const MapItem = ({ image, to, title, content }) => {
     }
   `;
   return (
-    <StyleMapItem className=" bg-[#1C2735] p-6 rounded border border-[#495678] flex flex-col gap-3 relative max-w-[35%]">
+    <StyleMapItem
+      className=" bg-[#232830] p-6 rounded border border-[#495678] flex 
+    flex-col gap-3 relative max-w-[35%] dark:bg-[#1C2735] "
+    >
       <div className="flex">
         <div className="max-w-[70%]">
           <NavLink to={to} className="text-xl font-bold text-gray-200">

@@ -38,10 +38,10 @@ const MapList = () => {
       </div>
       <div className="flex flex-row items-center justify-between mt-[40px]">
         <div className="w-[30%] flex flex-col justify-start gap-5">
-          <NavLink className="text-2xl font-bold text-gray-200">
+          <NavLink className="text-2xl font-bold text-gray-800 dark:text-gray-200">
             Tham gia cộng đồng học viên DHD trên Facebook
           </NavLink>
-          <span className="text-gray-300 ">
+          <span className="text-gray-800 dark:text-gray-300">
             Hàng nghìn người khác đang học lộ trình giống như bạn. Hãy tham gia
             hỏi đáp, chia sẻ và hỗ trợ nhau trong quá trình học nhé.
           </span>

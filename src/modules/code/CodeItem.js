@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 
 const CodeItem = ({ image, title, urlcode, avatar, name, urldemo }) => {
   return (
-    <div className="flex flex-col gap-3 p-3 border border-[#495678] rounded-md overflow-hidden bg-[#1C2735]">
+    <div className="flex flex-col gap-3 p-3 border border-[#495678] rounded-md overflow-hidden dark:bg-[#1C2735] bg-white">
       <div>
         <NavLink to={urlcode}>
           <img
-            className="object-cover w-full aspect-video overflow-hidden border border-[#495678] rounded-sm hover:scale-105 transition-all "
+            className="object-cover w-full aspect-video overflow-hidden border dark:border-[#495678] rounded-sm hover:scale-105 transition-all "
             src={image}
             alt=""
           />
@@ -15,7 +15,9 @@ const CodeItem = ({ image, title, urlcode, avatar, name, urldemo }) => {
       </div>
       <div>
         <NavLink to={urlcode}>
-          <p className="text-lg font-semibold text-gray-200">{title}</p>
+          <p className="text-lg font-semibold text-gray-800 dark:text-gray-200">
+            {title}
+          </p>
         </NavLink>
       </div>
       <div className="flex gap-5">
@@ -34,7 +36,7 @@ const CodeItem = ({ image, title, urlcode, avatar, name, urldemo }) => {
           alt=""
           className="h-full rounded-full aspect-square"
         />
-        <p className="text-sm text-gray-200 font">{name}</p>
+        <p className="text-sm text-gray-800 dark:text-gray-200 font">{name}</p>
       </div>
     </div>
   );

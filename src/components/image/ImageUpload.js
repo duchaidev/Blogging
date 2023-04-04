@@ -12,7 +12,7 @@ const ImageUpload = (props) => {
   } = props;
   return (
     <label
-      className={`w-full mt-2 border border-dashed border-gray-200 aspect-video relative bg-[#788DA9] rounded-lg cursor-pointer flex items-center justify-center ${className}  overflow-hidden group`}
+      className={`w-full mt-2 border border-dashed border-gray-400 aspect-video relative dark:bg-[#788DA9] rounded-lg cursor-pointer flex items-center justify-center ${className}  overflow-hidden group`}
     >
       <input
         type="file"
@@ -23,7 +23,7 @@ const ImageUpload = (props) => {
       {!image && progress === 0 && (
         <div className="flex flex-col w-[20%] gap-4 items-center absolute">
           <img src="/imgUpload.jpg" alt="" className="w-[100%] object-cover" />
-          <span className="font-medium text-gray-200 whitespace-nowrap">
+          <span className="font-medium text-gray-900 dark:text-gray-200 whitespace-nowrap">
             Choose Photos
           </span>
         </div>

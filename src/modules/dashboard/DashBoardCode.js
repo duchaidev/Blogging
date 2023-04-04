@@ -83,12 +83,14 @@ const DashBoardCode = () => {
           <Button to="/add-new-code/admin" type="button">
             Add New Code
           </Button>
-          <InputSearch
-            className=""
-            placeholder="Search Code ...."
-            type="text"
-            onChange={handleChange}
-          ></InputSearch>
+          <div className="w-full h-full ">
+            <InputSearch
+              className="dark:focus:!text-white"
+              placeholder="Search Code ...."
+              type="text"
+              onChange={handleChange}
+            ></InputSearch>
+          </div>
         </div>
       </div>
       <div>
@@ -108,7 +110,9 @@ const DashBoardCode = () => {
               <tbody key={code.id}>
                 <tr>
                   <td></td>
-                  <td title={code?.id}>{code?.id?.slice(0, 8) + "...."}</td>
+                  <td title={code?.id} className="!text-black dark:!text-white">
+                    {code?.id?.slice(0, 8) + "...."}
+                  </td>
 
                   <td>
                     <div className="flex items-center gap-x-3">

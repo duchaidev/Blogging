@@ -29,7 +29,7 @@ const HomeSlide = () => {
     <StyleHomeSlide>
       <div className="slide">
         <ClickHomePage></ClickHomePage>
-        <h2 className="text-[40px] font-bold max-w-[800px] text-center text-white">
+        <h2 className="text-[40px] font-bold max-w-[800px] text-center text-black dark:text-white">
           Get your free CODE components with just few click
         </h2>
         <div className="flex gap-[80px]">

@@ -11,7 +11,7 @@ import Option from "../../components/dropdown/Option";
 
 const StylePostItem = styled.div`
   padding: 20px;
-  border: solid 2px #686c72;
+  border: solid 2px #9a9da1;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -41,8 +41,8 @@ const PostItem = ({
   };
 
   return (
-    <StylePostItem>
-      <div className="flex items-center justify-between mb-[15px]">
+    <StylePostItem className="bg-[#242f30] dark:bg-transparent dark:border-[#686c72]">
+      <div className="flex items-center justify-between mb-[15px] ">
         <div className="flex items-center gap-2">
           <div className="w-[30px] h-[30px] rounded-full">
             <NavLink to={toInfo}>
@@ -54,7 +54,7 @@ const PostItem = ({
             </NavLink>
           </div>
           <NavLink to={toInfo}>
-            <h2 className="text-gray-300">{nameAuthor}</h2>
+            <h2 className="text-white dark:text-gray-300">{nameAuthor}</h2>
           </NavLink>
         </div>
         <div>
@@ -173,7 +173,10 @@ const PostItem = ({
             {title}
           </NavLink>
           <NavLink to={to}>
-            <p className="text-[#8e8e8e] text-[15px]" title={content}>
+            <p
+              className="dark:text-[#8e8e8e] text-gray-300 text-[15px]"
+              title={content}
+            >
               {content}
             </p>
           </NavLink>

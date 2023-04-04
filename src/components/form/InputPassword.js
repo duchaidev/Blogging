@@ -32,7 +32,7 @@ const InputStyled = styled.input`
       :focus {
         background-color: ${(props) => props.theme.secondHover};
         border: 1px solid ${(props) => props.theme.bgButton};
-        color: white;
+        color: black;
       }
     `}
 `;

@@ -86,7 +86,7 @@ const DashBoardPosts = () => {
             Add New Post
           </Button>
           <InputSearch
-            className=""
+            className="dark:focus:!text-white"
             placeholder="Search Posts ...."
             type="text"
             onChange={handleChange}
@@ -110,7 +110,9 @@ const DashBoardPosts = () => {
               <tbody key={post.id}>
                 <tr>
                   <td></td>
-                  <td title={post?.id}>{post?.id?.slice(0, 8) + "...."}</td>
+                  <td title={post?.id} className="!text-black dark:!text-white">
+                    {post?.id?.slice(0, 8) + "...."}
+                  </td>
 
                   <td>
                     <div className="flex items-center gap-x-3">
@@ -120,7 +122,10 @@ const DashBoardPosts = () => {
                         className="w-[66px] h-[55px] rounded object-cover"
                       />
                       <div className="flex-1">
-                        <h3 className="font-semibold" title={post?.title}>
+                        <h3
+                          className="font-semibold !text-black dark:!text-white"
+                          title={post?.title}
+                        >
                           {post?.title?.slice(0, 15) + "..."}
                         </h3>
                         <time className="text-sm text-gray-500">

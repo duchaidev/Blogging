@@ -173,7 +173,7 @@ const Header = () => {
   }, 300);
   return (
     <StyleHomePage>
-      <div className="header">
+      <div className="header dark:!bg-[#1F2833]">
         <div className="header-left">
           <div>
             <NavLink to={"/"}>
@@ -183,7 +183,7 @@ const Header = () => {
               />
             </NavLink>
           </div>
-          <h3>DH Blogging</h3>
+          <h3 className="text-black dark:text-white">DH Blogging</h3>
         </div>
         <div className="input" onFocus={handleFocus} onBlur={handleBlur}>
           <DropdownHeader>
@@ -212,8 +212,13 @@ const Header = () => {
             (Number(user.role) === Number(useRole.ADMIN) ||
               Number(user.role) === Number(useRole.MOD)) && (
               <div className="header-right z-1">
-                <NavLink to={"/manage/user"} className="w-full h-full z-1">
-                  <button className="w-full h-full">Dashboard</button>
+                <NavLink
+                  to={"/manage/user"}
+                  className="w-full h-full z-1 bg-[#66FCF1] shadow-md rounded-lg"
+                >
+                  <button className="w-full h-full text-black ">
+                    Dashboard
+                  </button>
                 </NavLink>
               </div>
             )}
@@ -223,7 +228,7 @@ const Header = () => {
                 <div className="z-50 w-full h-full rounded-full">
                   <DropdownHeader>
                     <SelectHeader
-                      classname=""
+                      className=""
                       avatar={user?.avatar}
                     ></SelectHeader>
                     <ListHeader>
@@ -240,7 +245,7 @@ const Header = () => {
                             />
                           </div>
                           <div className="flex flex-col gap-[2px]">
-                            <p className="text-white !opacity-100 whitespace-nowrap font-semibold">
+                            <p className="!text-black dark:!text-white !opacity-100 whitespace-nowrap font-semibold">
                               {user?.fullname ||
                                 String(user?.email).slice(0, 8) ||
                                 ""}
@@ -256,18 +261,26 @@ const Header = () => {
 
                       {Number(user.role) === Number(useRole.ADMIN) ? (
                         <OptionHeader to="/add-new-post/admin">
-                          <p className="whitespace-nowrap">Viết Blog Admin</p>
+                          <p className="!text-black dark:!text-white whitespace-nowrap">
+                            Viết Blog Admin
+                          </p>
                         </OptionHeader>
                       ) : (
                         <OptionHeader to="/add-new-post">
-                          <p className="whitespace-nowrap">Viết Blog</p>
+                          <p className="!text-black whitespace-nowrap dark:!text-white">
+                            Viết Blog
+                          </p>
                         </OptionHeader>
                       )}
                       <OptionHeader to="/manage-post">
-                        <p className="whitespace-nowrap">Bài viết của tôi</p>
+                        <p className="!text-black whitespace-nowrap dark:!text-white">
+                          Bài viết của tôi
+                        </p>
                       </OptionHeader>
                       <OptionHeader to="/change-password">
-                        <p className="whitespace-nowrap">Cài đặt</p>
+                        <p className="!text-black whitespace-nowrap dark:!text-white">
+                          Cài đặt
+                        </p>
                       </OptionHeader>
                       <div>
                         <OptionHeader
@@ -276,7 +289,7 @@ const Header = () => {
                           className="!border-b-transparent"
                         >
                           <p
-                            className="whitespace-nowrap"
+                            className="whitespace-nowrap !text-black dark:!text-white"
                             onClick={() => signOut(auth)}
                           >
                             Đăng xuất

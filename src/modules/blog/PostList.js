@@ -30,7 +30,7 @@ const PostList = () => {
   }, [slug]);
   console.log(postList);
   return (
-    <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 ">
       {postList.length > 0 &&
         postList.map((item) => (
           <PostItem

@@ -185,27 +185,37 @@ const AddNewPostAdmin = () => {
             <div>
               <Label
                 htmlFor="title"
-                classname="text-lg font-semibold text-white"
+                classname="text-lg font-semibold text-black dark:text-white"
               >
                 Title
               </Label>
-              <Input control={control} name="title" kind="second"></Input>
+              <Input
+                control={control}
+                name="title"
+                kind="second"
+                className="dark:focus:!text-white"
+              ></Input>
             </div>
             <div>
               <Label
                 htmlFor="slug"
-                classname="text-lg font-semibold text-white"
+                classname="text-lg font-semibold text-black dark:text-white"
               >
                 Slug
               </Label>
-              <Input control={control} name="slug" kind="second"></Input>
+              <Input
+                control={control}
+                name="slug"
+                kind="second"
+                className="dark:focus:text-white"
+              ></Input>
             </div>
           </div>
           <div className="grid grid-cols-2 gap-[100px]">
             <div>
               <Label
                 htmlFor="image"
-                classname="mb-2 text-lg font-semibold text-white"
+                classname="mb-2 text-lg font-semibold text-black dark:text-white"
               >
                 Image
               </Label>
@@ -219,14 +229,16 @@ const AddNewPostAdmin = () => {
             <div className="w-full h-full">
               <Label
                 htmlFor="subtitle"
-                classname="mb-2 text-lg font-semibold text-white"
+                classname="mb-2 text-lg font-semibold text-black dark:text-white"
               >
                 SubTitle
               </Label>
               <textarea
                 name="subtitle"
                 id="subtitle"
-                className="w-full h-[90%] mt-2 bg-[#788DA9] outline-none transition-all border border-transparent px-5 py-2 rounded-lg text-black placeholder:text-slate-600 focus:bg-[#274047] focus:text-white focus:border-[#66FCF1]"
+                className="w-full h-[90%] mt-2 dark:bg-[#788DA9] bg-[#fff] outline-none
+                transition-all border dark:border-transparent px-5 py-2 rounded-lg text-black placeholder:text-slate-600 border-gray-600
+                dark:focus:bg-[#274047] dark:focus:text-white dark:focus:border-[#66FCF1]"
                 placeholder="Enter your subtitle"
                 onChange={setSubTitle}
               ></textarea>

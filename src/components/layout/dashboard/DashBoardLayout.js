@@ -5,6 +5,9 @@ import DashBoardNav from "./DashBoardNav";
 import Header from "../layoutmain/Header";
 
 const DashBoardLayout = () => {
+  const Bg = styled.div`
+    background: ${(props) => props.theme.backround};
+  `;
   const StyleLayout = styled.div`
     padding-top: 120px;
     display: grid;
@@ -12,13 +15,13 @@ const DashBoardLayout = () => {
     gap: 40px;
   `;
   return (
-    <div className="min-h-screen bg-[#1F2833]">
+    <Bg className="min-h-screen dark:!bg-[#1F2833]">
       <Header></Header>
       <StyleLayout className="px-[30px]">
         <DashBoardNav></DashBoardNav>
         <Outlet></Outlet>
       </StyleLayout>
-    </div>
+    </Bg>
   );
 };
 

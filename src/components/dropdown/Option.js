@@ -14,14 +14,14 @@ const Option = ({ onClick, children, threedot, to, blank = " _blank " }) => {
         <NavLink
           to={to}
           target={blank}
-          className="flex items-center w-auto gap-2 px-5 py-3 text-white transition-all whitespace-nowrap"
+          className="flex items-center w-auto gap-2 px-5 py-3 text-black transition-all dark:text-white whitespace-nowrap"
           onClick={handleClick}
         >
           {children}
         </NavLink>
       ) : (
         <div
-          className="px-5 py-3 border-b-[1px] border-[#4E4D52] transition-all text-white"
+          className="px-5 py-3 border-b-[1px] border-[#4E4D52] transition-all dark:text-white text-black"
           onClick={handleClick}
         >
           {children}

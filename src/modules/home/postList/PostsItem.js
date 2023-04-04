@@ -27,11 +27,15 @@ const PostsItem = ({
         <img
           src={image}
           alt=""
-          className="object-cover w-full border border-gray-500  rounded-xl aspect-video img-content"
+          className="object-cover w-full border border-gray-500 rounded-xl aspect-video img-content"
           title={title}
         />
       </NavLink>
-      <NavLink className="text-white" to={urlPost} target={target}>
+      <NavLink
+        className="text-black dark:text-white"
+        to={urlPost}
+        target={target}
+      >
         <h2 title={title}>{title.slice(0, 35) + "..."}</h2>
       </NavLink>
       <div className="flex items-center gap-2">
@@ -43,7 +47,7 @@ const PostsItem = ({
           />
         </NavLink>
         <NavLink>
-          <span className="text-white ">{fullname}</span>
+          <span className="text-black dark:text-white ">{fullname}</span>
         </NavLink>
         <span>
           <Dot></Dot>

@@ -116,7 +116,7 @@ const DashBoardUser = () => {
             Add New User
           </Button>
           <InputSearch
-            className=""
+            className="dark:focus:text-white"
             placeholder="Search User ...."
             type="text"
             onChange={handleChange}
@@ -143,7 +143,9 @@ const DashBoardUser = () => {
               <tbody key={user.id}>
                 <tr>
                   <td></td>
-                  <td title={user.id}>{user.id.slice(0, 6) + "..."}</td>
+                  <td title={user.id} className="!text-black dark:!text-white">
+                    {user.id.slice(0, 6) + "..."}
+                  </td>
                   <td>
                     <div className="flex items-center gap-x-3">
                       <img
@@ -152,7 +154,7 @@ const DashBoardUser = () => {
                         className="w-[66px] h-[55px] rounded object-cover"
                       />
                       <div className="flex-1">
-                        <h3 className="font-semibold">
+                        <h3 className="font-semibold !text-black dark:!text-white">
                           {user.username || user.fullname}
                         </h3>
                         <time className="text-sm text-gray-500">
@@ -174,11 +176,6 @@ const DashBoardUser = () => {
                   </td>
                   <td>
                     <div className="flex gap-2">
-                      <ActionView
-                        onClick={() => {
-                          // navigate(`/${post.slug}`);
-                        }}
-                      ></ActionView>
                       <ActionEdit
                         onClick={() => {
                           navigate(`/manage/update-user?id=${user?.id}`);

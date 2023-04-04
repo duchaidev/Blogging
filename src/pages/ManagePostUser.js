@@ -116,7 +116,9 @@ const ManagePostUser = () => {
               <tbody key={post.id}>
                 <tr>
                   <td></td>
-                  <td title={post?.id}>{post?.id?.slice(0, 8) + "...."}</td>
+                  <td title={post?.id} className="!text-black dark:!text-white">
+                    {post?.id?.slice(0, 8) + "...."}
+                  </td>
 
                   <td>
                     <div className="flex items-center gap-x-3">
