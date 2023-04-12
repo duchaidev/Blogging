@@ -26,6 +26,7 @@ const TitleFeature = ({ to, children }) => {
             <span className="dark:text-[#66FCF1] text-black">Xem tất cả</span>
           </NavLink>
         </div>
+
       </div>
     </div>
   );

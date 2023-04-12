@@ -157,8 +157,8 @@ const NavBar = () => {
     dispatch(toggleDarkMode());
   };
   return (
-    <StyleNavbar >
-      <div className="fixed md:hidden sm:hidden xs:hidden">
+    <StyleNavbar>
+      <div className="fixed xs:hidden">
         <div className="add-post">
           {/* {userInfo && Number( user.role ) === Number( useRole.ADMIN )} */}
           <NavLink
