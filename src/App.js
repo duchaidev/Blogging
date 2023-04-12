@@ -5,6 +5,7 @@ import Loading from "./components/loading/Loading";
 import { useAuth } from "./context/auth-context";
 import { db } from "./firebase-app/firebase-auth";
 import { useRole } from "./utils/constants";
+import NavBarPhone from "./components/layout/layoutmain/NavBarPhone";
 // import { AuthProvider, useAuth } from "./context/auth-context";
 // import { AuthProvider, useAuth } from "./context/auth-context";
 const HomePage = React.lazy(() => import("./pages/HomePage"));
@@ -84,6 +85,7 @@ function App() {
 
   return (
     <div>
+      <NavBarPhone></NavBarPhone>
       {show && !userInfo && (
         <div className="fixed z-50 flex items-center justify-center h-full min-w-full text-red translate-y-[-10%]">
           <div className="flex flex-col w-auto h-auto gap-8 py-8 opacity-100 px-14 bg-slate-50">

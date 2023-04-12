@@ -27,7 +27,7 @@ const PostsItem = ({
         <img
           src={image}
           alt=""
-          className="object-cover w-full border border-gray-500 rounded-xl aspect-video img-content"
+          className="object-cover w-full border border-gray-500 rounded-xl !aspect-video img-content xs:h-[132px] overflow-hidden"
           title={title}
         />
       </NavLink>
@@ -36,9 +36,9 @@ const PostsItem = ({
         to={urlPost}
         target={target}
       >
-        <h2 title={title}>{title.slice(0, 35) + "..."}</h2>
+        <h2 title={title} className="whitespace-nowrap">{title.slice(0, 35) + "..."}</h2>
       </NavLink>
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 xs:hidden">
         <NavLink to={urlAuthor}>
           <img
             src={avatarAuthor}

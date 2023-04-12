@@ -20,6 +20,8 @@ import { debounce } from "lodash";
 import ListSearch from "../../dropdown/dropdownSearch/ListSearch";
 import OptionSearch from "../../dropdown/dropdownSearch/OptionSearch";
 import InputSearch from "../../form/InputSearch";
+import { useDispatch } from "react-redux";
+import { toggleNavBar } from "../../../redux-toolkit/globalSlide";
 
 const StyleHomePage = styled.div`
   width: 100%;
@@ -37,7 +39,6 @@ const StyleHomePage = styled.div`
     background-color: ${(props) => props.theme.backround};
     z-index: 100;
     .header-left {
-      display: flex;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -84,6 +85,7 @@ const StyleHomePage = styled.div`
   }
 `;
 const Header = () => {
+  const dispatch = useDispatch();
   const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState([]);
@@ -171,25 +173,45 @@ const Header = () => {
   const handleChange = debounce((values) => {
     setSearch(values.target.value);
   }, 300);
+  const handleToggleNavbar = () => {
+    dispatch(toggleNavBar());
+  }
   return (
     <StyleHomePage>
       <div className="header dark:!bg-[#1F2833]">
-        <div className="header-left">
-          <div>
+        <button onClick={handleToggleNavbar}>
+          <svg width="25" height="20" viewBox="0 0 60 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M59.8475 0H0V5.44068H59.8475V0Z" fill="white" />
+            <path d="M59.8475 24.483H0V29.9237H59.8475V24.483Z" fill="white" />
+            <path d="M59.8475 48.9661H0V54.4068H59.8475V48.9661Z" fill="white" />
+          </svg>
+        </button>
+        <button className="">
+          <svg width="20" height="20" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M50 44H46.84L45.72 42.92C49.64 38.36 52 32.44 52 26C52 11.64 40.36 0 26 0C11.64 0 0 11.64 0 26C0 40.36 11.64 52 26 52C32.44 52 38.36 49.64 42.92 45.72L44 46.84V50L64 69.96L69.96 64L50 44ZM26 44C16.04 44 8 35.96 8 26C8 16.04 16.04 8 26 8C35.96 8 44 16.04 44 26C44 35.96 35.96 44 26 44Z" fill="white" />
+          </svg>
+
+
+        </button>
+      </div>
+      <div className="header dark:!bg-[#1F2833] xs:!hidden">
+        <div className="xs:!hidden header-left">
+          <div className="">
             <NavLink to={"/"}>
               <img
                 src="https://firebasestorage.googleapis.com/v0/b/blogging-ff828.appspot.com/o/images%2Flogoo.png?alt=media&token=dbcd008c-241e-46aa-8337-656763be352e"
                 alt="logo"
+                className="xs:hidden"
               />
             </NavLink>
           </div>
-          <h3 className="text-black dark:text-white">DH Blogging</h3>
+          <h3 className="text-black xs:hidden dark:text-white">DH Blogging</h3>
         </div>
         <div className="input" onFocus={handleFocus} onBlur={handleBlur}>
           <DropdownHeader>
             <div>
               <InputSearch
-                className=" !m-0 !text-white"
+                className=" !m-0 !text-white xs:hidden"
                 placeholder="Tìm kiếm blog, tài liệu...."
                 onChange={handleChange}
               ></InputSearch>
@@ -207,16 +229,16 @@ const Header = () => {
             </div>
           </DropdownHeader>
         </div>
-        <div className="z-10 flex items-end gap-5">
+        <div className="z-10 flex items-end gap-5 xs:hidden ">
           {userInfo?.email &&
             (Number(user.role) === Number(useRole.ADMIN) ||
               Number(user.role) === Number(useRole.MOD)) && (
-              <div className="header-right z-1">
+              <div className="header-right z-1 ">
                 <NavLink
                   to={"/manage/user"}
-                  className="w-full h-full z-1 bg-[#66FCF1] shadow-md rounded-lg"
+                  className="w-full h-full z-1 bg-[#66FCF1] shadow-md rounded-lg "
                 >
-                  <button className="w-full h-full text-black ">
+                  <button className="w-full h-full text-black">
                     Dashboard
                   </button>
                 </NavLink>
@@ -309,6 +331,7 @@ const Header = () => {
             </div>
           )}
         </div>
+
       </div>
     </StyleHomePage>
   );

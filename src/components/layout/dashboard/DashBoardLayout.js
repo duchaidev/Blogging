@@ -15,7 +15,7 @@ const DashBoardLayout = () => {
     gap: 40px;
   `;
   return (
-    <Bg className="min-h-screen dark:!bg-[#1F2833]">
+    <Bg className="min-h-screen dark:!bg-[#1F2833] overflow-y-hidden">
       <Header></Header>
       <StyleLayout className="px-[30px]">
         <DashBoardNav></DashBoardNav>

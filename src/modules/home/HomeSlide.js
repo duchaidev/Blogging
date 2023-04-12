@@ -13,7 +13,6 @@ const HomeSlide = () => {
     justify-content: center;
     align-items: center;
     .slide {
-      transform: translateX(-50px);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -27,17 +26,17 @@ const HomeSlide = () => {
   `;
   return (
     <StyleHomeSlide>
-      <div className="slide">
+      <div className="slide translate-x-[-50px] xs:translate-x-0">
         <ClickHomePage></ClickHomePage>
-        <h2 className="text-[40px] font-bold max-w-[800px] text-center text-black dark:text-white">
+        <h2 className="text-[40px] font-bold max-w-[800px] text-center text-black dark:text-white xs:text-[30px] whitespace-normal">
           Get your free CODE components with just few click
         </h2>
-        <div className="flex gap-[80px]">
+        <div className="flex gap-[80px] xs:gap-[20px]">
           <NavLink
             to={"https://github.com/Leduchai2k3/Blogging"}
             target="_blank"
           >
-            <button className="w-[200px] h-[50px] bg-[#434246] text-[#66FCF1] font-semibold text-lg rounded-lg transition-[0.5s] view">
+            <button className="w-[200px] xs:w-[165px] xs:h[35px] h-[50px] bg-[#434246] text-[#66FCF1] font-semibold text-lg rounded-lg transition-[0.5s] view">
               View on github
             </button>
           </NavLink>
@@ -46,12 +45,12 @@ const HomeSlide = () => {
             to={"https://github.com/Leduchai2k3/Blogging"}
             target="_blank"
           >
-            <button className="w-[200px] h-[50px] bg-[#66FCF1] text-[#434246] font-semibold text-lg rounded-lg view transition-[0.5s]">
+            <button className="w-[200px] xs:w-[165px] xs:h[35px] h-[50px] bg-[#66FCF1] text-[#434246] font-semibold text-lg rounded-lg view transition-[0.5s]">
               Contact me
             </button>
           </NavLink>
         </div>
-        <div className="flex gap-[50px] mt-[15px]">
+        <div className="flex gap-[50px] mt-[15px] xs:gap-[20px]">
           <NavLink
             to={"https://github.com/Leduchai2k3/Blogging"}
             target="_blank"

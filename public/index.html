@@ -37,10 +37,17 @@
       ::-webkit-scrollbar-thumb:hover {
         background: linear-gradient(#006217, #00776f);
       }
+      
+      @media (min-width: 0px) and (max-width: 1023px) {
+        ::-webkit-scrollbar {
+        height: 2px;
+        background: #1f2833;
+      }
+}
     </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" class=""></div>
   </body>
 </html>

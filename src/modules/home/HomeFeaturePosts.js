@@ -8,7 +8,7 @@ const HomeFeaturePosts = () => {
     margin-top: 80px;
   `;
   return (
-    <StyleHomeFP>
+    <StyleHomeFP className="">
       <TitleFeature to="/blog">Bài viết nổi bật</TitleFeature>
       <FeaturePostsList></FeaturePostsList>
     </StyleHomeFP>

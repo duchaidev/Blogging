@@ -12,6 +12,7 @@ const FeaturePostsList = () => {
     grid-template-columns: repeat(4, 1fr);
     column-gap: 20px;
     row-gap: 40px;
+
   `;
 
   const [postList, setPostList] = useState([]);
@@ -33,7 +34,7 @@ const FeaturePostsList = () => {
   }, []);
 
   return (
-    <StyleList>
+    <StyleList className=" xs:overflow-x-auto xs:grid-rows-1 xs:grid-flow-col xs:pb-3">
       {postList.map((item) => (
         <PostsItem
           key={item.id}
