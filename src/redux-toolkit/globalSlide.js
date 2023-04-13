@@ -5,6 +5,7 @@ const globalSlide = createSlice({
   initialState: {
     dark: true,
     showNavbar: false,
+    showSearch: false,
   },
   reducers: {
     toggleDarkMode: (state) => ({
@@ -14,9 +15,13 @@ const globalSlide = createSlice({
     toggleNavBar: (state => ({
       ...state,
       showNavbar: !state.showNavbar
+    })),
+    toggleSearch: (state => ({
+      ...state,
+      showSearch: !state.showSearch
     }))
   },
 });
 
-export const { toggleDarkMode, toggleNavBar } = globalSlide.actions;
+export const { toggleDarkMode, toggleNavBar, toggleSearch } = globalSlide.actions;
 export default globalSlide.reducer;

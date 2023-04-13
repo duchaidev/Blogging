@@ -14,7 +14,7 @@ const StyleInput = styled.input`
   margin-top: 5px;
   color-scheme: white;
   ::placeholder {
-    color: white;
+    color: black;
     opacity: 0.4;
   }
   color: black;

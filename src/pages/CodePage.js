@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TitleHeader from "../components/title/TitleHeader";
 import CodeList from "../modules/code/CodeList";
 const StyleBlog = styled.div`
+
   .content {
     margin-top: 30px;
     display: grid;

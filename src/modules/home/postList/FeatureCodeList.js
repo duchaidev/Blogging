@@ -8,8 +8,8 @@ const FeatureCodeList = () => {
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 20px;
-    row-gap: 40px;
+    /* column-gap: 20px;
+    row-gap: 40px; */
   `;
 
   const [codeList, setCodeList] = useState([]);
@@ -30,7 +30,7 @@ const FeatureCodeList = () => {
     fetchPosts();
   }, []);
   return (
-    <StyleCodeList className="xs:overflow-x-auto xs:grid-rows-1 xs:grid-flow-col xs:pb-3">
+    <StyleCodeList className="xs:overflow-x-auto xs:grid-rows-1 xs:grid-flow-col gap-x-5 gap-y-10 xs:pb-3">
       {codeList.map((item) => (
         <PostsItem
           key={item.id}

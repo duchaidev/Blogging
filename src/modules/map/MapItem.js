@@ -30,7 +30,7 @@ const MapItem = ({ image, to, title, content }) => {
   return (
     <StyleMapItem
       className=" bg-[#fff] p-6 rounded border border-[#495678] flex 
-    flex-col gap-3 relative max-w-[35%] dark:bg-[#1C2735] "
+    flex-col gap-3 relative max-w-[35%] xs:max-w-full dark:bg-[#1C2735] "
     >
       <div className="flex">
         <div className="max-w-[70%]">

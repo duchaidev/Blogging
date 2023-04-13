@@ -16,11 +16,22 @@ const StylePostItem = styled.div`
   border-radius: 10px;
   display: flex;
   flex-direction: column;
+  @media (min-width: 1024px)  {
   .item {
     display: grid;
     grid-template-columns: 4fr 1fr;
     gap: 20px;
   }
+  }
+  @media (min-width: 0px) and (max-width: 1023px) {
+      .item{
+        display: flex;
+        gap: 10px;
+        padding-right: 5px;
+        flex-direction: column-reverse;
+      }
+    }
+ 
 `;
 const PostItem = ({
   avtAuthor,
@@ -271,7 +282,7 @@ const PostItem = ({
             <img
               src={image}
               alt="img"
-              className="w-full h-[110px] overflow-hidden object-cover rounded-lg"
+              className=" h-[110px] overflow-hidden object-cover xs:aspect-video xs:h-[150px] rounded-lg"
             />
           </NavLink>
         </div>

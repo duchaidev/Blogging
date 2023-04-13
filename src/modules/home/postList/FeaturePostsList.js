@@ -3,16 +3,13 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { db } from "../../../firebase-app/firebase-auth";
 import PostsItem from "./PostsItem";
-
-//
 const FeaturePostsList = () => {
   const StyleList = styled.div`
     margin-top: 20px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 20px;
-    row-gap: 40px;
-
+    /* column-gap: 20px;
+    row-gap: 40px; */
   `;
 
   const [postList, setPostList] = useState([]);
@@ -34,7 +31,7 @@ const FeaturePostsList = () => {
   }, []);
 
   return (
-    <StyleList className=" xs:overflow-x-auto xs:grid-rows-1 xs:grid-flow-col xs:pb-3">
+    <StyleList className="xs:overflow-x-auto gap-x-5 gap-y-10 xs:gap-x-0 xs:grid-rows-1 xs:grid-flow-col xs:pb-3">
       {postList.map((item) => (
         <PostsItem
           key={item.id}

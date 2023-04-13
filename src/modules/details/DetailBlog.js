@@ -52,10 +52,10 @@ const DetailBlog = () => {
   if (!slug) return <PageNotFound></PageNotFound>;
 
   return (
-    <div className="min-h-screen px-[15%]">
+    <div className="min-h-screen  lg:px-[15%] xl:px-[15%] 2xl:px-[15%] xs:pr-3 xs:w-screen">
       <div>
         <div>
-          <h1 className="text-[40px] font-bold text-gray-900 dark:text-gray-200 mb-8">
+          <h1 className="text-[40px] xs:text-[24px] xs:font-semibold font-bold text-gray-900 dark:text-gray-200 mb-8">
             {post?.title}
           </h1>
           <div className="flex items-center justify-between">

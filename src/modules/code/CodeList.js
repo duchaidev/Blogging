@@ -24,7 +24,7 @@ const CodeList = () => {
   }, []);
   console.log(codeList);
   return (
-    <div className="grid w-full grid-cols-4 gap-5">
+    <div className="grid w-full grid-cols-4 gap-5 pb-5 sm:grid-cols-1 xs:grid-cols-2">
       {codeList.length > 0 &&
         codeList.map((item) => (
           <CodeItem

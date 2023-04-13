@@ -27,7 +27,7 @@ const PostsItem = ({
         <img
           src={image}
           alt=""
-          className="object-cover w-full border border-gray-500 rounded-xl !aspect-video img-content xs:h-[132px] overflow-hidden"
+          className="object-cover border border-gray-500 rounded-xl !aspect-video img-content xs:!h-[132px] overflow-hidden"
           title={title}
         />
       </NavLink>

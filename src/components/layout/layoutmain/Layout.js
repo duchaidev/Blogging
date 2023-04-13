@@ -8,7 +8,7 @@ const Layout = () => {
   const StyleLayout = styled.div`
     background-color: ${(props) => props.theme.backround};
     z-index: 1000;
-    padding-right: 100px;
+    /* padding-right: 100px; */
     min-height: 100vh;
     .main {
       display: grid;
@@ -26,7 +26,7 @@ const Layout = () => {
 }
   `;
   return (
-    <StyleLayout className="dark:bg-[#1F2833] overflow-x-hidden xs:pr-[10px]">
+    <StyleLayout className="dark:bg-[#1F2833] pr-[100px] overflow-x-hidden xs:pr-[10px]">
       <Header></Header>
       <div className="main">
         <NavBar></NavBar>

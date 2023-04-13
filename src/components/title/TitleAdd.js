@@ -4,9 +4,14 @@ import Button from "../form/Button";
 const TitleAdd = ({ admin, children, isSubmitting, ...props }) => {
   const { on, onClick, ...rest } = props;
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between xs:flex-col">
       <h2 className="font-bold text-2xl text-[#66FCF1]">{children}</h2>
-      <Button type="submit" isLoading={isSubmitting} disabled={isSubmitting}>
+      <Button
+        type="submit"
+        className="sm:!hidden"
+        isLoading={isSubmitting}
+        disabled={isSubmitting}
+      >
         Upload
       </Button>
       {admin ? (

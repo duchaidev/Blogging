@@ -22,14 +22,33 @@ import { db } from "../../firebase-app/firebase-auth";
 import InfoItem from "./InfoItem";
 
 const StyleSupportForm = styled.div`
-  .form {
+padding-bottom: 30px;
+
+@media (min-width: 1024px){
+    .form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
-  .info {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+  }
+  
+  @media (min-width: 0px) and (max-width: 1023px) {
+    .form {
+    display: flex;
+    flex-direction: column;
+  }
+  }
+  @media (min-width: 1024px){ 
+    .info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+    }
+  }
+  @media (min-width: 0px) and (max-width: 1023px) {
+    .info {
+      display:flex;
+      flex-direction: column;
+    }
   }
 `;
 const SupportForm = () => {
@@ -95,7 +114,7 @@ const SupportForm = () => {
         <div>
           <LogoSupport></LogoSupport>
         </div>
-        <div className="bg-[#273F48] mt-8 pb-8 pt-6 px-10 rounded-md">
+        <div className="bg-[#273F48] mt-8 pb-8 sm:px-2 pt-6 px-10 rounded-md">
           <form onSubmit={handleSubmit(handleMessage)}>
             <div className="grid gap-2">
               <h2 className="text-[25px] font-bold text-center text-white mb-2">

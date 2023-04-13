@@ -212,7 +212,7 @@ const ChangePassword = () => {
           </div>
           <div>
             <div className="flex flex-col w-full gap-10 mt-8">
-              <div className="grid grid-cols-2 gap-x-[100px] gap-y-[30px]">
+              <div className="grid grid-cols-2 gap-x-[100px] gap-y-[30px] xs:grid-cols-1">
                 <div>
                   <Label
                     htmlFor="fullname"

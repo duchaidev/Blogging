@@ -13,7 +13,7 @@ const HomePage = () => {
   document.title = "Home";
   return (
     <StyleHomePage
-      className="!overflow-x-hidden"
+      className="xs:w-screen xs:pr-[10px] !overflow-x-hidden"
     >
       <HomeSlide></HomeSlide>
       <HomeFeaturePosts></HomeFeaturePosts>

@@ -148,7 +148,7 @@ const DashBoardNav = () => {
           text-align: center;
           height: 100%;
           gap: 30px;
-          fontweight: 400;
+          /* font-weight: 400; */
           color: white;
           cursor: pointer;
           padding: 10px 20px;
@@ -162,7 +162,7 @@ const DashBoardNav = () => {
           }
           p {
             font-size: 16px;
-            fontweight: 600;
+            /* font-weight: 600; */
           }
           &.active,
           &:hover {

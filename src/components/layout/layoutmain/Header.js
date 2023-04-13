@@ -20,8 +20,8 @@ import { debounce } from "lodash";
 import ListSearch from "../../dropdown/dropdownSearch/ListSearch";
 import OptionSearch from "../../dropdown/dropdownSearch/OptionSearch";
 import InputSearch from "../../form/InputSearch";
-import { useDispatch } from "react-redux";
-import { toggleNavBar } from "../../../redux-toolkit/globalSlide";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleNavBar, toggleSearch } from "../../../redux-toolkit/globalSlide";
 
 const StyleHomePage = styled.div`
   width: 100%;
@@ -175,24 +175,107 @@ const Header = () => {
   }, 300);
   const handleToggleNavbar = () => {
     dispatch(toggleNavBar());
-  }
+  };
+  const showSearch = useSelector((state) => state.darkMode.showSearch);
+  const handleSearch = () => {
+    dispatch(toggleSearch());
+  };
   return (
     <StyleHomePage>
       <div className="header dark:!bg-[#1F2833]">
         <button onClick={handleToggleNavbar}>
-          <svg width="25" height="20" viewBox="0 0 60 55" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M59.8475 0H0V5.44068H59.8475V0Z" fill="white" />
-            <path d="M59.8475 24.483H0V29.9237H59.8475V24.483Z" fill="white" />
-            <path d="M59.8475 48.9661H0V54.4068H59.8475V48.9661Z" fill="white" />
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 60 55"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M59.8475 0H0V5.44068H59.8475V0Z"
+              class="fill-black dark:fill-white transition-all"
+            />
+            <path
+              d="M59.8475 24.483H0V29.9237H59.8475V24.483Z"
+              class="fill-black dark:fill-white transition-all"
+            />
+            <path
+              d="M59.8475 48.9661H0V54.4068H59.8475V48.9661Z"
+              class="fill-black dark:fill-white transition-all"
+            />
           </svg>
         </button>
-        <button className="">
-          <svg width="20" height="20" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M50 44H46.84L45.72 42.92C49.64 38.36 52 32.44 52 26C52 11.64 40.36 0 26 0C11.64 0 0 11.64 0 26C0 40.36 11.64 52 26 52C32.44 52 38.36 49.64 42.92 45.72L44 46.84V50L64 69.96L69.96 64L50 44ZM26 44C16.04 44 8 35.96 8 26C8 16.04 16.04 8 26 8C35.96 8 44 16.04 44 26C44 35.96 35.96 44 26 44Z" fill="white" />
-          </svg>
-
-
+        <button
+          className={`${showSearch ? "absolute right-8" : "absolute right-8"}`}
+          onClick={handleSearch}
+        >
+          {showSearch ? (
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 56 56"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M56 5.64L50.36 0L28 22.36L5.64 0L0 5.64L22.36 28L0 50.36L5.64 56L28 33.64L50.36 56L56 50.36L33.64 28L56 5.64Z"
+                class="fill-black dark:fill-white transition-all"
+              />
+            </svg>
+          ) : (
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 70 70"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M50 44H46.84L45.72 42.92C49.64 38.36 52 32.44 52 26C52 11.64 40.36 0 26 0C11.64 0 0 11.64 0 26C0 40.36 11.64 52 26 52C32.44 52 38.36 49.64 42.92 45.72L44 46.84V50L64 69.96L69.96 64L50 44ZM26 44C16.04 44 8 35.96 8 26C8 16.04 16.04 8 26 8C35.96 8 44 16.04 44 26C44 35.96 35.96 44 26 44Z"
+                class="fill-black dark:fill-white transition-all"
+              />
+            </svg>
+          )}
         </button>
+        {/* <InputSearch
+          className={`!m-0 dark:!text-white !text-black h-[40px] absolute right-16 transition-all  ${
+            showSearch
+              ? "!w-[60%] opacity-100 visible "
+              : "!w-[0%] opacity-0 invisible"
+          } `}
+          placeholder="Tìm kiếm blog, tài liệu...."
+          onChange={handleChange}
+        ></InputSearch> */}
+        <div className="hidden w-full h-full xs:block">
+          <DropdownHeader>
+            <div>
+              <InputSearch
+                className={`!m-0 dark:!text-white !text-black h-[40px] absolute right-16 transition-all  ${
+                  showSearch
+                    ? "!w-[55%] opacity-100 visible "
+                    : "!w-[0%] opacity-0 invisible"
+                } `}
+                placeholder="Tìm kiếm blog, tài liệu...."
+                onChange={handleChange}
+              ></InputSearch>
+              <ListSearch
+                className="xs:mt-12 xs:absolute"
+                showh={search}
+                focused={isFocused}
+              >
+                {postsList?.length > 0 &&
+                  postsList.map((item) => (
+                    <OptionSearch
+                      key={item.id}
+                      image={item.image}
+                      title={item.title}
+                      to={item.urldemo || `/blog/${item.slug}`}
+                    ></OptionSearch>
+                  ))}
+              </ListSearch>
+            </div>
+          </DropdownHeader>
+        </div>
       </div>
       <div className="header dark:!bg-[#1F2833] xs:!hidden">
         <div className="xs:!hidden header-left">
@@ -331,7 +414,6 @@ const Header = () => {
             </div>
           )}
         </div>
-
       </div>
     </StyleHomePage>
   );
