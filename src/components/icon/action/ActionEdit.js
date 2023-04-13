@@ -4,7 +4,7 @@ const ActionEdit = ({ onClick = () => {} }) => {
   return (
     <span
       className="flex items-center justify-center w-10 h-10 border border-gray-200 rounded cursor-pointer 
-      bg-[#788DA9] dark:bg-transparent"
+      bg-[#788DA9] dark:bg-transparent sm:hidden"
       onClick={onClick}
     >
       <svg

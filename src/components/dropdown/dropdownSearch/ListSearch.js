@@ -3,9 +3,8 @@ import { useDropdown } from "../../../context/dropdown-context";
 
 const ListSearch = ({ showh, focused, className, children }) => {
   const { show, setShow } = useDropdown();
-
   useEffect(() => {
-    if (showh !== "" && focused === true) {
+    if (showh.length >= 2 && focused === true) {
       setShow(true);
     } else {
       setShow(false);

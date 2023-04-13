@@ -86,6 +86,7 @@ const StyleHomePage = styled.div`
 `;
 const Header = () => {
   const dispatch = useDispatch();
+  const showSearch = useSelector((state) => state.darkMode.showSearch);
   const [isFocused, setIsFocused] = useState(false);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState([]);
@@ -163,20 +164,28 @@ const Header = () => {
     fetchPosts();
     // }
   }, [search]);
-
+  console.log(postsList);
   function handleFocus() {
     setIsFocused(true);
+  }
+  function handleFocusPhone() {
+    if (showSearch === true) {
+      setIsFocused(true);
+    } else {
+      setIsFocused(false);
+    }
   }
   function handleBlur() {
     setIsFocused(false);
   }
   const handleChange = debounce((values) => {
+    // console.log(values.target.value);
     setSearch(values.target.value);
   }, 300);
   const handleToggleNavbar = () => {
     dispatch(toggleNavBar());
   };
-  const showSearch = useSelector((state) => state.darkMode.showSearch);
+
   const handleSearch = () => {
     dispatch(toggleSearch());
   };
@@ -237,16 +246,12 @@ const Header = () => {
             </svg>
           )}
         </button>
-        {/* <InputSearch
-          className={`!m-0 dark:!text-white !text-black h-[40px] absolute right-16 transition-all  ${
-            showSearch
-              ? "!w-[60%] opacity-100 visible "
-              : "!w-[0%] opacity-0 invisible"
-          } `}
-          placeholder="Tìm kiếm blog, tài liệu...."
-          onChange={handleChange}
-        ></InputSearch> */}
-        <div className="hidden w-full h-full xs:block">
+
+        <div
+          className="hidden w-full h-full xs:block"
+          onFocus={handleFocusPhone}
+          onBlur={handleBlur}
+        >
           <DropdownHeader>
             <div>
               <InputSearch

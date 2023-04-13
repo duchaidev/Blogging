@@ -103,7 +103,7 @@ const ManagePostUser = () => {
         <Table>
           <thead>
             <tr>
-              <th></th>
+              <th className="sm:hidden"></th>
               <th>Id</th>
               <th>Post</th>
               <th>Category</th>
@@ -115,7 +115,7 @@ const ManagePostUser = () => {
             postsList.map((post) => (
               <tbody key={post.id}>
                 <tr>
-                  <td></td>
+                  <td className="sm:hidden"></td>
                   <td title={post?.id} className="!text-black dark:!text-white">
                     {post?.id?.slice(0, 8) + "...."}
                   </td>
@@ -125,7 +125,7 @@ const ManagePostUser = () => {
                       <img
                         src={post.image}
                         alt=""
-                        className="w-[66px] h-[55px] rounded object-cover"
+                        className=" w-[66px] h-[55px] rounded object-cover"
                       />
                       <div className="flex-1">
                         <h3 className="font-semibold" title={post?.title}>

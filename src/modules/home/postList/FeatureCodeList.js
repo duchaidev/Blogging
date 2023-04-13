@@ -30,7 +30,7 @@ const FeatureCodeList = () => {
     fetchPosts();
   }, []);
   return (
-    <StyleCodeList className="xs:overflow-x-auto xs:grid-rows-1 xs:grid-flow-col gap-x-5 gap-y-10 xs:pb-3">
+    <StyleCodeList className="pb-3 overflow-x-auto xs:grid-rows-1 xs:grid-flow-col gap-x-5 gap-y-10">
       {codeList.map((item) => (
         <PostsItem
           key={item.id}

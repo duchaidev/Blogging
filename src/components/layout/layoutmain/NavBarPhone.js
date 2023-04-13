@@ -103,6 +103,51 @@ const sidebarLink = [
   },
 ];
 
+const sideBarNav = [
+  {
+    title: "Bài viết của tôi",
+    url: "/manage-post",
+    icon: (
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 64 64"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M56 56.88H8V8H36V0H8C3.6 0 0 3.6 0 8V56C0 60.4 3.6 64 8 64H56C60.4 64 64 60.4 64 56V28H56V56.88Z"
+          className="fill-black dark:fill-white"
+        />
+        <path d="M48 16H16V24H48V16Z" className="fill-black dark:fill-white" />
+        <path
+          d="M16 28V36H48V28H36H16Z"
+          className="fill-black dark:fill-white"
+        />
+        <path d="M48 40H16V48H48V40Z" className="fill-black dark:fill-white" />
+      </svg>
+    ),
+  },
+  {
+    title: "Cài đặt",
+    url: "/change-password",
+    icon: (
+      <svg
+        width="30"
+        height="32"
+        viewBox="0 0 30 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M15.0058 11.5245C13.9473 11.5245 12.9561 11.9351 12.2056 12.6856C11.4587 13.4361 11.0445 14.4273 11.0445 15.4857C11.0445 16.5442 11.4587 17.5354 12.2056 18.2859C12.9561 19.0328 13.9473 19.447 15.0058 19.447C16.0642 19.447 17.0554 19.0328 17.8059 18.2859C18.5528 17.5354 18.967 16.5442 18.967 15.4857C18.967 14.4273 18.5528 13.4361 17.8059 12.6856C17.4393 12.3162 17.003 12.0234 16.5224 11.824C16.0417 11.6247 15.5261 11.5229 15.0058 11.5245ZM29.6012 19.8612L27.286 17.8823C27.3958 17.2097 27.4524 16.523 27.4524 15.8397C27.4524 15.1565 27.3958 14.4662 27.286 13.7972L29.6012 11.8183C29.7761 11.6686 29.9013 11.4692 29.9601 11.2466C30.0189 11.024 30.0085 10.7888 29.9304 10.5722L29.8986 10.4802C29.2614 8.69846 28.3067 7.04693 27.0807 5.60559L27.017 5.53125C26.8681 5.35621 26.6697 5.23038 26.4479 5.17034C26.2261 5.11031 25.9913 5.11889 25.7744 5.19495L22.9 6.21802C21.838 5.34717 20.6556 4.66041 19.3741 4.18251L18.8183 1.17705C18.7764 0.95064 18.6666 0.742347 18.5034 0.579845C18.3403 0.417342 18.1316 0.308323 17.905 0.26727L17.8094 0.24957C15.9686 -0.0831901 14.0287 -0.0831901 12.1879 0.24957L12.0923 0.26727C11.8658 0.308323 11.657 0.417342 11.4939 0.579845C11.3308 0.742347 11.2209 0.95064 11.179 1.17705L10.6197 4.19667C9.35035 4.67838 8.16787 5.36348 7.11863 6.22509L4.22291 5.19495C4.00614 5.11829 3.77117 5.1094 3.54923 5.16947C3.32729 5.22954 3.12888 5.35572 2.98037 5.53125L2.91665 5.60559C1.69284 7.04846 0.738382 8.69958 0.0988054 10.4802L0.0669453 10.5722C-0.0923548 11.0147 0.0386254 11.5103 0.396166 11.8183L2.73965 13.8184C2.62991 14.4839 2.57681 15.1636 2.57681 15.8362C2.57681 16.5159 2.62991 17.1956 2.73965 17.854L0.403246 19.8541C0.228354 20.0038 0.103182 20.2032 0.0443741 20.4258C-0.0144341 20.6484 -0.00409211 20.8836 0.0740252 21.1002L0.105885 21.1922C0.746626 22.9728 1.69181 24.619 2.92373 26.0668L2.98745 26.1412C3.13632 26.3162 3.33474 26.442 3.55655 26.5021C3.77836 26.5621 4.01315 26.5535 4.22999 26.4775L7.12571 25.4473C8.18063 26.3146 9.35591 27.0014 10.6268 27.4757L11.1861 30.4954C11.228 30.7218 11.3379 30.9301 11.501 31.0926C11.6641 31.2551 11.8728 31.3641 12.0994 31.4051L12.195 31.4228C14.0539 31.7574 15.9576 31.7574 17.8165 31.4228L17.9121 31.4051C18.1387 31.3641 18.3474 31.2551 18.5105 31.0926C18.6737 30.9301 18.7835 30.7218 18.8254 30.4954L19.3812 27.4899C20.6627 27.0085 21.845 26.3252 22.907 25.4544L25.7815 26.4775C25.9983 26.5541 26.2333 26.563 26.4552 26.5029C26.6771 26.4429 26.8756 26.3167 27.0241 26.1412L27.0878 26.0668C28.3197 24.6119 29.2649 22.9728 29.9056 21.1922L29.9375 21.1002C30.0897 20.6612 29.9587 20.1692 29.6012 19.8612ZM15.0058 21.7091C11.5684 21.7091 8.78243 18.9231 8.78243 15.4857C8.78243 12.0484 11.5684 9.26242 15.0058 9.26242C18.4431 9.26242 21.2291 12.0484 21.2291 15.4857C21.2291 18.9231 18.4431 21.7091 15.0058 21.7091Z"
+          className="fill-black dark:fill-white"
+        />
+      </svg>
+    ),
+  },
+];
+
 const StyleNavPhone = styled.div`
   .nav-item {
     display: flex;
@@ -110,14 +155,14 @@ const StyleNavPhone = styled.div`
     text-align: center;
     height: 100%;
     gap: 30px;
-    padding: 5px 10px;
+    padding: 2px 10px;
     /* background: #668588;
     border-radius: 10px;
     */
     &.active,
     &:hover {
       background: #668588;
-      padding: 5px 10px;
+      padding: 2px 10px;
       border-radius: 10px;
     }
   }
@@ -159,9 +204,9 @@ const NavBarPhone = ({ className }) => {
     }
   }, [userInfo]);
   return (
-    <div>
+    <div className="relative z-50 xs:overflow-scroll">
       <div
-        className={` z-40 w-screen h-screen transition-all bg-[#CDCFD1]  fixed  ${
+        className={`z-40 w-screen h-screen transition-all bg-[#CDCFD1]  fixed  ${
           showNavbar ? "opacity-25 visible" : "invisible opacity-0"
         }`}
         onClick={handleNavBar}
@@ -235,12 +280,12 @@ const NavBarPhone = ({ className }) => {
               </div>
             </div>
             {/* NavItem */}
-            <StyleNavPhone className="">
+            <StyleNavPhone>
               {sidebarLink.map((item) => {
                 return (
                   <NavLink
                     to={item.url}
-                    className="mb-4 nav-item"
+                    className="mb-2 nav-item"
                     key={item.title}
                     onClick={handleNavBar}
                   >
@@ -256,6 +301,50 @@ const NavBarPhone = ({ className }) => {
                 );
               })}
             </StyleNavPhone>
+            <div className="mb-4 border border-transparent border-b-gray-500"></div>
+            <StyleNavPhone className="">
+              {sideBarNav.map((item) => {
+                return (
+                  <NavLink
+                    to={item.url}
+                    className="mb-2 nav-item"
+                    key={item.title}
+                    onClick={handleNavBar}
+                  >
+                    <div className="flex items-center w-full h-full gap-8">
+                      <span className="w-[25px] mt-3 h-[40px] ">
+                        {item.icon}
+                      </span>
+                      <span className="text-lg font-normal text-black dark:text-white whitespace-nowrap">
+                        {item.title}
+                      </span>
+                    </div>
+                  </NavLink>
+                );
+              })}
+            </StyleNavPhone>
+            <div className="mb-4 border border-transparent border-b-gray-500"></div>
+            <NavLink className="mb-2 flex items-center h-full gap-[30px] px-[10px] py-[5px]">
+              <div className="flex items-center w-full h-full gap-8">
+                <span className="w-[25px] mt-3 h-[40px] ">
+                  <svg
+                    width="20"
+                    height="25"
+                    viewBox="0 0 30 34"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21.6667 25V20H10V13.3333H21.6667V8.33333L30 16.6667L21.6667 25ZM18.3333 0C19.2174 0 20.0652 0.351189 20.6904 0.976311C21.3155 1.60143 21.6667 2.44928 21.6667 3.33333V6.66667H18.3333V3.33333H3.33333V30H18.3333V26.6667H21.6667V30C21.6667 30.8841 21.3155 31.7319 20.6904 32.357C20.0652 32.9821 19.2174 33.3333 18.3333 33.3333H3.33333C2.44928 33.3333 1.60143 32.9821 0.976311 32.357C0.351189 31.7319 0 30.8841 0 30V3.33333C0 2.44928 0.351189 1.60143 0.976311 0.976311C1.60143 0.351189 2.44928 0 3.33333 0H18.3333Z"
+                      className="fill-black dark:fill-white"
+                    />
+                  </svg>
+                </span>
+                <span className="text-lg font-normal text-black dark:text-white whitespace-nowrap">
+                  Đăng xuất
+                </span>
+              </div>
+            </NavLink>
           </div>
         </div>
       </div>

@@ -31,7 +31,7 @@ const FeaturePostsList = () => {
   }, []);
 
   return (
-    <StyleList className="xs:overflow-x-auto gap-x-5 gap-y-10 xs:gap-x-0 xs:grid-rows-1 xs:grid-flow-col xs:pb-3">
+    <StyleList className="pb-3 overflow-x-auto gap-x-5 gap-y-10 xs:gap-x-0 xs:grid-rows-1 xs:grid-flow-col">
       {postList.map((item) => (
         <PostsItem
           key={item.id}
