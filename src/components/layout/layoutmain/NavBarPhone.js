@@ -7,8 +7,9 @@ import {
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../../context/auth-context";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../../firebase-app/firebase-auth";
+import { auth, db } from "../../../firebase-app/firebase-auth";
 import styled from "styled-components";
+import { signOut } from "firebase/auth";
 
 const sidebarLink = [
   {
@@ -177,6 +178,10 @@ const NavBarPhone = ({ className }) => {
   const handleNavBar = () => {
     dispatch(toggleNavBar());
   };
+  const signOutt = () => {
+    signOut(auth);
+    handleNavBar();
+  };
   const handleDarkMode = () => {
     element.classList.toggle(classMode);
     dispatch(toggleDarkMode());
@@ -253,7 +258,11 @@ const NavBarPhone = ({ className }) => {
                   </NavLink>
                 </div>
               ) : (
-                <NavLink to={"/sign-up"} className="w-full h-full">
+                <NavLink
+                  to={"/sign-up"}
+                  className="w-full h-full"
+                  onClick={handleNavBar}
+                >
                   <button className="h-full px-8 py-4 font-semibold text-white border rounded-xl dark:text-black bg-[#1F2833] dark:bg-[#80c9c4] ">
                     Sign Up
                   </button>
@@ -323,28 +332,37 @@ const NavBarPhone = ({ className }) => {
                 );
               })}
             </StyleNavPhone>
-            <div className="mb-4 border border-transparent border-b-gray-500"></div>
-            <NavLink className="mb-2 flex items-center h-full gap-[30px] px-[10px] py-[5px]">
-              <div className="flex items-center w-full h-full gap-8">
-                <span className="w-[25px] mt-3 h-[40px] ">
-                  <svg
-                    width="20"
-                    height="25"
-                    viewBox="0 0 30 34"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M21.6667 25V20H10V13.3333H21.6667V8.33333L30 16.6667L21.6667 25ZM18.3333 0C19.2174 0 20.0652 0.351189 20.6904 0.976311C21.3155 1.60143 21.6667 2.44928 21.6667 3.33333V6.66667H18.3333V3.33333H3.33333V30H18.3333V26.6667H21.6667V30C21.6667 30.8841 21.3155 31.7319 20.6904 32.357C20.0652 32.9821 19.2174 33.3333 18.3333 33.3333H3.33333C2.44928 33.3333 1.60143 32.9821 0.976311 32.357C0.351189 31.7319 0 30.8841 0 30V3.33333C0 2.44928 0.351189 1.60143 0.976311 0.976311C1.60143 0.351189 2.44928 0 3.33333 0H18.3333Z"
-                      className="fill-black dark:fill-white"
-                    />
-                  </svg>
-                </span>
-                <span className="text-lg font-normal text-black dark:text-white whitespace-nowrap">
-                  Đăng xuất
-                </span>
-              </div>
-            </NavLink>
+            {userInfo?.email && (
+              <div className="mb-4 border border-transparent border-b-gray-500"></div>
+            )}
+            {userInfo?.email && (
+              <NavLink
+                className="mb-2 flex items-center h-full gap-[30px] px-[10px] py-[5px]"
+                onClick={signOutt}
+                to="/login"
+              >
+                <div className="flex items-center w-full h-full gap-8">
+                  <span className="w-[25px] mt-3 h-[40px] ">
+                    <svg
+                      width="20"
+                      height="25"
+                      viewBox="0 0 30 34"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M21.6667 25V20H10V13.3333H21.6667V8.33333L30 16.6667L21.6667 25ZM18.3333 0C19.2174 0 20.0652 0.351189 20.6904 0.976311C21.3155 1.60143 21.6667 2.44928 21.6667 3.33333V6.66667H18.3333V3.33333H3.33333V30H18.3333V26.6667H21.6667V30C21.6667 30.8841 21.3155 31.7319 20.6904 32.357C20.0652 32.9821 19.2174 33.3333 18.3333 33.3333H3.33333C2.44928 33.3333 1.60143 32.9821 0.976311 32.357C0.351189 31.7319 0 30.8841 0 30V3.33333C0 2.44928 0.351189 1.60143 0.976311 0.976311C1.60143 0.351189 2.44928 0 3.33333 0H18.3333Z"
+                        className="fill-black dark:fill-white"
+                      />
+                    </svg>
+                  </span>
+
+                  <NavLink className="text-lg font-normal text-black dark:text-white whitespace-nowrap">
+                    Đăng xuất
+                  </NavLink>
+                </div>
+              </NavLink>
+            )}
           </div>
         </div>
       </div>

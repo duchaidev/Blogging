@@ -64,7 +64,7 @@ const LoginPage = () => {
   return (
     <AuthenLayout>
       <form
-        className="flex flex-col w-[400px] mt-2"
+        className="flex flex-col w-[400px] mt-2 sm:w-[300px]"
         onSubmit={handleSubmit(submit)}
       >
         <Field>

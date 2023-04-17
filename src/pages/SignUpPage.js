@@ -75,7 +75,7 @@ const SignUpPage = () => {
   return (
     <AuthenLayout>
       <form
-        className="flex flex-col w-[400px] mt-0"
+        className="flex flex-col w-[400px] mt-0 sm:w-[300px]"
         onSubmit={handleSubmit(handleSignUp)}
       >
         <Field>

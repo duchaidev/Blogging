@@ -22,17 +22,17 @@ const AuthenLayout = ({ children }) => {
       <img
         src="bglogin.jpg"
         alt=""
-        className="z-10 object-cover w-full h-full min-h-screen"
+        className="z-10 object-cover w-full h-full min-h-screen "
       />
       <div className="w-auto h-auto z-40 mx-auto bg-[#F3F3F3] absolute top-[32%] right-[50%] translate-y-[-50%] translate-x-[50%]  flex flex-col justify-center items-center py-8 px-48 rounded-xl">
         <NavLink to={"/"}>
           <img
             srcSet="https://firebasestorage.googleapis.com/v0/b/blogging-ff828.appspot.com/o/images%2Flogoo.png?alt=media&token=dbcd008c-241e-46aa-8337-656763be352e"
-            className="w-28 aspect-square"
+            className="w-28 aspect-square sm:w-20"
             alt="monkey-blogging"
           />
         </NavLink>
-        <h1>Monkey Blogging</h1>
+        <h1 className="sm:!text-3xl">Monkey Blogging</h1>
         {children}
       </div>
     </SignUpPageStyled>
