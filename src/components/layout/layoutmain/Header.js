@@ -46,7 +46,7 @@ const StyleHomePage = styled.div`
       img {
         width: 50px;
         height: 50px;
-        border-radius: 10px;
+        /* border-radius: 10px; */
         margin-right: 10px;
       }
       h3 {
@@ -286,11 +286,7 @@ const Header = () => {
         <div className="xs:!hidden header-left">
           <div className="">
             <NavLink to={"/"}>
-              <img
-                src="https://firebasestorage.googleapis.com/v0/b/blogging-ff828.appspot.com/o/images%2Flogoo.png?alt=media&token=dbcd008c-241e-46aa-8337-656763be352e"
-                alt="logo"
-                className="xs:hidden"
-              />
+              <img src="/logonew.png" alt="logo" className="xs:hidden" />
             </NavLink>
           </div>
           <h3 className="text-black xs:hidden dark:text-white">DH Blogging</h3>
