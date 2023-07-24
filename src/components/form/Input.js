@@ -32,10 +32,10 @@ const InputStyled = styled.input`
         background-color: ${(props) => props.theme.secondHover};
         border: 1px solid ${(props) => props.theme.bgButton};
         color: black;
-        /* color: black; */
       }
     `}
 `;
+
 const DivStyled = styled.div`
   position: relative;
   .input-icon {

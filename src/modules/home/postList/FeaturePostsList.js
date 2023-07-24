@@ -29,10 +29,10 @@ const FeaturePostsList = () => {
     };
     fetchPosts();
   }, []);
-
   return (
     <StyleList className="pb-3 overflow-x-auto gap-x-5 gap-y-10 xs:gap-x-0 xs:grid-rows-1 xs:grid-flow-col">
-      {postList.map((item) => (
+      {postList?.length === 0 && (<div className="col-span-4 h-[290px] flex items-center justify-center"><div className="w-32 h-32 rounded-full custom-loader"></div></div>)}
+      {postList?.map((item) => (
         <PostsItem
           key={item.id}
           image={item.image}
@@ -51,3 +51,4 @@ const FeaturePostsList = () => {
 };
 
 export default FeaturePostsList;
+

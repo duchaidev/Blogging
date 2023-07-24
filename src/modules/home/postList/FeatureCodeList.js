@@ -31,6 +31,7 @@ const FeatureCodeList = () => {
   }, []);
   return (
     <StyleCodeList className="pb-3 overflow-x-auto xs:grid-rows-1 xs:grid-flow-col gap-x-5 gap-y-10">
+      {codeList?.length === 0 && (<div className="col-span-4 h-[290px] flex items-center justify-center"><div className="w-32 h-32 rounded-full custom-loader"></div></div>)}
       {codeList.map((item) => (
         <PostsItem
           key={item.id}

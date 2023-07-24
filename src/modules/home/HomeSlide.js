@@ -29,7 +29,7 @@ const HomeSlide = () => {
       <div className="slide translate-x-[-50px] xs:translate-x-0">
         <ClickHomePage></ClickHomePage>
         <h2 className="text-[40px] font-bold max-w-[800px] text-center text-black dark:text-white xs:text-[30px] whitespace-normal">
-          Get your free CODE components with just few click
+          Welcome to the website of DucHai
         </h2>
         <div className="flex gap-[80px] xs:gap-[20px]">
           <NavLink

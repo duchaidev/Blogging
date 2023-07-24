@@ -18,7 +18,7 @@ const HomePage = () => {
       <HomeSlide></HomeSlide>
       <HomeFeaturePosts></HomeFeaturePosts>
       <HomeFeatureCode></HomeFeatureCode>
-    </StyleHomePage >
+    </StyleHomePage>
   );
 };
 

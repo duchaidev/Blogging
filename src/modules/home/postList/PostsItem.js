@@ -2,6 +2,8 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import Dot from "../../../components/icon/Dot";
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const PostsItem = ({
   image,
@@ -25,7 +27,7 @@ const PostsItem = ({
     <StyleItem className="grid gap-2">
       <NavLink to={urlPost} target={target}>
         <img
-          src={image}
+          src={image || <Skeleton />}
           alt=""
           className="object-cover border border-gray-500 rounded-xl !aspect-video img-content xs:!h-[132px] overflow-hidden"
           title={title}
@@ -36,7 +38,7 @@ const PostsItem = ({
         to={urlPost}
         target={target}
       >
-        <h2 title={title} className="whitespace-nowrap">{title.slice(0, 35) + "..."}</h2>
+        <h2 title={title || <Skeleton />} className="whitespace-nowrap">{title.slice(0, 35) + "..."}</h2>
       </NavLink>
       <div className="flex items-center gap-2 xs:hidden">
         <NavLink to={urlAuthor}>
@@ -47,13 +49,13 @@ const PostsItem = ({
           />
         </NavLink>
         <NavLink>
-          <span className="text-black dark:text-white ">{fullname}</span>
+          <span className="text-black dark:text-white ">{fullname || <Skeleton />}</span>
         </NavLink>
         <span>
           <Dot></Dot>
         </span>
         <NavLink>
-          <span className="text-sm text-[#797E85]">{date}</span>
+          <span className="text-sm text-[#797E85]">{date || <Skeleton />}</span>
         </NavLink>
       </div>
     </StyleItem>
